@@ -1,6 +1,7 @@
 package vo.generalmanagervo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import po.generalmanagepo.Citypo;
 
@@ -13,11 +14,9 @@ public class Constancyvo implements Serializable {
 	
 	public double bushalldistance;
     public double standardprice;
-    public Citypo[] city;
     
-    public Constancyvo(double d1,double d2,Citypo[] c){
+    public Constancyvo(double d1,double d2){
     		bushalldistance=d1;
     		standardprice=d2;
-    		city=c;
     }
 }

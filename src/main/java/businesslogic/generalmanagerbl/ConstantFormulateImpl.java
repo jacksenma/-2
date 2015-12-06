@@ -5,6 +5,8 @@ import vo.queryvo.QueryOrdervo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.constancydata.Constancy;
 import dataservice.generalmanagerdataservice.GeneralManagerService;
@@ -23,7 +25,7 @@ public class ConstantFormulateImpl extends UnicastRemoteObject implements Consta
 		GeneralManagerService gs = new Constancy();
 			Constancypo cp = gs.getcontancy();
 			if(cp==null){
-				return new Constancyvo(0,0,null);
+				return new Constancyvo(0,0);
 			}
 			else
 		return cp.getcontancy();
@@ -42,6 +44,39 @@ public class ConstantFormulateImpl extends UnicastRemoteObject implements Consta
 		}
 		return false;
 	
+	}
+
+	@Override
+	public void addcity(String s) {
+		// TODO Auto-generated method stub
+		GeneralManagerService gs = new Constancy();
+		gs.addcity(s);
+	}
+
+	@Override
+	public List<String> getcity() {
+		// TODO Auto-generated method stub
+		GeneralManagerService gs = new Constancy();
+		List<String> nothing = new ArrayList<String>();
+		nothing.add("nothing");
+		if(gs.getcity().equals(null))
+	    return nothing;
+		else
+		return gs.getcity();
+	}
+
+	@Override
+	public void deletecity(String s) throws RemoteException {
+		// TODO Auto-generated method stub
+		GeneralManagerService gs = new Constancy();
+		gs.deletecity(s);
+	}
+
+	@Override
+	public void modifycity(String oldc, String newc) throws RemoteException {
+		// TODO Auto-generated method stub
+		GeneralManagerService gs = new Constancy();
+		gs.modifycity(oldc, newc);
 	}
 	
 }
