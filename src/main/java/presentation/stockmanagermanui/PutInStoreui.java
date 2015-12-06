@@ -13,8 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
+import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import presentation.courierui.PriceAndTimeui;
+import vo.generalmanagervo.Institutionvo;
 import vo.stocmanagermanvo.Instockvo;
 import vo.stocmanagermanvo.Kuaidivo;
 import vo.stocmanagermanvo.Weizhivo;
@@ -26,6 +28,7 @@ import vo.stocmanagermanvo.Weizhivo;
 public class PutInStoreui extends javax.swing.JFrame {
 
 	static WarehouseManageService wms;
+	static StaffInstitutionManagerService sims;
     /**
      * Creates new form PutInStoreui
      * @throws Exception 
@@ -36,6 +39,7 @@ public class PutInStoreui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         wms=RMIClient.getWarehouseManageService();
+        sims=RMIClient.getStaffInstitutionManagerService();
     }
 
     /**
@@ -70,7 +74,7 @@ public class PutInStoreui extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         weihao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        zhongzhuan = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -158,9 +162,9 @@ public class PutInStoreui extends javax.swing.JFrame {
 
         jLabel11.setText("中转中心编号：");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        zhongzhuan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                zhongzhuanActionPerformed(evt);
             }
         });
 
@@ -182,7 +186,7 @@ public class PutInStoreui extends javax.swing.JFrame {
                     .addComponent(paihao)
                     .addComponent(jiahao)
                     .addComponent(weihao)
-                    .addComponent(jTextField1))
+                    .addComponent(zhongzhuan))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -193,7 +197,7 @@ public class PutInStoreui extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(2, 2, 2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(zhongzhuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -235,12 +239,14 @@ public class PutInStoreui extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("返回");
+        jButton2.setText("退出");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
+
         });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,15 +273,34 @@ public class PutInStoreui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void zhongzhuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zhongzhuanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_zhongzhuanActionPerformed
 
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	Kuaidivo kuaidi=new Kuaidivo(year.getText(),month.getText(),day.getText(),bianhao.getText(),destination.getText());
-        Weizhivo weizhi=new Weizhivo(quhao.getText(),paihao.getText(),jiahao.getText(),weihao.getText());
+        Weizhivo weizhi=new Weizhivo(quhao.getText(),paihao.getText(),jiahao.getText(),weihao.getText(),zhongzhuan.getText());
         Instockvo instock=new Instockvo(kuaidi,weizhi);
+        
+        String zzID="";
+        // System.out.println(yingYeTing.getText());
+         if((zzID=zhongzhuan.getText()).equals("")||zzID.length()!=4){
+         	errorzzID();
+         	return;
+         }
+   	
+         try {
+			Institutionvo io=sims.showInstitutions(zzID);
+			if(io==null){
+				notexit(zzID);
+				return;
+			}
+         } catch (RemoteException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+        
         try{
         boolean a=errorID(year.getText());
         if(a)return;
@@ -303,11 +328,22 @@ public class PutInStoreui extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "写入失败", "失败！", 
             		JOptionPane.ERROR_MESSAGE);
         }
-        }catch (RemoteException ex) {
+        
+         }catch (RemoteException ex) {
         Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
-    }
-    private boolean errorID(String text) {
+    private void notexit(String zzID) {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该中转中心编号"+zzID+"！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorzzID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "中转中心编号应为4位！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean errorID(String text) {
 		// TODO Auto-generated method stub
     	for(int i=0;i<text.length();i++){
     		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
@@ -382,12 +418,12 @@ public class PutInStoreui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jiahao;
     private javax.swing.JTextField month;
     private javax.swing.JTextField paihao;
     private javax.swing.JTextField quhao;
     private javax.swing.JTextField weihao;
     private javax.swing.JTextField year;
+    private javax.swing.JTextField zhongzhuan;
     // End of variables declaration//GEN-END:variables
 }

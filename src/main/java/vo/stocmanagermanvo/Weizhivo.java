@@ -13,14 +13,15 @@ public class Weizhivo implements Serializable{
 	public final String paihao;
 	public final String jiahao;
 	public final String weihao;
+	public final String zhongzhuan;
 	
-	
-	public Weizhivo(String q, String p, String j, String w) {
+	public Weizhivo(String q, String p, String j, String w, String zz) {
 		// TODO Auto-generated constructor stub
 		quhao=q;
 		paihao=p;
 		jiahao=j;
 		weihao=w;
+		zhongzhuan=zz;
 	}
 
 }

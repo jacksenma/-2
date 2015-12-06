@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
@@ -45,9 +46,9 @@ public class StoreCheckui extends javax.swing.JFrame {
  	   final String s[] = new String [100];
  	   if(sv!=null){	   
  	   for(int i=0;i<sv.length;i++){
- 		   s[i]=sv[i].bianhao+"      "+sv[i].destination+"     		   "+sv[i].year+"-"+sv[i].month
- 				   +"-"+sv[i].day+"        "+sv[i].quhao+"       	          	"
- 	   +sv[i].paihao+"    	          		"+sv[i].jiahao+"	  	       				      "+sv[i].weihao;
+ 		   s[i]=sv[i].bianhao+"                       "+sv[i].destination+"     		           "+sv[i].year+"-"+sv[i].month
+ 				   +"-"+sv[i].day+"               "+sv[i].quhao+"       	          	     "
+ 	   +sv[i].paihao+"    	          	"+sv[i].jiahao+"	  	       				      "+sv[i].weihao+"         "+sv[i].zhongzhuan;
  	   }
  	   jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = s;
@@ -69,6 +70,8 @@ public class StoreCheckui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,6 +84,9 @@ public class StoreCheckui extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+
+        jScrollPane2.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +122,8 @@ public class StoreCheckui extends javax.swing.JFrame {
 
         jLabel8.setText("入库日期");
 
+        jLabel10.setText("中转中心编号");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,25 +144,28 @@ public class StoreCheckui extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(35, 35, 35)
                         .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton1))
-                .addGap(44, 44, 44))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel10)))
+                .addGap(19, 19, 19))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(55, 55, 55)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(51, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(18, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -162,8 +173,9 @@ public class StoreCheckui extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jButton1)
@@ -171,8 +183,8 @@ public class StoreCheckui extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(94, 94, 94)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(101, 101, 101)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(87, Short.MAX_VALUE)))
         );
 
@@ -232,6 +244,7 @@ public class StoreCheckui extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -241,5 +254,7 @@ public class StoreCheckui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

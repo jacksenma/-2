@@ -20,8 +20,9 @@ public class StoreCheckvo implements Serializable{
 	public String paihao;
 	public String jiahao;
 	public String weihao;
+	public String zhongzhuan;
     
-    public StoreCheckvo(String b,String dt,String y,String m,String da,String q,String p,String j,String w){
+    public StoreCheckvo(String b,String dt,String y,String m,String da,String q,String p,String j,String w,String zz){
     	bianhao=b;
     	destination=dt;
     	year=y;
@@ -31,7 +32,7 @@ public class StoreCheckvo implements Serializable{
     	paihao=p;
     	jiahao=j;
     	weihao=w;
-
+        zhongzhuan=zz;
     }
     
     public String getBianhao(){
@@ -56,5 +57,9 @@ public class StoreCheckvo implements Serializable{
     
     public String getWeihao(){
     	return weihao;
+    }
+    
+    public String getZhongzhuan(){
+    	return zhongzhuan;
     }
 }

@@ -20,7 +20,7 @@ public class StoreCheckpo implements Serializable{
 	public String paihao;
 	public String jiahao;
 	public String weihao;
-	
+	public String zhongzhuan;
 	public StoreCheckpo(StoreCheckvo sv){
 		bianhao=sv.bianhao;
 		destination=sv.destination;
@@ -32,6 +32,6 @@ public class StoreCheckpo implements Serializable{
 	
 	public StoreCheckvo getHuo() {
 		// TODO Auto-generated method stub
-		return (new StoreCheckvo(bianhao,destination,year,month,day,quhao,paihao,jiahao,weihao));
+		return (new StoreCheckvo(bianhao,destination,year,month,day,quhao,paihao,jiahao,weihao,zhongzhuan));
 	}
 }
