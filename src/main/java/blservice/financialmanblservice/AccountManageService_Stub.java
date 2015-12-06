@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.InitMesvo;
 
 public class AccountManageService_Stub implements AccountManageService{
 	public AccountManagevo showAccount(){
@@ -37,6 +38,12 @@ public class AccountManageService_Stub implements AccountManageService{
 	}
 
 	public boolean getOrder(AccountManagevo amvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getOrder(InitMesvo ivo) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

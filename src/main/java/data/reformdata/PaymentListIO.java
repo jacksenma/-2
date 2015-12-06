@@ -14,6 +14,7 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.ExamineType;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 
 public class PaymentListIO implements FinancialmanService, OrderService {
 
@@ -294,6 +295,12 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 			e.printStackTrace();
 		} 
 	return null;
+	}
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	}
 

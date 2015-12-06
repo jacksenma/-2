@@ -13,6 +13,7 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 import po.financialmanpo.RecieveListpo;
 
 import vo.financialmanvo.SettlementManagevo;
@@ -285,6 +286,13 @@ public class RecieveListIO implements  FinancialmanService {
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
