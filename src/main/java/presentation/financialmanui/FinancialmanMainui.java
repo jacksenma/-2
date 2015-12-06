@@ -174,6 +174,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 			new CostManageui().setVisible(true);
+			System.out.println("mmm");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
