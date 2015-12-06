@@ -8,8 +8,9 @@ import blservice.financialmanblservice.AccountManageService;
 import data.accountdata.AccountIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.financialmanpo.Accountpo;
-import po.financialmanpo.CostOrderpo;
+import po.financialmanpo.InitMespo;
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.InitMesvo;
 
 public class AccountManageImpl extends UnicastRemoteObject implements AccountManageService {
 
@@ -63,6 +64,21 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
          return false;
 		// TODO Auto-generated method stub
 //		AccountManageService am=new 
+	}
+
+	@Override
+	public boolean getOrder(InitMesvo ivo) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new AccountIO();
+		 try {
+//				System.out.println("sdweretr");
+        	if(fs.addInitMes(new InitMespo(ivo)))
+					return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return false;
 	}
 
 }

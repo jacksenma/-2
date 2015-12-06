@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.InitMesvo;
 
 public interface AccountManageService extends Remote {
 	public AccountManagevo showAccount() throws RemoteException;
@@ -20,5 +21,7 @@ public interface AccountManageService extends Remote {
 					 throws RemoteException;
 
 	public boolean getOrder(AccountManagevo amvo) throws RemoteException;
+
+	public boolean getOrder(InitMesvo ivo) throws RemoteException;
 	
 }

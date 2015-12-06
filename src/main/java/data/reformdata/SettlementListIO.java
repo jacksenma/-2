@@ -15,6 +15,7 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 import vo.financialmanvo.IncomeInputvo;
 import vo.financialmanvo.SettlementManagevo;
 
@@ -112,6 +113,13 @@ public class SettlementListIO implements  FinancialmanService {
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

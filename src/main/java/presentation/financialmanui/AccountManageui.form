@@ -77,7 +77,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x521d;&#x59cb;&#x5316;&#x5efa;&#x8d26;"/>
+        <Property name="text" type="java.lang.String" value="&#x671f;&#x521d;&#x5efa;&#x8d26;"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
