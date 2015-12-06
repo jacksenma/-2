@@ -14,11 +14,15 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.ReceiveSendService;
+import blservice.queryblservice.QueryService;
 import data.orderdata.OrderIO;
 import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.Sendvo;
+import vo.couriervo.Datevo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
 
 /**
  *
@@ -27,6 +31,7 @@ import vo.bushallsalmanvo.Sendvo;
 public class Sendui extends javax.swing.JFrame {
 
 	static ReceiveSendService rss;
+	static QueryService q;
     /**
      * Creates new form Sendui
      * @throws Exception 
@@ -37,6 +42,7 @@ public class Sendui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         rss=RMIClient.getReceiveSendService();
+        q=RMIClient.getQueryService();
     }
 
     /**
@@ -133,7 +139,12 @@ public class Sendui extends javax.swing.JFrame {
         jButton1.setText("确定");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+					jButton1ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -171,9 +182,13 @@ public class Sendui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(ActionEvent evt) {
+    private void jButton1ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
-    	Sendvo send = new Sendvo(year.getText(),month.getText(),day.getText(),tiaoxingma.getText(),paijianyuan.getText());
+    	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
+    			Integer.parseInt(month.getText()),
+    			Integer.parseInt(day.getText()));
+    	
+    	Sendvo send = new Sendvo(date,tiaoxingma.getText(),paijianyuan.getText());
         String ID="";
         if((ID = tiaoxingma.getText()).equals("") || ID.length() != 10) {
             errorID();
@@ -207,6 +222,19 @@ public class Sendui extends javax.swing.JFrame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			QueryOrdervo qovo;
+			qovo = q.checkOrder(new Queryvo(tiaoxingma.getText()));
+			
+			try {
+				if(!rss.checkDate(send, qovo)){
+					dateError2();
+					return;
+				}
+			} catch (RemoteException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 
         try {
             boolean a1 = rss.inputsend(send);
@@ -225,6 +253,11 @@ public class Sendui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+	private void dateError2() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private boolean errorID(String text) {
 		// TODO Auto-generated method stub

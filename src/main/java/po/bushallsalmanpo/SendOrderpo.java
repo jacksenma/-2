@@ -2,6 +2,7 @@ package po.bushallsalmanpo;
 
 import java.io.Serializable;
 
+import po.courierpo.Datepo;
 import vo.bushallsalmanvo.Sendvo;
 
 public class SendOrderpo implements Serializable{
@@ -11,9 +12,7 @@ public class SendOrderpo implements Serializable{
 	 */
 	private static final long serialVersionUID = 636749798054471572L;
 	
-	public final String year;
-	public final String month;
-	public final String day;
+	public final Datepo date;
 	public final String tiaoxingma;
 	public final String paijianyuan;
 	
@@ -21,9 +20,7 @@ public class SendOrderpo implements Serializable{
 
 	public SendOrderpo(Sendvo send) {
 		// TODO Auto-generated constructor stub
-		year=send.year;
-		month=send.month;
-		day=send.day;
+		date=new Datepo(send.date.year , send.date.month ,send.date.day);
 		tiaoxingma=send.tiaoxingma;
 		paijianyuan=send.paijianyuan;
 		

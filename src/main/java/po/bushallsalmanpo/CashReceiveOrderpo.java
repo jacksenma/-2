@@ -2,6 +2,7 @@ package po.bushallsalmanpo;
 
 import java.io.Serializable;
 
+import po.courierpo.Datepo;
 import vo.bushallsalmanvo.CashRegistervo;
 import vo.financialmanvo.RecieveListvo;
 
@@ -12,6 +13,7 @@ public class CashReceiveOrderpo implements Serializable{
 	 */
 	private static final long serialVersionUID = 297620571692198281L;
 
+	public final Datepo date;
 	public final String year;
 	public final String month;
 	public final String day;
@@ -25,9 +27,10 @@ public class CashReceiveOrderpo implements Serializable{
 	
 	public CashReceiveOrderpo(CashRegistervo cr) {
 		// TODO Auto-generated constructor stub
-		year=cr.year;
-		month=cr.month;
-		day=cr.day;
+		date=new Datepo(cr.date.year , cr.date.month , cr.date.day);
+		year=cr.date.year+"";
+		month=cr.date.month+"";
+		day=cr.date.day+"";
 		money=cr.money;
 		kuaidiyuan=cr.kuaidiyuan;
 		tiaoxingma=cr.tiaoxingma;

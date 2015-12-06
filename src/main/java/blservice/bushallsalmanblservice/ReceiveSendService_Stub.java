@@ -7,6 +7,7 @@ import po.bushallsalmanpo.SendOrderpo;
 import vo.bushallsalmanvo.Receivevo;
 import vo.bushallsalmanvo.Receivevo1;
 import vo.bushallsalmanvo.Sendvo;
+import vo.queryvo.QueryOrdervo;
 
 public class ReceiveSendService_Stub implements ReceiveSendService{
 
@@ -23,6 +24,18 @@ public class ReceiveSendService_Stub implements ReceiveSendService{
 	}
 
 	public boolean inputsend(Sendvo send) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkDate(Receivevo1 receive1, QueryOrdervo qovo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkDate(Sendvo send, QueryOrdervo qovo) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
