@@ -19,6 +19,7 @@ public class CashReceiveOrderpo implements Serializable{
 	public final String kuaidiyuan;
 	public final String tiaoxingma;
 	public final String ID;
+	public final String zhanghu;
 	
 	public CrExamineType cre;
 	
@@ -31,6 +32,7 @@ public class CashReceiveOrderpo implements Serializable{
 		kuaidiyuan=cr.kuaidiyuan;
 		tiaoxingma=cr.tiaoxingma;
 		ID=cr.ID;
+		zhanghu=cr.zhanghu;
 		
 		cre=CrExamineType.NOApproval;
 		

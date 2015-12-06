@@ -16,8 +16,9 @@ public class CashRegistervo implements Serializable {
 	public final String kuaidiyuan;
 	public final String tiaoxingma;
 	public final String ID;
+	public final String zhanghu;
 	
-	public CashRegistervo(String y, String mt, String d, String me, String k, String t, String id) {
+	public CashRegistervo(String y, String mt, String d, String me, String k, String t, String id, String zh) {
 		// TODO Auto-generated constructor stub
 		year=y;
 		month=mt;
@@ -26,10 +27,11 @@ public class CashRegistervo implements Serializable {
 		kuaidiyuan=k;
 		tiaoxingma=t;
 		ID=id;
+		zhanghu=zh;
 	}
 
 	public static CashRegistervo getInformation(){
-		return new CashRegistervo(null, null, null, null, null, null, null);
+		return new CashRegistervo(null, null, null, null, null, null, null, null);
 		
 	}
 }

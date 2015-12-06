@@ -13,8 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
+import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import presentation.courierui.PriceAndTimeui;
+import vo.generalmanagervo.Institutionvo;
 import vo.stocmanagermanvo.WarehouseWarningvo;
 
 /**
@@ -24,6 +26,7 @@ import vo.stocmanagermanvo.WarehouseWarningvo;
 public class WarehouseWarningui extends javax.swing.JFrame {
 
 	static WarehouseManageService wms;
+	static StaffInstitutionManagerService sims;
     /**
      * Creates new form WarehouseManageui
      * @throws Exception 
@@ -34,6 +37,7 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         wms=RMIClient.getWarehouseManageService();
+        sims=RMIClient.getStaffInstitutionManagerService();
     }
 
     /**
@@ -50,6 +54,8 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        zhongzhuan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,23 +68,16 @@ public class WarehouseWarningui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
-
-
-
-
         });
 
-        jButton2.setText("退出");
+        jButton2.setText("返回");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
-
-
-
-
-
         });
+
+        jLabel3.setText("中转中心编号：");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,23 +86,32 @@ public class WarehouseWarningui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2))
+                            .addComponent(zhongzhuan))))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(zhongzhuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,8 +127,26 @@ public class WarehouseWarningui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
-    	WarehouseWarningvo warning = new WarehouseWarningvo(jTextField1.getText());
-    	try {
+    	WarehouseWarningvo warning = new WarehouseWarningvo(zhongzhuan.getText(),jTextField1.getText());
+    	 String zzID="";
+         // System.out.println(yingYeTing.getText());
+          if((zzID=zhongzhuan.getText()).equals("")||zzID.length()!=4){
+          	errorzzID();
+          	return;
+          }
+    	
+          try {
+			Institutionvo io=sims.showInstitutions(zzID);
+			if(io==null){
+				notexit(zzID);
+				return;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+          
+          try {
             boolean a = wms.set(warning);
             if(a){
                 System.out.println("成功！");
@@ -138,7 +164,17 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         }
     }
 
-    private void jButton2ActionPerformed(ActionEvent evt) {
+    private void notexit(String zzID) {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该中转中心编号"+zzID+"！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorzzID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "中转中心编号应为4位！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
     }
@@ -188,6 +224,8 @@ public class WarehouseWarningui extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField zhongzhuan;
     // End of variables declaration//GEN-END:variables
 }
