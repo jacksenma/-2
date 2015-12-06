@@ -10,8 +10,15 @@ package presentation.generalmanagerui;
  * @author zr
  */
 
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
+import java.util.List;
+
+import javax.swing.JList;
 
 import vo.generalmanagervo.Constancyvo;
 import blservice.generalmanagerblservice.ConstantFormulateService;
@@ -42,6 +49,38 @@ public class Newcontancyui extends javax.swing.JFrame {
 		expressprice.setText(df.format(cv.standardprice/23*25));
 		jLabel16.setVisible(false);
 		
+		List<String> city=cfs2.getcity();
+		final String citys[] = new String[city.size()];
+		for(int i=0;i<city.size();i++){
+			citys[i]=city.get(i);
+		}
+	     jList1.setModel(new javax.swing.AbstractListModel() {
+	            String[] strings =citys;
+	            public int getSize() { return strings.length; }
+	            public Object getElementAt(int i) { return strings[i]; }
+	        });
+	        jScrollPane1.setViewportView(jList1);
+
+	        final Window w =this;
+	        MouseAdapter mouseListener = new MouseAdapter() { 
+	            public void mouseClicked(MouseEvent mouseEvent) { 
+	              JList theList = (JList) mouseEvent.getSource(); 
+	              if (mouseEvent.getClickCount() == 2) { 
+	                int index = theList.locationToIndex(mouseEvent.getPoint()); 
+	                if (index >= 0) { 
+	                  Object o = theList.getModel().getElementAt(index); 
+	                 try {
+	                	w.dispose();
+						new modifycity((String)o);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	                } 
+	              } 
+	            } 
+	        };
+	          jList1.addMouseListener(mouseListener); 
 	}
 
 	/**
@@ -58,44 +97,15 @@ public class Newcontancyui extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         save = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         addcity = new javax.swing.JButton();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        guangzhoutobeijing = new javax.swing.JTextField();
-        guangzhoutoshanghai = new javax.swing.JTextField();
-        beijingtoguangzhou = new javax.swing.JTextField();
-        beijingamount = new javax.swing.JTextField();
-        shanghaitobeijing = new javax.swing.JTextField();
-        beijingtonanjing = new javax.swing.JTextField();
-        shanghaitoguangzhou = new javax.swing.JTextField();
-        beijingtoshanghai = new javax.swing.JTextField();
-        shanghaitonanjing = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        shanghaiamount = new javax.swing.JTextField();
-        nanjingtobeijing = new javax.swing.JTextField();
-        nanjingtoshanghai = new javax.swing.JTextField();
-        nanjingtoguangzhou = new javax.swing.JTextField();
-        guangzhoutonanjing = new javax.swing.JTextField();
-        guangzhouamount = new javax.swing.JTextField();
-        nanjingamount = new javax.swing.JTextField();
         standardprice = new javax.swing.JTextField();
         bushalldistance = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -103,6 +113,8 @@ public class Newcontancyui extends javax.swing.JFrame {
         economicprice = new javax.swing.JLabel();
         expressprice = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,10 +136,6 @@ public class Newcontancyui extends javax.swing.JFrame {
 
         jLabel3.setText("各城市间距离（km）");
 
-        jLabel4.setText("北京");
-
-        jLabel5.setText("上海");
-
         jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jLabel6.setText("km");
 
@@ -143,22 +151,6 @@ public class Newcontancyui extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("广州");
-
-        jLabel8.setText("南京");
-
-        jLabel9.setText("上海");
-
-        jLabel10.setText("北京");
-
-        jLabel11.setText("广州");
-
-        jLabel12.setText("南京");
-
-        jLabel17.setText("——");
-
-        jLabel18.setText("——");
-
         jLabel31.setText("经济快递、标准快递、次晨特价价格比：");
 
         jLabel32.setText("18：23：25");
@@ -170,21 +162,14 @@ public class Newcontancyui extends javax.swing.JFrame {
         addcity.setText("新增城市信息");
         addcity.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addcityMouseClicked(evt);
+                try {
+					addcityMouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
-
-        jLabel38.setText("营业厅数量");
-
-        jLabel39.setText("——");
-
-        beijingtonanjing.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                beijingtonanjingActionPerformed(evt);
-            }
-        });
-
-        jLabel19.setText("——");
 
         jLabel14.setText("经济快递运费价格：");
 
@@ -197,6 +182,7 @@ public class Newcontancyui extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("微软雅黑", 1, 18)); // NOI18N
         jLabel16.setText("修改成功！");
 
+   
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,134 +191,64 @@ public class Newcontancyui extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
+                        .addGap(24, 24, 24)
+                        .addComponent(addcity)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel33)
                                 .addGap(12, 12, 12))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(beijingtoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(nanjingtobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(nanjingtoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(shanghaitobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel19)
-                                                    .addGap(10, 10, 10))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(guangzhoutobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(guangzhoutoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(standardprice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(economicprice, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(expressprice, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(38, 38, 38)))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(standardprice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(economicprice, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(expressprice, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel32)
-                                    .addComponent(jLabel36)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(beijingtoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nanjingtoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(shanghaitoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(beijingtonanjing, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel17)))
-                                .addGap(14, 14, 14))))
+                                    .addComponent(jLabel36))
+                                .addGap(59, 59, 59))))
                     .addComponent(jLabel31))
                 .addGap(155, 155, 155))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(addcity)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(9, 9, 9)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel16)
-                                                .addComponent(save)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(beijingamount, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel38))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(11, 11, 11)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(guangzhouamount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(shanghaiamount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(nanjingamount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(37, 37, 37)
-                                            .addComponent(jLabel10)
-                                            .addGap(48, 48, 48)
-                                            .addComponent(jLabel9)
-                                            .addGap(40, 40, 40)
-                                            .addComponent(jLabel11)))
-                                    .addGap(0, 205, Short.MAX_VALUE))))
+                                .addComponent(jLabel16)
+                                .addComponent(save))
+                            .addContainerGap(51, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(171, 171, 171)
-                                    .addComponent(bushalldistance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(57, 57, 57))
+                                .addComponent(jLabel1)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(115, 115, 115)
-                                            .addComponent(jLabel13))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(60, 60, 60)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel4)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel7)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel8)))))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel39)
-                                    .addGap(25, 25, 25)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addComponent(jLabel12))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(5, 5, 5)
-                                    .addComponent(shanghaitonanjing, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(guangzhoutonanjing, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(10, 10, 10)))
-                            .addGap(122, 122, 122)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15))))
+                                    .addComponent(jLabel3)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(60, Short.MAX_VALUE))))
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(171, 171, 171)
+                            .addComponent(bushalldistance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(57, 57, 57))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(115, 115, 115)
+                            .addComponent(jLabel13)
+                            .addGap(25, 25, 25)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -340,70 +256,24 @@ public class Newcontancyui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel38))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel39)
-                            .addComponent(beijingtoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beijingtonanjing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beijingamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beijingtoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(bushalldistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addcity))
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel2)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel3)
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel13)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addGap(57, 57, 57)
+                        .addComponent(addcity)
+                        .addGap(90, 90, 90))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(shanghaitobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel17)
-                            .addComponent(guangzhoutoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guangzhoutonanjing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guangzhoutobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(shanghaiamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel19)
-                                .addComponent(shanghaitoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(shanghaitonanjing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(guangzhouamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nanjingamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel18)
-                        .addComponent(nanjingtobeijing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nanjingtoshanghai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nanjingtoguangzhou, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                            .addComponent(jLabel6)
+                            .addComponent(bushalldistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addComponent(jLabel33)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -431,19 +301,17 @@ public class Newcontancyui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void beijingtonanjingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beijingtonanjingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_beijingtonanjingActionPerformed
-
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
-    	cfs.modifyconstancy(new Constancyvo(Double.parseDouble(bushalldistance.getText()),Double.parseDouble(standardprice.getText()),null));
+    	cfs.modifyconstancy(new Constancyvo(Double.parseDouble(bushalldistance.getText()),Double.parseDouble(standardprice.getText())));
     	setdefault(cfs);
     	jLabel16.setVisible(true);
     }//GEN-LAST:event_saveMouseClicked
 
-    private void addcityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addcityMouseClicked
+    private void addcityMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_addcityMouseClicked
         // TODO add your handling code here:
+    	this.dispose();
+    	new Newcityui().setVisible(true);
     }//GEN-LAST:event_addcityMouseClicked
 
     /**
@@ -489,28 +357,14 @@ public class Newcontancyui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcity;
-    private javax.swing.JTextField beijingamount;
-    private javax.swing.JTextField beijingtoguangzhou;
-    private javax.swing.JTextField beijingtonanjing;
-    private javax.swing.JTextField beijingtoshanghai;
     private javax.swing.JTextField bushalldistance;
     private javax.swing.JLabel economicprice;
     private javax.swing.JLabel expressprice;
-    private javax.swing.JTextField guangzhouamount;
-    private javax.swing.JTextField guangzhoutobeijing;
-    private javax.swing.JTextField guangzhoutonanjing;
-    private javax.swing.JTextField guangzhoutoshanghai;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
@@ -518,25 +372,12 @@ public class Newcontancyui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nanjingamount;
-    private javax.swing.JTextField nanjingtobeijing;
-    private javax.swing.JTextField nanjingtoguangzhou;
-    private javax.swing.JTextField nanjingtoshanghai;
     private javax.swing.JButton save;
-    private javax.swing.JTextField shanghaiamount;
-    private javax.swing.JTextField shanghaitobeijing;
-    private javax.swing.JTextField shanghaitoguangzhou;
-    private javax.swing.JTextField shanghaitonanjing;
     private javax.swing.JTextField standardprice;
     // End of variables declaration//GEN-END:variables
 }

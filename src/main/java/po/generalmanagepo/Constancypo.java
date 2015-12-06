@@ -1,8 +1,8 @@
 package po.generalmanagepo;
 
 import java.io.Serializable;
+import java.util.List;
 
-import vo.generalmanagervo.Cityvo;
 import vo.generalmanagervo.Constancyvo;
 
 public class Constancypo implements Serializable {
@@ -14,7 +14,7 @@ public class Constancypo implements Serializable {
 	double economicprice;               //18:23:25
 	double standardprice;
 	double expressPrice;
-    Citypo[] city;
+    List<String> city;
     
 	  public Constancypo(Constancyvo cv) {
 		// TODO Auto-generated constructor stub
@@ -22,11 +22,10 @@ public class Constancypo implements Serializable {
 	standardprice = cv.standardprice;
 	economicprice = cv.standardprice/23*18;
 	expressPrice = cv.standardprice/23*25;
-	city=cv.city;
 	  }
 
 	  public Constancyvo getcontancy(){
-		  return new Constancyvo(bushalldistance,standardprice,city);
+		  return new Constancyvo(bushalldistance,standardprice);
 	  }
 	  
 }

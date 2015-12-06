@@ -240,8 +240,8 @@ public class BusinessHall implements BushallsalmanService {
 			int k=0;
 			String result [] = new String[count];
 			for(int i = 0; i < list.size(); i++){
-				if(list.get(i).getExamineType().equals(CrExamineType.NOApproval))
-					result[k]=list.get(i).getID();{
+				if(list.get(i).getExamineType().equals(CrExamineType.NOApproval)){
+					result[k]=list.get(i).getID();
 				k++;
 					}
 			}
