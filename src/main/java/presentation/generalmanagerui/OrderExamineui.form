@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="bushallorder" max="32767" attributes="0"/>
+                          <Component id="zhuangcheorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="expressorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="shoukuanorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="zhongzhuanorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="paijianorder" max="32767" attributes="0"/>
+                          <Component id="zhongzhuanzhongxinorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="instockorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="outstockorder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="paymentorder" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="288" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+                      <Component id="selectall" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="approve" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="disapprove" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="expressorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="zhuangcheorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="bushallorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="shoukuanorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="zhongzhuanorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="paijianorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="zhongzhuanzhongxinorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="instockorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="outstockorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="paymentorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="selectall" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="approve" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="disapprove" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jList1">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="1111111"/>
+                <StringItem index="1" value="2222222222"/>
+                <StringItem index="2" value="3333333"/>
+                <StringItem index="3" value="44444444"/>
+                <StringItem index="4" value="Item 5"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="selectall">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5168;&#x9009;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="approve">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5ba1;&#x6279;&#x901a;&#x8fc7;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="expressorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5feb;&#x9012;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="expressorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="zhuangcheorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x88c5;&#x8f66;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zhuangcheorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bushallorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8425;&#x4e1a;&#x5385;&#x5230;&#x8fbe;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bushallorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="shoukuanorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x6536;&#x6b3e;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="shoukuanorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="zhongzhuanorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x4e2d;&#x8f6c;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zhongzhuanorderMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zhongzhuanorderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="paijianorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x6d3e;&#x4ef6;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="paijianorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="zhongzhuanzhongxinorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x4e2d;&#x8f6c;&#x4e2d;&#x5fc3;&#x5230;&#x8fbe;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zhongzhuanzhongxinorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="instockorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5165;&#x5e93;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="instockorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="outstockorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x51fa;&#x5e93;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="outstockorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="paymentorder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x4ed8;&#x6b3e;&#x5355;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="paymentorderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="disapprove">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5ba1;&#x6279;&#x4e0d;&#x901a;&#x8fc7;"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
