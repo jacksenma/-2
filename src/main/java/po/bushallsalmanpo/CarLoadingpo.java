@@ -2,6 +2,7 @@ package po.bushallsalmanpo;
 
 import java.io.Serializable;
 
+import po.courierpo.Datepo;
 import po.courierpo.ExamineType;
 import vo.bushallsalmanvo.CarLoadingvo;
 
@@ -11,9 +12,7 @@ public class CarLoadingpo implements Serializable{
 	 */
 	private static final long serialVersionUID = 1787547085551519584L;
 
-	public final String year;
-	public final String month;
-	public final String day;
+	public final Datepo date;
 	public final String yingYeTing;
 	public final String car;
 	public final String chuFaDi;
@@ -27,9 +26,7 @@ public class CarLoadingpo implements Serializable{
 	
 	public CarLoadingpo(CarLoadingvo cl) {
 		// TODO Auto-generated constructor stub
-		year=cl.year;
-		month=cl.month;
-		day=cl.day;
+		date=new Datepo(cl.date.year , cl.date.month , cl.date.day);
 		yingYeTing=cl.yingYeTing;
 		car=cl.car;
 		chuFaDi=cl.chuFaDi;

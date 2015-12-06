@@ -97,7 +97,14 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<Warningpo> list1 = (List<Warningpo>) ois1.readObject();
 		//System.out.println(4*Integer.parseInt(list1.get(0).warning)/100);
-		if(list.size()>=1000*Integer.parseInt(list1.get(0).warning)/100){
+		int k=0;
+		for(int i=0;i<list1.size();i++){
+			if(list1.get(i).zhongzhuan==ipo.getZhongzhuan()){
+				k=i;
+				break;
+			}
+		}
+		if(list.size()>=1000*Integer.parseInt(list1.get(k).warning)/100){
 			JOptionPane.showMessageDialog(null, "库存数量已超过警戒比例", "警告！", 
             		JOptionPane.ERROR_MESSAGE);
 		}
@@ -165,7 +172,9 @@ public class Storing implements StockManagermanService {
 		
 		InStoringpo[] sp = new InStoringpo[list.size()];
 		for(int i=0;i<list.size();i++){
-				sp[i]=list.get(i);	
+//				if(list.get(i).getZhongzhuan()==zhongzhuan){
+				sp[i]=list.get(i);
+//				}
 		}
 		return sp;
 		

@@ -21,7 +21,9 @@ import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.CarLoadingvo;
+import vo.couriervo.Datevo;
 import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
 
 /**
  *
@@ -204,7 +206,12 @@ public class CarLoadingui extends javax.swing.JFrame {
         jButton2.setText("确定");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                try {
+					jButton2ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -246,9 +253,12 @@ public class CarLoadingui extends javax.swing.JFrame {
     	// TODO Auto-generated method stub
     	this.dispose();
     }
-    private void jButton2ActionPerformed(ActionEvent evt) {
+    private void jButton2ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
-    	CarLoadingvo carLoading=new CarLoadingvo(year.getText(),month.getText(),day.getText(),yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tiaoxingma.getText());
+    	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
+    			Integer.parseInt(month.getText()),
+    			Integer.parseInt(day.getText()));
+    	CarLoadingvo carLoading=new CarLoadingvo(date,yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tiaoxingma.getText());
         String yytID="";
        // System.out.println(yingYeTing.getText());
         if((yytID=yingYeTing.getText()).equals("")||yytID.length()!=6){
@@ -261,20 +271,12 @@ public class CarLoadingui extends javax.swing.JFrame {
         	return;
         }
         
-        boolean a=errorID(year.getText());
-        if(a)return;
-        boolean b=errorID(month.getText());
-        if(b)return;
-        boolean c=errorID(day.getText());
-        if(c)return;
-        boolean d=errorID(yingYeTing.getText());
-        if(d)return;
-        boolean e1=errorID(car.getText());
-        if(e1)return;
-        boolean f=errorID(yunFei.getText());
-        if(f)return;
-        
-        int i=0;
+		if(date.day < 1 || date.day > 31 || 
+				date.month < 1 || date.month > 12
+				|| date.year < 1)
+			throw new NumberFormatException();
+		
+		int i=0;
         int row=0;
         while(tiaoxingma.getText().charAt(i)!=' '){
         if(tiaoxingma.getText().charAt(i)=='\n'){
@@ -302,8 +304,8 @@ public class CarLoadingui extends javax.swing.JFrame {
         }
         }
         int m=0;
+        String txmID1="";
         for(int j1=1;j1<=row;j1++){
-        	String txmID1="";
         while(tiaoxingma.getText().charAt(m)!='\n'){
         	txmID1+=tiaoxingma.getText().charAt(m);
         	m++;
@@ -323,6 +325,34 @@ public class CarLoadingui extends javax.swing.JFrame {
 			}
 
         }
+		
+		QueryOrdervo qovo;
+		qovo = q.checkOrder(new Queryvo(txmID1));
+		
+		try {
+			if(!cls.checkDate(carLoading, qovo)){
+				dateError2();
+				return;
+			}
+		} catch (RemoteException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+        
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(yingYeTing.getText());
+        if(d)return;
+        boolean e1=errorID(car.getText());
+        if(e1)return;
+        boolean f=errorID(yunFei.getText());
+        if(f)return;
+        
+        
         try {
             boolean a1 = cls.inputLoad(carLoading);
             if(a1){
@@ -341,6 +371,11 @@ public class CarLoadingui extends javax.swing.JFrame {
         }
         }
     
+
+	private void dateError2() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private boolean errorID(String text) {
 		// TODO Auto-generated method stub
