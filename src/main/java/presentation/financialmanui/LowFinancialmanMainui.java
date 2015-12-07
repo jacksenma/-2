@@ -25,7 +25,7 @@ public class LowFinancialmanMainui extends javax.swing.JFrame{
 	        jMenu3 = new javax.swing.JMenu();
 	        jMenu4 = new javax.swing.JMenu();
 
-	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+	        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 	        jLabel1.setText("职位：财务人员");
 

@@ -91,7 +91,7 @@ public class QueryID extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         All = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("账号ID：");
 

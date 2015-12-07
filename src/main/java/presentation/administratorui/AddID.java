@@ -69,7 +69,7 @@ public class AddID extends javax.swing.JFrame {
         xm = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("确定");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {

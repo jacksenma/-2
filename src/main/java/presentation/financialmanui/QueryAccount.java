@@ -146,7 +146,7 @@ public class QueryAccount extends javax.swing.JFrame {
         queryJ = new javax.swing.JButton();
         error = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("输入关键字（模糊查找）：");
 
