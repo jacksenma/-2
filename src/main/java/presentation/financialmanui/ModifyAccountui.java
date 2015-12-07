@@ -52,7 +52,7 @@ public class ModifyAccountui extends javax.swing.JFrame {
         OK = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("账户名称：");
 

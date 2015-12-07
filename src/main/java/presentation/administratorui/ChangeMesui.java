@@ -72,7 +72,7 @@ public class ChangeMesui extends javax.swing.JFrame {
 
         kdy.setText("快递员");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         id.setText("账户ID：");
 
