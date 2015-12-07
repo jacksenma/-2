@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import blservice.generalmanagerblservice.ConstantFormulateService;
 import RMI.client.RMIClient;
 
@@ -149,12 +151,14 @@ public class modifycity extends javax.swing.JFrame {
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_deleteMouseClicked
         // TODO add your handling code here:
     	cfs.deletecity(oldc);
+    	JOptionPane.showMessageDialog(null, "删除成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_deleteMouseClicked
 
     private void modifyMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_modifyMouseClicked
         // TODO add your handling code here:
     	String newc= city1.getText()+"      距离     "+city2.getText()+"      "+distance.getText()+"      "+"km";
     	cfs.modifycity(oldc,newc);
+    	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_modifyMouseClicked
 
     /**

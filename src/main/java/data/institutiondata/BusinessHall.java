@@ -13,15 +13,11 @@ import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.CarMespo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.bushallsalmanpo.ClExamineType;
-import po.bushallsalmanpo.CmExamineType;
 import po.bushallsalmanpo.CrExamineType;
-import po.bushallsalmanpo.DmExamineType;
 import po.bushallsalmanpo.DriverMespo;
 import po.bushallsalmanpo.ReceiveOrderpo;
 import po.bushallsalmanpo.RoExamineType;
 import po.bushallsalmanpo.SendOrderpo;
-import po.bushallsalmanpo.SoExamineType;
-import po.courierpo.ExamineType;
 
 
 public class BusinessHall implements BushallsalmanService {

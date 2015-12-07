@@ -5,9 +5,12 @@
  */
 package presentation.generalmanagerui;
 
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import blservice.generalmanagerblservice.OrderExamineService;
@@ -51,6 +54,45 @@ public void showbytype(String s[],String type){
            public Object getElementAt(int i) { return strings[i]; }
        });
 	   jScrollPane1.setViewportView(jList1);
+
+
+        final Window w =this;
+        MouseAdapter mouseListener = new MouseAdapter() { 
+    public void mouseClicked(MouseEvent mouseEvent) { 
+      JList theList = (JList) mouseEvent.getSource(); 
+      if (mouseEvent.getClickCount() == 2) { 
+        int index = theList.locationToIndex(mouseEvent.getPoint()); 
+        if (index >= 0) { 
+          Object o = theList.getModel().getElementAt(index); 
+         try {
+        	w.dispose();
+			openorder((String)o);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        } 
+      } 
+    }
+
+	private void openorder(String o) {
+		// TODO Auto-generated method stub
+		String split[] = o.split("     ");
+		switch(split[0]){
+		case"快递单":
+		case"营业厅到达单":
+		case"装车单":
+		case"收款单":
+		case"中转单":
+		case"派件单":
+		case"中转中心到达单":
+		case"入库单":
+		case"出库单":
+		case"付款单":
+		}
+	} 
+};
+  jList1.addMouseListener(mouseListener); 
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +122,7 @@ public void showbytype(String s[],String type){
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "1111111", "2222222222", "3333333", "44444444", "55555555" };
+            String[] strings = {""};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

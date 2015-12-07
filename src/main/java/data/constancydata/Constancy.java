@@ -129,9 +129,10 @@ public class Constancy implements GeneralManagerService{
 			List<String> result = (List<String>) ois.readObject();
 			ois.close();
 			for(int i=0;i<result.size();i++){
-			   if(result.get(i).equals(s))
+			   if(result.get(i).equals(s)){
 			   result.remove(i);
 			   i--;
+			   }
 			}
 			FileOutputStream fos = 
 					new FileOutputStream("src/main/java/data/save/city.txt");
@@ -156,9 +157,10 @@ public class Constancy implements GeneralManagerService{
 			List<String> result = (List<String>) ois.readObject();
 			ois.close();
 	       for(int i=0;i<result.size();i++){
-	    	   if(result.get(i).equals(oldc))
+	    	   if(result.get(i).equals(oldc)){
 	    		   result.remove(i);
 	    	   result.add(newc);
+	    	   }
 	       }
 			FileOutputStream fos = 
 					new FileOutputStream("src/main/java/data/save/city.txt");

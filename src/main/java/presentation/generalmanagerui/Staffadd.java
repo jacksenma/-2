@@ -8,6 +8,7 @@ package presentation.generalmanagerui;
 import java.rmi.RemoteException;
 
 import javax.management.relation.Role;
+import javax.swing.JOptionPane;
 
 import vo.generalmanagervo.Staffvo;
 import RMI.client.RMIClient;
@@ -264,6 +265,7 @@ public class Staffadd extends javax.swing.JFrame {
     	if(manager.isSelected())
     		role="总经理";
     	sims.addStaff(new Staffvo(name.getText(),ID.getText(),worktime.getText(),workunit.getText(),role));
+    	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
 
     /**
