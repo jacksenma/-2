@@ -279,7 +279,8 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         try {
-			new OrderExamineui().setVisible(true);
+			
+        	new OrderExamineui().setVisible(true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

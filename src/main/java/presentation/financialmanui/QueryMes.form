@@ -34,10 +34,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Modify" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
-                          <Component id="Delete" min="-2" pref="214" max="-2" attributes="0"/>
-                          <Component id="Init" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="Modify" alignment="0" pref="214" max="32767" attributes="0"/>
+                          <Component id="Init" alignment="0" pref="214" max="32767" attributes="0"/>
+                          <Component id="delete" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -57,7 +57,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Component id="Delete" min="-2" max="-2" attributes="0"/>
+              <Component id="delete" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Modify" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -79,15 +79,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x8d26;&#x6237;&#x91d1;&#x989d;&#xff1a;"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="Delete">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x5220;&#x9664;&#x5f53;&#x524d;&#x8d26;&#x6237;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DeleteMouseClicked"/>
-        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DeleteMouseEntered"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Modify">
       <Properties>
@@ -111,6 +102,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton4MouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="delete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5220;&#x9664;&#x5f53;&#x524d;&#x8d26;&#x6237;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

@@ -2,6 +2,10 @@ package blservice.financialmanblservice;
 
 import java.rmi.RemoteException;
 
+import data.accountdata.AccountIO;
+import data.reformdata.PaymentListIO;
+import dataservice.financialmandataservice.FinancialmanService;
+import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
@@ -69,4 +73,19 @@ public class CostManageService_Stub implements CostManageService {
 		return null;
 	}
 
-}
+	@Override
+	public void delete(String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+       
+	}
+
+	@Override
+	public CheckPaymentListvo SearchP(String number) throws RemoteException {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+	}
+
+

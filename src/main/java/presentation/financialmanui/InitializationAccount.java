@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.AccountManageService;
 import presentation.courierui.PriceAndTimeui;
+import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.InitMesvo;
 
 /**
@@ -224,7 +225,9 @@ public class InitializationAccount extends javax.swing.JFrame {
     	
     	
     	InitMesvo ivo=new InitMesvo(mes1, mes2, mes3, mes4, mes5, mes6);
+    	AccountManagevo amvo=new AccountManagevo(mes5, mes6);
     	 try {
+    		 boolean b1 = as.getOrder(amvo);
              boolean b = as.getOrder(ivo);
              if(b){
                  System.out.println("成功！");

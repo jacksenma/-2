@@ -2,7 +2,7 @@ package po.financialmanpo;
 
 import java.io.Serializable;
 
-class Beizhupo implements Serializable{
+public class Beizhupo implements Serializable{
 	/**
 	 * 
 	 */

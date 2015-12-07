@@ -14,8 +14,9 @@ public class RecieveListvo implements Serializable {
 	public final String kuaidiyuanq;
 	public final String tiaoxingmaq;
 	public final String IDq;
+	public final String Zhanghu;
 	
-	public RecieveListvo(String y, String mt, String d, String me, String k, String t, String id) {
+	public RecieveListvo(String y, String mt, String d, String me, String k, String t, String id,String z) {
 		// TODO Auto-generated constructor stub
 		yearq=y;
 		monthq=mt;
@@ -24,6 +25,7 @@ public class RecieveListvo implements Serializable {
 		kuaidiyuanq=k;
 		tiaoxingmaq=t;
 		IDq=id;
+		Zhanghu=z;
 	}
 
 }

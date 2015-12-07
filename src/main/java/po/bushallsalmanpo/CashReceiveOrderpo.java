@@ -48,7 +48,7 @@ public class CashReceiveOrderpo implements Serializable{
 	}
 	 public RecieveListvo getRecieveList() {
 			// TODO Auto-generated method stub
-			return (new RecieveListvo(year, month, day, money, kuaidiyuan, tiaoxingma, ID));
+			return (new RecieveListvo(year, month, day, money, kuaidiyuan, tiaoxingma, ID,zhanghu));
 		}
 
 }
