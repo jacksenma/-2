@@ -22,22 +22,24 @@ import vo.stocmanagermanvo.Weizhivo;
 public class ChangePutInStore extends javax.swing.JFrame {
 
 	static WarehouseManageService wms;
+	static String ID;
     /**
      * Creates new form ChangePutInStore
      * @throws Exception 
      */
-    public ChangePutInStore() throws Exception {
+    public ChangePutInStore(String id) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
+        ID=id;
         wms=RMIClient.getWarehouseManageService();
         setdefault(wms);
     }
 
     private void setdefault(WarehouseManageService wms2) throws RemoteException {
 		// TODO Auto-generated method stub
-    	Instockvo ivo2 = wms.showInstock();
+    	Instockvo ivo2 = wms.showInstock(ID);
     	year.setText(ivo2.kuaidi.year);
     	month.setText(ivo2.kuaidi.month);
     	day.setText(ivo2.kuaidi.day);
@@ -335,7 +337,7 @@ public class ChangePutInStore extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangePutInStore().setVisible(true);
+					new ChangePutInStore(ID).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

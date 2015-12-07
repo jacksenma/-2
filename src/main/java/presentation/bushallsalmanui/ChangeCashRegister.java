@@ -37,7 +37,7 @@ public class ChangeCashRegister extends javax.swing.JFrame {
     }
 
     private void setdefault(CashRegisterService crs) throws RemoteException, Exception{
-        CashRegistervo crvo2 = crs.showCash();
+        CashRegistervo crvo2 = crs.showCash(ID2);
         year.setText(Integer.toString(crvo2.date.year));
     	month.setText(Integer.toString(crvo2.date.month));
     	day.setText(Integer.toString(crvo2.date.day));

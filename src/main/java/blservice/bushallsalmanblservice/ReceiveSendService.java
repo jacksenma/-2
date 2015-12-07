@@ -25,13 +25,13 @@ public interface ReceiveSendService extends Remote {
 	public boolean checkDate(Sendvo send, QueryOrdervo qovo)
 	        throws RemoteException;
 
-	public Receivevo showReceive()
+	public Receivevo showReceive(String iD)
 	        throws RemoteException;
 
 	public boolean modifyReceive(Receivevo receive)
 	        throws RemoteException;
 
-	public Sendvo showSend()
+	public Sendvo showSend(String iD)
 	        throws RemoteException;
 
 	public boolean modifySend(Sendvo sendvo)

@@ -25,22 +25,24 @@ import vo.stocmanagermanvo.Zhuangyunvo;
 public class ChangeOutFromStock extends javax.swing.JFrame {
 
 	static WarehouseManageService wms;
+	static String ID;
     /**
      * Creates new form ChangeOutFromStock
      * @throws Exception 
      */
-    public ChangeOutFromStock() throws Exception {
+    public ChangeOutFromStock(String id) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
+        ID=id;
         wms=RMIClient.getWarehouseManageService();
         setdefault(wms);
     }
 
     private void setdefault(WarehouseManageService wms2) throws RemoteException {
 		// TODO Auto-generated method stub
-    	Outstockvo ovo2 = wms.showOutstock();
+    	Outstockvo ovo2 = wms.showOutstock(ID);
         year1.setText(ovo2.out1.year);
     	month1.setText(ovo2.out1.month);
     	day1.setText(ovo2.out1.day);
@@ -448,7 +450,7 @@ public class ChangeOutFromStock extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangeOutFromStock().setVisible(true);
+					new ChangeOutFromStock(ID).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -24,11 +24,12 @@ import vo.couriervo.Datevo;
 public class ChangeReceive extends javax.swing.JFrame {
 
 	static ReceiveSendService rss;
+	static String ID;
     /**
      * Creates new form ChangeReceive
      * @throws Exception 
      */
-    public ChangeReceive() throws Exception {
+    public ChangeReceive(String tiaoxingma) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -39,7 +40,7 @@ public class ChangeReceive extends javax.swing.JFrame {
 
     private void setdefault(ReceiveSendService rss2) throws RemoteException {
 		// TODO Auto-generated method stub
-    	Receivevo rvo2 = rss.showReceive();
+    	Receivevo rvo2 = rss.showReceive(ID);
         year.setText(Integer.toString(rvo2.receive1.date.year));
     	month.setText(Integer.toString(rvo2.receive1.date.month));
     	day.setText(Integer.toString(rvo2.receive1.date.day));
@@ -303,7 +304,7 @@ public class ChangeReceive extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangeReceive().setVisible(true);
+					new ChangeReceive(ID).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

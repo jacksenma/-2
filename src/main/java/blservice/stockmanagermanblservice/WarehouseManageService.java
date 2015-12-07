@@ -26,11 +26,11 @@ public interface WarehouseManageService extends Remote {
 
 	public boolean out(Outstockvo1 out1,Zhuangyunvo zy)throws RemoteException;
 
-	public Instockvo showInstock()throws RemoteException;
+	public Instockvo showInstock(String iD)throws RemoteException;
 
 	public boolean modifyInstock(Instockvo instockvo)throws RemoteException;
 
-	public Outstockvo showOutstock()throws RemoteException;
+	public Outstockvo showOutstock(String iD)throws RemoteException;
 
 	public boolean modifyOut(Outstockvo outstockvo)throws RemoteException;
 }

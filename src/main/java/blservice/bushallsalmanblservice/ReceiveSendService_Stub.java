@@ -40,11 +40,7 @@ public class ReceiveSendService_Stub implements ReceiveSendService{
 		return false;
 	}
 
-	@Override
-	public Receivevo showReceive() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean modifyReceive(Receivevo receive) throws RemoteException {
@@ -53,17 +49,25 @@ public class ReceiveSendService_Stub implements ReceiveSendService{
 		
 	}
 
-	@Override
-	public Sendvo showSend() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean modifySend(Sendvo sendvo) throws RemoteException {
 		return false;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Receivevo showReceive(String iD) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Sendvo showSend(String iD) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -317,7 +317,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton7MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-//    		new ChangeCarLoading();
+    		new ChangeCarLoading("1234567890987654321");
     	}catch(Exception e){
     		e.printStackTrace();
     	}
@@ -325,7 +325,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton8MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-//    		new ChangeCashRegister();
+   		new ChangeCashRegister("0000000000");
     	}catch(Exception e){
     		e.printStackTrace();
     	}
@@ -333,7 +333,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton9MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-    		new ChangeReceive();
+    		new ChangeReceive("0000000000");
     	}catch(Exception e){
     		e.printStackTrace();
     	}
@@ -341,7 +341,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton10MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-    		new ChangeSend();
+    		new ChangeSend("0000000000");
     	}catch(Exception e){
     		e.printStackTrace();
     	}

@@ -119,10 +119,10 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 
 
 	@Override
-	public Instockvo showInstock() throws RemoteException {
+	public Instockvo showInstock(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
-		InStoringpo crpo = sms.getInstock();
+		InStoringpo crpo = sms.getInstock(ID);
 		if(crpo==null){
 			return null;
 		}
@@ -147,10 +147,10 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 
 
 	@Override
-	public Outstockvo showOutstock() throws RemoteException {
+	public Outstockvo showOutstock(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
-		OutStoringpo crpo = sms.getOutstock();
+		OutStoringpo crpo = sms.getOutstock(ID);
 		if(crpo==null){
 			return null;
 		}

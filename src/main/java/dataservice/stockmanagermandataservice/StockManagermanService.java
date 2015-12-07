@@ -20,7 +20,7 @@ public interface StockManagermanService {
 	
 	public InStoringpo[] search() throws Exception;
 
-	public InStoringpo getInstock();
+	public InStoringpo getInstock(String iD);
 
-	public OutStoringpo getOutstock();
+	public OutStoringpo getOutstock(String iD);
 }

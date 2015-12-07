@@ -46,10 +46,10 @@ public class CashRegisterImpl extends UnicastRemoteObject implements CashRegiste
 	}
 
 	@Override
-	public CashRegistervo showCash() throws RemoteException {
+	public CashRegistervo showCash(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
-		CashReceiveOrderpo crpo = bss.getCash();
+		CashReceiveOrderpo crpo = bss.getCash(ID);
 		if(crpo==null){
 			Datevo d=new Datevo(0,0,0);
 			return new CashRegistervo(d, "0","0", "0", "0",

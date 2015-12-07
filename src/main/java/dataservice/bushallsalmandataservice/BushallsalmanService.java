@@ -23,11 +23,11 @@ public interface BushallsalmanService {
 
 	public CarLoadingpo getLoad(String car);
 	
-	public CashReceiveOrderpo getCash();
+	public CashReceiveOrderpo getCash(String iD);
 
-	public ReceiveOrderpo getReceive();
+	public ReceiveOrderpo getReceive(String iD);
 
-	public SendOrderpo getSend();
+	public SendOrderpo getSend(String iD);
 	
 	
 }

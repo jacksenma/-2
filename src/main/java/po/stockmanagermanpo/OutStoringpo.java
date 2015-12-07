@@ -14,7 +14,7 @@ public class OutStoringpo implements Serializable{
 	 */
 	private static final long serialVersionUID = 1709685851857444620L;
 
-	final OutStoringpo1 out1;
+	public final OutStoringpo1 out1;
 	final Zhuangyunpo zy;
 	public OsExamineType ose;
 

@@ -20,22 +20,24 @@ import vo.couriervo.Datevo;
  */
 public class ChangeSend extends javax.swing.JFrame {
 	static ReceiveSendService rss;
+	static String ID;
     /**
      * Creates new form ChangeSend
      * @throws Exception 
      */
-    public ChangeSend() throws Exception {
+    public ChangeSend(String id) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
+        ID=id;
         rss=RMIClient.getReceiveSendService();
         setdefault(rss);
     }
 
     private void setdefault(ReceiveSendService rss2) throws RemoteException {
 		// TODO Auto-generated method stub
-    	Sendvo svo2 = rss.showSend();
+    	Sendvo svo2 = rss.showSend(ID);
         year.setText(Integer.toString(svo2.date.year));
     	month.setText(Integer.toString(svo2.date.month));
     	day.setText(Integer.toString(svo2.date.day));
@@ -236,7 +238,7 @@ public class ChangeSend extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangeSend().setVisible(true);
+					new ChangeSend(ID).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

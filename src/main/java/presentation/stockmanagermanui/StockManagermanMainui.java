@@ -260,7 +260,7 @@ public class StockManagermanMainui extends javax.swing.JFrame {
     private void jButton6MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try {
-			new ChangePutInStore();
+			new ChangePutInStore("1111");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,7 +270,7 @@ public class StockManagermanMainui extends javax.swing.JFrame {
     private void jButton7MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try {
-			new ChangeOutFromStock();
+			new ChangeOutFromStock("1111");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

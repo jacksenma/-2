@@ -284,7 +284,7 @@ public class Storing implements StockManagermanService {
 	}
 
 	@Override
-	public InStoringpo getInstock() {
+	public InStoringpo getInstock(String ID) {
 		// TODO Auto-generated method stub
 		FileInputStream fis;
 		try {
@@ -293,8 +293,10 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<InStoringpo> result = (List<InStoringpo>) ois.readObject();
 		ois.close();
-		 InStoringpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).bianhao.equals(ID))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -303,7 +305,7 @@ public class Storing implements StockManagermanService {
 	}
 
 	@Override
-	public OutStoringpo getOutstock() {
+	public OutStoringpo getOutstock(String ID) {
 		// TODO Auto-generated method stub
 		FileInputStream fis;
 		try {
@@ -312,8 +314,10 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<OutStoringpo> result = (List<OutStoringpo>) ois.readObject();
 		ois.close();
-		 OutStoringpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).out1.bianhao.equals(ID))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

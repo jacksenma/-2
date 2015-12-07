@@ -365,7 +365,7 @@ public class BusinessHall implements BushallsalmanService {
     }
 
 	@Override
-	public CashReceiveOrderpo getCash() {
+	public CashReceiveOrderpo getCash(String ID) {
 		// TODO Auto-generated method stub
 		FileInputStream fis;
 		try {
@@ -374,8 +374,10 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CashReceiveOrderpo> result = (List<CashReceiveOrderpo>) ois.readObject();
 		ois.close();
-		 CashReceiveOrderpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).ID.equals(ID))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -383,7 +385,7 @@ public class BusinessHall implements BushallsalmanService {
 	}
 
 	@Override
-	public ReceiveOrderpo getReceive() {
+	public ReceiveOrderpo getReceive(String ID) {
 		// TODO Auto-generated method stub
 		FileInputStream fis;
 		try {
@@ -392,8 +394,10 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<ReceiveOrderpo> result = (List<ReceiveOrderpo>) ois.readObject();
 		ois.close();
-		 ReceiveOrderpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).ID.equals(ID))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -401,7 +405,7 @@ public class BusinessHall implements BushallsalmanService {
 	}
 
 	@Override
-	public SendOrderpo getSend() {
+	public SendOrderpo getSend(String ID) {
 		// TODO Auto-generated method stub
 		FileInputStream fis;
 		try {
@@ -410,8 +414,10 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<SendOrderpo> result = (List<SendOrderpo>) ois.readObject();
 		ois.close();
-		 SendOrderpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).tiaoxingma.equals(ID))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

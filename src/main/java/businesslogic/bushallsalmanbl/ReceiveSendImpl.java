@@ -89,10 +89,10 @@ public class ReceiveSendImpl extends UnicastRemoteObject implements ReceiveSendS
 
 
 	@Override
-	public Receivevo showReceive() throws RemoteException {
+	public Receivevo showReceive(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
-		ReceiveOrderpo crpo = bss.getReceive();
+		ReceiveOrderpo crpo = bss.getReceive(ID);
 		if(crpo==null){
 			return null;
 		}
@@ -121,10 +121,10 @@ public class ReceiveSendImpl extends UnicastRemoteObject implements ReceiveSendS
 
 
 	@Override
-	public Sendvo showSend() throws RemoteException {
+	public Sendvo showSend(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
-		SendOrderpo crpo = bss.getSend();
+		SendOrderpo crpo = bss.getSend(ID);
 		if(crpo==null){
 			return null;
 		}
