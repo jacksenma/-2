@@ -21,23 +21,26 @@ import vo.generalmanagervo.Constancyvo;
  */
 public class ChangeCarLoading extends javax.swing.JFrame {
 	static CarLoadingService cls;
-
+    static String Car;
     /**
      * Creates new form ChangeCarLoading
      * @throws Exception 
      */
-    public ChangeCarLoading() throws Exception {
+    public ChangeCarLoading(String car) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
         cls=RMIClient.getCarLoadingService();
+        Car=car;
         setdefault(cls);
     }
 
     
-    private void setdefault(CarLoadingService cls) throws RemoteException, Exception{
-    	CarLoadingvo clvo2 =cls.showInputLoad();
+    
+
+	private void setdefault(CarLoadingService cls) throws RemoteException, Exception{
+    	CarLoadingvo clvo2 =cls.showInputLoad(Car);
     	year.setText(Integer.toString(clvo2.date.year));
     	month.setText(Integer.toString(clvo2.date.month));
     	day.setText(Integer.toString(clvo2.date.day));
@@ -90,7 +93,7 @@ public class ChangeCarLoading extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("车辆装车管理"));
 
@@ -321,7 +324,7 @@ public class ChangeCarLoading extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangeCarLoading().setVisible(true);
+					new ChangeCarLoading(Car).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

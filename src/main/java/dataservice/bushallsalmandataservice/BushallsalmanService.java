@@ -21,7 +21,7 @@ public interface BushallsalmanService {
 	
 	public boolean writesend(SendOrderpo sopo)throws Exception;
 
-	public CarLoadingpo getLoad();
+	public CarLoadingpo getLoad(String car);
 	
 	public CashReceiveOrderpo getCash();
 

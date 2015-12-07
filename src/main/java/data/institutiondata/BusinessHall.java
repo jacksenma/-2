@@ -344,7 +344,7 @@ public class BusinessHall implements BushallsalmanService {
 			}
 	}
 
-    public CarLoadingpo getLoad(){
+    public CarLoadingpo getLoad(String car){
     	FileInputStream fis;
 		try {
 			fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
@@ -352,8 +352,10 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CarLoadingpo> result = (List<CarLoadingpo>) ois.readObject();
 		ois.close();
-		 CarLoadingpo cp =result.get(result.size()-1);
-         return cp;
+		for(int i = 0; i < result.size(); i++){
+			if(result.get(i).car.equals(car))
+				return result.get(i);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

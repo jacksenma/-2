@@ -54,10 +54,10 @@ public class CarLoadingImpl extends UnicastRemoteObject implements CarLoadingSer
 	}
 
 	@Override
-	public CarLoadingvo showInputLoad() throws RemoteException {
+	public CarLoadingvo showInputLoad(String car) throws RemoteException {
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
-		CarLoadingpo cpo=bss.getLoad();
+		CarLoadingpo cpo=bss.getLoad(car);
 		if(cpo==null){
 			Datevo d=new Datevo(0,0,0);
 			return new CarLoadingvo(d, "0","0", "0", "0",

@@ -21,14 +21,16 @@ import vo.couriervo.Datevo;
 public class ChangeCashRegister extends javax.swing.JFrame {
 
 	static CashRegisterService crs;
+	static String ID2;
     /**
      * Creates new form ChangeCashRegister
      * @throws Exception 
      */
-    public ChangeCashRegister() throws Exception {
+    public ChangeCashRegister(String ID) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        String ID2=ID;
         RMIClient.init();
         crs=RMIClient.getCashRegisterService();
         setdefault(crs);
@@ -77,7 +79,7 @@ public class ChangeCashRegister extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("月");
 
@@ -264,7 +266,7 @@ public class ChangeCashRegister extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new ChangeCashRegister().setVisible(true);
+					new ChangeCashRegister(ID2).setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -27,16 +27,17 @@ public class CarLoadingService_Stub implements CarLoadingService{
 		return false;
 	}
 
-	@Override
-	public CarLoadingvo showInputLoad() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	
 	@Override
 	public boolean modifyCarLoading(CarLoadingvo cv) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public CarLoadingvo showInputLoad(String car) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -15,7 +15,7 @@ public interface CarLoadingService extends Remote {
 	
 	boolean checkDate(CarLoadingvo clvo,QueryOrdervo qvo) throws RemoteException;
 	
-	CarLoadingvo showInputLoad() throws RemoteException;
+	CarLoadingvo showInputLoad(String car) throws RemoteException;
 
 
 	boolean modifyCarLoading(CarLoadingvo cv) throws RemoteException;

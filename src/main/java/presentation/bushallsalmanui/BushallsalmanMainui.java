@@ -317,7 +317,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton7MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-    		new ChangeCarLoading();
+//    		new ChangeCarLoading();
     	}catch(Exception e){
     		e.printStackTrace();
     	}
@@ -325,7 +325,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     private void jButton8MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try{
-    		new ChangeCashRegister();
+//    		new ChangeCashRegister();
     	}catch(Exception e){
     		e.printStackTrace();
     	}
