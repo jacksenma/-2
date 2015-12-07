@@ -14,4 +14,8 @@ public interface CashRegisterService extends Remote {
 
 	public boolean checkDate(CashRegistervo cashRegister, QueryOrdervo qovo)
 			throws RemoteException;
+	
+	public CashRegistervo showCash() throws RemoteException;
+	
+	boolean modifyCash(CashRegistervo cashRegister) throws RemoteException;
 }

@@ -40,4 +40,30 @@ public class ReceiveSendService_Stub implements ReceiveSendService{
 		return false;
 	}
 
+	@Override
+	public Receivevo showReceive() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyReceive(Receivevo receive) throws RemoteException {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Sendvo showSend() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifySend(Sendvo sendvo) throws RemoteException {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
 }

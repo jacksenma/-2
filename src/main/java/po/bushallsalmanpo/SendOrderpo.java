@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import po.courierpo.Datepo;
 import vo.bushallsalmanvo.Sendvo;
+import vo.couriervo.Datevo;
 
 public class SendOrderpo implements Serializable{
 
@@ -17,9 +18,12 @@ public class SendOrderpo implements Serializable{
 	public final String paijianyuan;
 	
 	final SoExamineType soe;
+	
+	public final Datevo date1;
 
 	public SendOrderpo(Sendvo send) {
 		// TODO Auto-generated constructor stub
+		date1=send.date;
 		date=new Datepo(send.date.year , send.date.month ,send.date.day);
 		tiaoxingma=send.tiaoxingma;
 		paijianyuan=send.paijianyuan;
@@ -30,6 +34,11 @@ public class SendOrderpo implements Serializable{
 	public SoExamineType getExamineType() {
 		// TODO Auto-generated method stub
 		return soe;
+	}
+
+	public Sendvo getSend() {
+		// TODO Auto-generated method stub
+		return new Sendvo(date1,tiaoxingma,paijianyuan);
 	}
 
 }

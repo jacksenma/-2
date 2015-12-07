@@ -2,6 +2,7 @@ package dataservice.stockmanagermandataservice;
 
 import java.util.List;
 
+import po.bushallsalmanpo.SendOrderpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.OutStoringpo;
 import po.stockmanagermanpo.StoreCheckpo;
@@ -18,4 +19,8 @@ public interface StockManagermanService {
 	public boolean initialize() throws Exception;
 	
 	public InStoringpo[] search() throws Exception;
+
+	public InStoringpo getInstock();
+
+	public OutStoringpo getOutstock();
 }

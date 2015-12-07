@@ -20,5 +20,17 @@ public class CashRegisterService_Stub implements CashRegisterService{
 		return false;
 	}
 
+	@Override
+	public CashRegistervo showCash() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyCash(CashRegistervo cashRegister) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }
