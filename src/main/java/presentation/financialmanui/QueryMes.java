@@ -5,17 +5,42 @@
  */
 package presentation.financialmanui;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
+import presentation.courierui.PriceAndTimeui;
+import vo.financialmanvo.AccountUservo;
+
 /**
  *
  * @author user
  */
 public class QueryMes extends javax.swing.JFrame {
-
+	static AccountManageService as;
+	static AccountUservo avo;
+	static  String Name;
+	static  int Money;
     /**
      * Creates new form QueryMes
+     * @throws Exception 
      */
-    public QueryMes() {
+    public QueryMes(String name,int money) throws Exception {
         initComponents();
+        RMIClient.init();
+        this.Name=name;
+        this.Money=money;
+        this.avo=avo;
+        as= RMIClient.getAccountManageService();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        jLabel1.setText("账户名称：     "+name);
+        jLabel2.setText("账户余额 ：    "+money+"  元");
     }
 
     /**
@@ -29,10 +54,10 @@ public class QueryMes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Delete = new javax.swing.JButton();
         Modify = new javax.swing.JButton();
         Init = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,20 +65,15 @@ public class QueryMes extends javax.swing.JFrame {
 
         jLabel2.setText("账户金额：");
 
-        Delete.setText("删除当前账户");
-        Delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DeleteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DeleteMouseEntered(evt);
-            }
-        });
-
         Modify.setText("修改账户属性");
         Modify.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ModifyMouseClicked(evt);
+                try {
+					ModifyMouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -71,6 +91,13 @@ public class QueryMes extends javax.swing.JFrame {
             }
         });
 
+        delete.setText("删除当前账户");
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,10 +111,10 @@ public class QueryMes extends javax.swing.JFrame {
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Modify, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Init, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Modify, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(Init, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(jButton4)))
@@ -101,7 +128,7 @@ public class QueryMes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(44, 44, 44)
-                .addComponent(Delete)
+                .addComponent(delete)
                 .addGap(18, 18, 18)
                 .addComponent(Modify)
                 .addGap(18, 18, 18)
@@ -123,17 +150,31 @@ public class QueryMes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InitMouseClicked
 
-    private void ModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifyMouseClicked
+    private void ModifyMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_ModifyMouseClicked
         // TODO add your handling code here:
+    	System.out.println(Name+"  "+Money);
+    	 new ModifyAccountui(Name,Money).setVisible(true);
     }//GEN-LAST:event_ModifyMouseClicked
 
-    private void DeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseEntered
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_DeleteMouseEntered
-
-    private void DeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeleteMouseClicked
+    	 try {
+             boolean b = as.deleteAccount(Name);
+             if(b){
+                 System.out.println("成功！");
+                 JOptionPane.showMessageDialog(null, "删除成功", "成功", 
+                 		JOptionPane.INFORMATION_MESSAGE);
+                 this.dispose();
+             }
+             else{
+                 
+             }
+             // TODO add your handling code here:
+         } catch (RemoteException ex) {
+             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);}
+    	
+    	
+    }//GEN-LAST:event_deleteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,17 +204,17 @@ public class QueryMes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QueryMes().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new QueryMes().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Delete;
     private javax.swing.JButton Init;
     private javax.swing.JButton Modify;
+    private javax.swing.JButton delete;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

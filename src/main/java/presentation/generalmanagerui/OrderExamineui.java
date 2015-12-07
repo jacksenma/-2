@@ -5,11 +5,16 @@
  */
 package presentation.generalmanagerui;
 
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
+import presentation.financialmanui.CheckPaymentListui;
 import blservice.generalmanagerblservice.OrderExamineService;
 import RMI.client.RMIClient;
 
@@ -34,12 +39,14 @@ static OrderExamineService oes;
     }
     
     
-public void showbytype(String s[],String type){
+public void showbytype(String s[],String type){                 //显示待审批的单据
 	final String news[];
-	if(s==null){
+	if(s==null||s.length==0){
 		 news= new String[1];
 		 news[0]="无";
+		 System.out.println("无待审批");
 	}else{
+		System.out.println("有待审批");
        news = new String[s.length];
 	for(int i=0;i<s.length;i++){
 	   news[i]=type+"     "+s[i]+"     未审批";	
@@ -51,6 +58,44 @@ public void showbytype(String s[],String type){
            public Object getElementAt(int i) { return strings[i]; }
        });
 	   jScrollPane1.setViewportView(jList1);
+
+
+        final Window w =this;
+        MouseAdapter mouseListener = new MouseAdapter() { 
+    public void mouseClicked(MouseEvent mouseEvent) { 
+      JList theList = (JList) mouseEvent.getSource(); 
+      if (mouseEvent.getClickCount() == 2) { 
+        int index = theList.locationToIndex(mouseEvent.getPoint()); 
+        if (index >= 0) { 
+          Object o = theList.getModel().getElementAt(index); 
+         try {
+			openorder((String)o);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        } 
+      } 
+    }
+
+	private void openorder(String o) throws Exception {                   //显示单据的具体信息
+		// TODO Auto-generated method stub
+		String split[] = o.split("     ");
+		switch(split[0]){
+		case"快递单":
+		case"营业厅到达单": 
+		case"装车单":
+		case"收款单":
+		case"中转单":
+		case"派件单":
+		case"中转中心到达单":
+		case"入库单":
+		case"出库单":
+		case"付款单":new CheckPaymentListui(split[1]).setVisible(true);
+		}
+	} 
+};
+  jList1.addMouseListener(mouseListener); 
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +125,7 @@ public void showbytype(String s[],String type){
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "1111111", "2222222222", "3333333", "44444444", "55555555" };
+            String[] strings = {""};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -111,32 +156,32 @@ public void showbytype(String s[],String type){
 			int selected[] = jList1.getSelectedIndices();
 			for(int i=0;i<selected.length;i++)
 				approve((String)jList1.getModel().getElementAt(i));
-			//  返回总待审批界面  还没写！   
+			JOptionPane.showMessageDialog(null, "审批成功", "成功", JOptionPane.INFORMATION_MESSAGE);
 			}  
 
 			private void approve(String s) throws RemoteException {
 				// TODO Auto-generated method stub
 				String split[] = s.split("     ");
 			switch(split[0]){
-			case "快递单":oes.approveexpressorder(split[1]);  
+			case "快递单":oes.approveexpressorder(split[1]); showbytype(oes.showexpressorder(),"快递单"); 
 			break;
-			case "装车单":oes.approvecarloadingorde(split[1]); 
+			case "装车单":oes.approvecarloadingorde(split[1]); showbytype(oes.showcarloadingorder(),"装车单");
             break;         
-			case "营业厅到达单":oes.approvecarloadingorde(split[1]); 
+			case "营业厅到达单":oes.approvecarloadingorde(split[1]);showbytype(oes.showyingyetingorder(),"营业厅到达单"); 
             break;  
-			case "收款单":oes.approvecarshoukuanorder(split[1]); 
+			case "收款单":oes.approvecarshoukuanorder(split[1]); showbytype(oes.showshoukuanorder(),"收款单");
             break;  
-			case "中转单":oes.approvezhongzhuanorder(split[1]); 
+			case "中转单":oes.approvezhongzhuanorder(split[1]); showbytype(oes.showzhongzhuanorder(),"中转单");
             break;  
-			case "派件单":oes.approvepaijianorder(split[1]); 
+			case "派件单":oes.approvepaijianorder(split[1]);showbytype(oes.showpaijianorder(),"派件单"); showbytype(oes.showpaijianorder(),"派件单");
             break;  
-			case "中转中心到达单":oes.approvezhongzhuanzhongxinorder(split[1]); 
+			case "中转中心到达单":oes.approvezhongzhuanzhongxinorder(split[1]); showbytype(oes.showzhongzhuanzhongxinorder(),"中转中心到达单");
             break;  
-			case "入库单":oes.approveinstockorder(split[1]); 
+			case "入库单":oes.approveinstockorder(split[1]); showbytype(oes.showinstockorder(),"入库单");
             break;  
-			case "出库单":oes.approveoutstockorder(split[1]); 
+			case "出库单":oes.approveoutstockorder(split[1]); showbytype(oes.showoutstockorder(),"出库单");
             break;  
-			case "付款单":oes.approvepaymentorder(split[1]); 
+			case "付款单":oes.approvepaymentorder(split[1]); showbytype(oes.showpaymentorder(),"付款单");
             break;  
                         
 			}

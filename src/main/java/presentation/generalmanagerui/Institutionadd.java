@@ -7,6 +7,8 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import vo.generalmanagervo.Institutionvo;
 import RMI.client.RMIClient;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
@@ -62,7 +64,7 @@ public class Institutionadd extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
 					saveMouseClicked(evt);
-				} catch (RemoteException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -132,17 +134,57 @@ public class Institutionadd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_saveMouseClicked
+    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
     	int type;
-    	if(yingyeting.isSelected())
+    	if(yingyeting.isSelected()){
     		type=1;
-    	else
+    		if(!isvalid(type,ID.getText())){
+    		this.dispose();
+    		new Institutionadd();
+    		return;
+    		}
+    	}
+    	else{
     		type=0;
+    		if(!isvalid(type,ID.getText())){
+    			this.dispose();
+        		new Institutionadd();
+        		return;
+    		}		
+    	}
+    	if(sims.showInstitutions(ID.getText()) == null)
     	sims.addInstitution(new Institutionvo(type,name.getText(),ID.getText(),leader.getText()));
+    	else{
+    	JOptionPane.showMessageDialog(null, "已存在该编号的机构", "输入有误", JOptionPane.ERROR_MESSAGE);	
+    	return;
+    	}
+    	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
 
-    /**
+    private boolean isvalid(int type, String text) {
+		// TODO Auto-generated method stub
+    	boolean b=true;
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)<'9'&&text.charAt(i)>'0'))
+             b=false;
+    	}
+    	if(!b){
+    		JOptionPane.showMessageDialog(null, "机构编号应为数字", "输入有误", JOptionPane.ERROR_MESSAGE);
+			return false;
+    	}
+		if(type==1&&text.length()!=6){
+			JOptionPane.showMessageDialog(null, "营业厅编号应为6位数字", "输入有误", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		else if(type==0&&text.length()!=4){
+			JOptionPane.showMessageDialog(null, "营业厅编号应为4位数字", "输入有误", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		else
+			return true;
+	}
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

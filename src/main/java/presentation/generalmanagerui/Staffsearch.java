@@ -7,6 +7,8 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import RMI.client.RMIClient;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import vo.generalmanagervo.Staffvo;
@@ -181,6 +183,7 @@ if(sv!=null){
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_deleteMouseClicked
         // TODO add your handling code here:
     	sims.deleteStaff(find);
+    	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_deleteMouseClicked
 
     private void modifyMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_modifyMouseClicked

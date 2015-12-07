@@ -37,4 +37,14 @@ public class TransitReceiveOrderpo implements Serializable {
 		ext = ExamineType.NotApprove;
 	}
 
+	public Object getExamineType() {
+		// TODO Auto-generated method stub
+		return ext;
+	}
+
+	public String getID() {
+		// TODO Auto-generated method stub
+		return ID;
+	}
+
 }

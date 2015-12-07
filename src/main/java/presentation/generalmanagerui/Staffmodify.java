@@ -7,6 +7,8 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import vo.generalmanagervo.Staffvo;
 import RMI.client.RMIClient;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
@@ -283,6 +285,7 @@ public class Staffmodify extends javax.swing.JFrame {
     	if(manager.isSelected())
     		role="总经理";
     	sims.modifyStaff(find,new Staffvo(name.getText(),ID.getText(),worktime.getText(),workunit.getText(),role));
+    	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
 
     /**

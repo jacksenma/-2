@@ -19,6 +19,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import vo.generalmanagervo.Constancyvo;
 import blservice.generalmanagerblservice.ConstantFormulateService;
@@ -305,7 +306,7 @@ public class Newcontancyui extends javax.swing.JFrame {
         // TODO add your handling code here:
     	cfs.modifyconstancy(new Constancyvo(Double.parseDouble(bushalldistance.getText()),Double.parseDouble(standardprice.getText())));
     	setdefault(cfs);
-    	jLabel16.setVisible(true);
+    	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
 
     private void addcityMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_addcityMouseClicked

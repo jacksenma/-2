@@ -22,6 +22,10 @@ public class Accountpo implements Serializable {
 	public String getMoney(){
 		return money;
 	}
+	public AccountManagevo geUser() {
+		// TODO Auto-generated method stub
+		return (new AccountManagevo(account, money) );
+	}
 		
 		
 	

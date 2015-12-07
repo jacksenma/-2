@@ -6,11 +6,21 @@ import java.util.ArrayList;
 
 import blservice.financialmanblservice.AccountManageService;
 import data.accountdata.AccountIO;
+import data.reformdata.PaymentListIO;
+import data.reformdata.RecieveListIO;
 import dataservice.financialmandataservice.FinancialmanService;
+import po.administratorpo.UserMespo;
+import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
+import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.InitMespo;
+import vo.administratorvo.UserAuthorityManagervo;
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
 import vo.financialmanvo.InitMesvo;
+import vo.financialmanvo.PaymentInputvo;
+import vo.financialmanvo.RecieveListvo;
 
 public class AccountManageImpl extends UnicastRemoteObject implements AccountManageService {
 
@@ -79,6 +89,141 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 				e.printStackTrace();
 			}
 		return false;
+	}
+
+	@Override
+	public AccountUservo findUsers(AccountMesvo qvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs = new AccountIO();
+		 
+		   
+	       Accountpo co;
+			try {
+				co = fs.find(qvo.getName());
+				if(co == null) return null;
+		        return new AccountUservo(co);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+	   
+		
+		
+		
+	}
+
+	@Override
+	public AccountManagevo[] searchAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService as=new AccountIO();
+		Accountpo[] up;
+		try {
+			up = as.AllSearch();
+			if(up==null)  return null;
+			else{
+				AccountManagevo[] uv = new AccountManagevo[up.length];
+				for(int i=0;i<up.length;i++){
+					AccountManagevo s = up[i].geUser();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public RecieveListvo[] searchRe(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new RecieveListIO();
+		CashReceiveOrderpo[] rp;
+		try {
+			rp = fs.SearchRe(text);
+			if(rp==null)  return null;
+			else{
+				RecieveListvo[] rv = new RecieveListvo[rp.length];
+				for(int i=0;i<rp.length;i++){
+					RecieveListvo s = rp[i].getRecieveList();
+					rv[i]= s;
+				}
+				return rv;
+			}	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public PaymentInputvo[] searchPay(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new PaymentListIO();
+		CostOrderpo[] rp;
+		try {
+			rp = fs.SearchPay(text);
+			if(rp==null)  return null;
+			else{
+				PaymentInputvo[] rv = new PaymentInputvo[rp.length];
+				for(int i=0;i<rp.length;i++){
+					PaymentInputvo s = rp[i].getPaymentList();
+					rv[i]= s;
+				}
+				return rv;
+			}	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public AccountManagevo[] searchMo(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new AccountIO();
+		Accountpo[] ap;
+		try {
+			ap = fs.MoSearch(text);
+			if(ap==null)  return null;
+			else{
+				System.out.println(ap.length);
+				AccountManagevo[] av = new AccountManagevo[ap.length];
+				for(int i=0;i<ap.length;i++){
+					System.out.println("zhe");
+					AccountManagevo s = ap[i].geUser();
+					av[i]= s;
+				}
+				return av;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean deleteAccount(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new AccountIO();
+		 try {
+				
+         	if(fs.deleteAcc(name)){
+         		System.out.println("delete.............");
+         		return true;
+         	}
+					
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         return false;
 	}
 
 }

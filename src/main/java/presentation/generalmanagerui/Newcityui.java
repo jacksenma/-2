@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import blservice.generalmanagerblservice.ConstantFormulateService;
 import RMI.client.RMIClient;
 
@@ -128,6 +130,7 @@ public class Newcityui extends javax.swing.JFrame {
         // TODO add your handling code here:
     	String s= city1.getText()+"      距离     "+city2.getText()+"      "+distance.getText()+"      "+"km";
     	cfs.addcity(s);
+    	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
 
     private void city1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_city1ActionPerformed
