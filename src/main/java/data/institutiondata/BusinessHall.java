@@ -22,26 +22,11 @@ import po.bushallsalmanpo.RoExamineType;
 import po.bushallsalmanpo.SendOrderpo;
 import po.bushallsalmanpo.SoExamineType;
 import po.courierpo.ExamineType;
+import po.generalmanagepo.Constancypo;
 
 
 public class BusinessHall implements BushallsalmanService {
 
-	public boolean writeCarloading(CarLoadingpo clpo) throws Exception {
-		// TODO Auto-generated method stub
-		FileInputStream fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		@SuppressWarnings("unchecked")
-		List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
-		ois.close();
-		
-		list.add(clpo);
-		FileOutputStream fos = 
-				new FileOutputStream("src/main/java/data/save/carLoading.txt");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(list);
-		oos.close();
-		return true;
-	}
 	
 	public static void write1() throws Exception {
 		FileOutputStream fos = 
@@ -117,6 +102,22 @@ public class BusinessHall implements BushallsalmanService {
 
 	}
 
+	public boolean writeCarloading(CarLoadingpo clpo) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
+		ois.close();
+		
+		list.add(clpo);
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/carLoading.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		return true;
+	}
 
 	public boolean writeCarMes(CarMespo cmpo) throws Exception {
 		// TODO Auto-generated method stub
@@ -342,4 +343,77 @@ public class BusinessHall implements BushallsalmanService {
 				e.printStackTrace();
 			}
 	}
+
+    public CarLoadingpo getLoad(){
+    	FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CarLoadingpo> result = (List<CarLoadingpo>) ois.readObject();
+		ois.close();
+		 CarLoadingpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+        return null;
+		
+    	
+    }
+
+	@Override
+	public CashReceiveOrderpo getCash() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/cashReceive.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CashReceiveOrderpo> result = (List<CashReceiveOrderpo>) ois.readObject();
+		ois.close();
+		 CashReceiveOrderpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public ReceiveOrderpo getReceive() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/receiveOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<ReceiveOrderpo> result = (List<ReceiveOrderpo>) ois.readObject();
+		ois.close();
+		 ReceiveOrderpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public SendOrderpo getSend() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/sendOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<SendOrderpo> result = (List<SendOrderpo>) ois.readObject();
+		ois.close();
+		 SendOrderpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

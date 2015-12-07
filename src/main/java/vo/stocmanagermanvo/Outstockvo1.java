@@ -14,14 +14,16 @@ public class Outstockvo1 implements Serializable{
 	public final String day;
 	public final String bianhao;
 	public final String destination;
+	public final String zhongzhuan;
 	
-	public Outstockvo1(String y, String m, String d, String b, String dt) {
+	public Outstockvo1(String y, String m, String d, String b, String dt,String zz) {
 		// TODO Auto-generated constructor stub
 		year=y;
 		month=m;
 		day=d;
 		bianhao=b;
 		destination=dt;
+		zhongzhuan=zz;
 	}
 
 }

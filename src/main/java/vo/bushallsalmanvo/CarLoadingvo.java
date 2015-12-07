@@ -17,7 +17,7 @@ public class CarLoadingvo implements Serializable{
 	public final String yingYeTing;
 	public final String car;
 	public final String chuFaDi;
-	public final String destinaton;
+	public final String destination;
 	public final String jianZhuang;
 	public final String yaYun;
 	public final String yunFei;
@@ -31,7 +31,7 @@ public class CarLoadingvo implements Serializable{
 		yingYeTing=yyt;
 		car=c;
 		chuFaDi=cfd;
-		destinaton=de;
+		destination=de;
 		jianZhuang=jz;
 		yaYun=yy;
 		yunFei=yf;

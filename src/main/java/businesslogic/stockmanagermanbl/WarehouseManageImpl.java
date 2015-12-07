@@ -4,10 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import blservice.courierblservice.OrderInputService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
+import businesslogic.courierbl.OrderInputImpl;
+import data.institutiondata.BusinessHall;
 import data.warehousedata.Storing;
+import dataservice.bushallsalmandataservice.BushallsalmanService;
 import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
+import po.bushallsalmanpo.SendOrderpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.OutStoringpo;
 import po.stockmanagermanpo.StoreCheckpo;
@@ -61,9 +66,12 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 	public boolean in(Kuaidivo kd,Weizhivo wz) throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
+		OrderInputImpl ois = new OrderInputImpl();
 		try {
-			if(sms.in(new InStoringpo(kd,wz)))
+			if(sms.in(new InStoringpo(kd,wz))){
+				ois.writeHistory(kd.bianhao, "已在中转中心"+wz.zhongzhuan+"入库");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,9 +82,12 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 	public boolean out(Outstockvo1 out1,Zhuangyunvo zy) throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
+		OrderInputImpl ois = new OrderInputImpl();
 		try {
-			if(sms.out(new OutStoringpo(out1,zy)))
+			if(sms.out(new OutStoringpo(out1,zy))){
+				ois.writeHistory(out1.bianhao, "已在中转中心"+out1.zhongzhuan+"出库");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,6 +115,62 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+
+	@Override
+	public Instockvo showInstock() throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		InStoringpo crpo = sms.getInstock();
+		if(crpo==null){
+			return null;
+		}
+		else return crpo.getInstock();
+		
+	}
+
+
+	@Override
+	public boolean modifyInstock(Instockvo instockvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		try {
+			if(sms.in(new InStoringpo(instockvo.kuaidi,instockvo.weizhi)))
+				return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	@Override
+	public Outstockvo showOutstock() throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		OutStoringpo crpo = sms.getOutstock();
+		if(crpo==null){
+			return null;
+		}
+		else return crpo.getOutstock();
+		
+	}
+
+
+	@Override
+	public boolean modifyOut(Outstockvo outstockvo) {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		try {
+			if(sms.out(new OutStoringpo(outstockvo.out1,outstockvo.zy)))
+				return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

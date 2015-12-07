@@ -2,22 +2,20 @@ package vo.bushallsalmanvo;
 
 import java.io.Serializable;
 
+import vo.couriervo.Datevo;
+
 public class Sendvo implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2245368753502249560L;
-	public final String year;
-	public final String month;
-	public final String day;
+	public final Datevo date;
 	public final String tiaoxingma;
 	public final String paijianyuan;
-	public Sendvo(String y, String m, String d, String t, String p) {
+	public Sendvo(Datevo dv, String t, String p) {
 		// TODO Auto-generated constructor stub
-		year=y;
-		month=m;
-		day=d;
+		date=dv;
 		tiaoxingma=t;
 		paijianyuan=p;
 	}

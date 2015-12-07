@@ -5,9 +5,17 @@ import java.rmi.RemoteException;
 
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import vo.bushallsalmanvo.CashRegistervo;
+import vo.queryvo.QueryOrdervo;
 
 public interface CashRegisterService extends Remote {
 
 	public boolean inputcash(CashRegistervo information)
 			throws RemoteException;
+
+	public boolean checkDate(CashRegistervo cashRegister, QueryOrdervo qovo)
+			throws RemoteException;
+	
+	public CashRegistervo showCash() throws RemoteException;
+	
+	boolean modifyCash(CashRegistervo cashRegister) throws RemoteException;
 }

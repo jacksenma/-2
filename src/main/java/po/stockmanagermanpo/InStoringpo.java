@@ -27,8 +27,14 @@ public class InStoringpo implements Serializable{
 	public String weihao; 
 	public String zhongzhuan;
 	
+	final Kuaidivo kuaidi2;
+	final Weizhivo wz2;
+	
 	public InStoringpo(Kuaidivo kd,Weizhivo wz) {
 		// TODO Auto-generated constructor stub
+		kuaidi2=kd;
+		wz2=wz;
+		
 		kuaidi = new Kuaidipo(kd.year,kd.month,kd.day,kd.bianhao,kd.destination);
 		weizhi = new Weizhipo(wz.quhao,wz.paihao,wz.jiahao,wz.weihao,wz.zhongzhuan);
 		ise=IsExamineType.NOApproval;
@@ -71,6 +77,12 @@ public class InStoringpo implements Serializable{
 		// TODO Auto-generated method stub
 		return (new StoreCheckvo(bianhao,destination,year,month,day,quhao,paihao,jiahao,weihao,zhongzhuan));
 		
+	}
+
+	public Instockvo getInstock() {
+		// TODO Auto-generated method stub
+		
+		return new Instockvo(kuaidi2,wz2);
 	}
 
 

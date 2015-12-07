@@ -20,4 +20,14 @@ public interface BushallsalmanService {
 	public boolean writereceive(ReceiveOrderpo ropo)throws Exception;
 	
 	public boolean writesend(SendOrderpo sopo)throws Exception;
+
+	public CarLoadingpo getLoad();
+	
+	public CashReceiveOrderpo getCash();
+
+	public ReceiveOrderpo getReceive();
+
+	public SendOrderpo getSend();
+	
+	
 }

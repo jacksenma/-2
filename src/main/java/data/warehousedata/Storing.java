@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.ClExamineType;
+import po.bushallsalmanpo.SendOrderpo;
 import po.courierpo.CourierOrderpo;
 import po.generalmanagepo.Institutionpo;
 import po.otherdatapo.Staffpo;
@@ -280,6 +281,43 @@ public class Storing implements StockManagermanService {
 		}catch(Exception e){
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public InStoringpo getInstock() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> result = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		 InStoringpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public OutStoringpo getOutstock() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/outstock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<OutStoringpo> result = (List<OutStoringpo>) ois.readObject();
+		ois.close();
+		 OutStoringpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

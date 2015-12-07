@@ -74,4 +74,29 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 		return null;
 	}
 
+	@Override
+	public Instockvo showInstock() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyInstock(Instockvo instockvo) throws RemoteException {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Outstockvo showOutstock() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyOut(Outstockvo outstockvo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

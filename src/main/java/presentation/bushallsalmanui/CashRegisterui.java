@@ -14,8 +14,12 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.CashRegisterService;
+import blservice.queryblservice.QueryService;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.CashRegistervo;
+import vo.couriervo.Datevo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
 
 /**
  *
@@ -24,6 +28,7 @@ import vo.bushallsalmanvo.CashRegistervo;
 public class CashRegisterui extends javax.swing.JFrame {
 
 	static CashRegisterService crs;
+	static QueryService q;
     /**
      * Creates new form CashRegisterui
      * @throws Exception 
@@ -34,6 +39,7 @@ public class CashRegisterui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         crs=RMIClient.getCashRegisterService();
+        q=RMIClient.getQueryService();
     }
 
     /**
@@ -84,7 +90,12 @@ public class CashRegisterui extends javax.swing.JFrame {
         jButton1.setText("确定");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+					jButton1ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -191,9 +202,13 @@ public class CashRegisterui extends javax.swing.JFrame {
     	// TODO Auto-generated method stub
     	this.dispose();
     }
-    private void jButton1ActionPerformed(ActionEvent evt) {
+    private void jButton1ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
-    	CashRegistervo cashRegister=new CashRegistervo(year.getText(),month.getText(),day.getText(),money.getText(),kuaidiyuan.getText(),tiaoxingma.getText(),ID.getText(),zhanghu.getText());
+    	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
+    			Integer.parseInt(month.getText()),
+    			Integer.parseInt(day.getText()));
+    	
+    	CashRegistervo cashRegister=new CashRegistervo(date,money.getText(),kuaidiyuan.getText(),tiaoxingma.getText(),ID.getText(),zhanghu.getText());
         String tiaoxingmaID="";
         if((tiaoxingmaID=tiaoxingma.getText()).equals("")||tiaoxingmaID.length()!=10){
         	errortiaoxingmaID();
@@ -204,6 +219,18 @@ public class CashRegisterui extends javax.swing.JFrame {
         	erroryID();
         	return;
         }
+        QueryOrdervo qovo;
+		qovo = q.checkOrder(new Queryvo(tiaoxingma.getText()));
+		
+		try {
+			if(!crs.checkDate(cashRegister, qovo)){
+				dateError2();
+				return;
+			}
+		} catch (RemoteException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
         
         boolean a=errorID(year.getText());
         if(a)return;
@@ -233,7 +260,12 @@ public class CashRegisterui extends javax.swing.JFrame {
                 Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private boolean errorID(String text) {
+    private void dateError2() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean errorID(String text) {
 		// TODO Auto-generated method stub
     	for(int i=0;i<text.length();i++){
     		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
