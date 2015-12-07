@@ -6,6 +6,7 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 
 public interface FinancialmanService {
 	 public CostOrderpo search(String ID) throws Exception ;
@@ -21,5 +22,14 @@ public interface FinancialmanService {
 			String text6)throws Exception;
 	public CostOrderpo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
 			throws Exception;
+	public boolean addInitMes(InitMespo initMespo) throws Exception;
+	public Accountpo find(String name) throws Exception;
+	public Accountpo[] AllSearch() throws Exception;
+	public CashReceiveOrderpo[] SearchRe(String text) throws Exception;
+	public CostOrderpo[] SearchPay(String text) throws Exception;
+	public Accountpo[] MoSearch(String text) throws Exception;
+	public boolean deleteAcc(String name) throws Exception;
+	public boolean deletePaymentList(String number) throws Exception;
+	public CostOrderpo searchp(String number) throws Exception;
 
 }

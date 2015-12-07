@@ -9,6 +9,7 @@ import data.reformdata.RecieveListIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.CostOrderpo;
+import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
@@ -142,6 +143,42 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void delete(String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new PaymentListIO();
+		 try {
+				
+       	if(fs.deletePaymentList(number)){
+       		System.out.println("delete.............");
+       		
+       	}
+					
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
+	@Override
+	public CheckPaymentListvo SearchP(String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs = new PaymentListIO();
+		 
+		   
+		CostOrderpo co;
+			try {
+				co = fs.searchp(number);
+				if(co == null) return null;
+		        return new CheckPaymentListvo(co);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		
 	}
 
 }

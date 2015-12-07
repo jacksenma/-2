@@ -13,6 +13,7 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 import po.financialmanpo.RecieveListpo;
 
 import vo.financialmanvo.SettlementManagevo;
@@ -283,6 +284,101 @@ public class RecieveListIO implements  FinancialmanService {
 	@Override
 	public CostOrderpo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
 			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Accountpo find(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Accountpo[] AllSearch() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public CashReceiveOrderpo[] SearchRe(String text) throws Exception {
+		// TODO Auto-generated method stub
+		try{
+			System.out.println("........... ");
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/cashReceive.txt");
+//			System.out.println("?");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CashReceiveOrderpo> result = (List<CashReceiveOrderpo>) ois.readObject();
+		ois.close();
+//		System.out.println("??");
+		int k=0;
+//		System.out.println("q");
+		for(int i=0;i<result.size();i++){
+//			System.out.println("66");
+			if(result.get(i).zhanghu.equals(text)){
+				System.out.println("---");
+                    k++;
+			}
+		}
+		CashReceiveOrderpo[] sp = new CashReceiveOrderpo[k];
+//		System.out.println("???");
+			int p =0;
+		for(int i=0;i<result.size();i++){
+			if(result.get(i).zhanghu.equals(text)){
+				sp[p]=result.get(i);
+				p++;
+			}
+		}
+//		System.out.println("????");
+		return sp;
+		}catch(Exception e){
+			e.printStackTrace();
+		} 
+	return null;
+	}
+
+
+	@Override
+	public CostOrderpo[] SearchPay(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Accountpo[] MoSearch(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean deleteAcc(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean deletePaymentList(String number) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public CostOrderpo searchp(String number) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

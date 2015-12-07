@@ -48,7 +48,7 @@ public class AccountManageui extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("初始化建账");
+        jButton3.setText("期初建账");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -113,12 +113,22 @@ public class AccountManageui extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        new QueryAccount().setVisible(true);
+        try {
+			new QueryAccount().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-         new InitializationAccount().setVisible(true);
+         try {
+			new InitializationAccount().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**

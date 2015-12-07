@@ -5,6 +5,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
+import vo.financialmanvo.InitMesvo;
+import vo.financialmanvo.PaymentInputvo;
+import vo.financialmanvo.RecieveListvo;
 
 public interface AccountManageService extends Remote {
 	public AccountManagevo showAccount() throws RemoteException;
@@ -20,5 +25,19 @@ public interface AccountManageService extends Remote {
 					 throws RemoteException;
 
 	public boolean getOrder(AccountManagevo amvo) throws RemoteException;
+
+	public boolean getOrder(InitMesvo ivo) throws RemoteException;
+
+	public AccountUservo findUsers(AccountMesvo qvo)throws RemoteException;
+
+	public AccountManagevo[] searchAll() throws RemoteException;
+
+	public RecieveListvo[] searchRe(String text) throws RemoteException;
+
+	public PaymentInputvo[] searchPay(String text) throws RemoteException;
+
+	public AccountManagevo[] searchMo(String text) throws RemoteException;
+
+	public boolean deleteAccount(String name) throws RemoteException;
 	
 }

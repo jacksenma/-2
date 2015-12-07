@@ -4,6 +4,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
+import vo.financialmanvo.InitMesvo;
+import vo.financialmanvo.PaymentInputvo;
+import vo.financialmanvo.RecieveListvo;
 
 public class AccountManageService_Stub implements AccountManageService{
 	public AccountManagevo showAccount(){
@@ -37,6 +42,48 @@ public class AccountManageService_Stub implements AccountManageService{
 	}
 
 	public boolean getOrder(AccountManagevo amvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getOrder(InitMesvo ivo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public AccountUservo findUsers(AccountMesvo qvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AccountManagevo[] searchAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RecieveListvo[] searchRe(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PaymentInputvo[] searchPay(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AccountManagevo[] searchMo(String text) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteAccount(String name) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

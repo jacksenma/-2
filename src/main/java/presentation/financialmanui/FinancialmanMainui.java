@@ -71,7 +71,12 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         jButton3.setText("管理账户");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                try {
+					jButton3MouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -165,9 +170,11 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         new AccountManageui().setVisible(true);
+//        System.out.println("????????");
+//        new CheckPaymentListui("7452589632").setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

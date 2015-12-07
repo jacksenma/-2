@@ -42,6 +42,7 @@ public class PaymentList extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
+        
        
     }
 

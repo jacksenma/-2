@@ -16,6 +16,8 @@ public class RecieveListpo implements Serializable{
 	public final String kdy1;
 	public final String money1;
 	public final String id1;
+	public final String Zhanghu1;
+	public final String tiaoxingma1;
 	
 	public RecieveListpo(RecieveListvo list){
 		year1=list.yearq;
@@ -24,10 +26,12 @@ public class RecieveListpo implements Serializable{
 		kdy1=list.kuaidiyuanq;
 		money1=list.moneyq;
 		id1=list.IDq;
+		Zhanghu1=list.Zhanghu;
+		tiaoxingma1=list.tiaoxingmaq;
 		
 	}
 	public RecieveListvo getRecieveList(){
-		return (new RecieveListvo(year1, month1, day1, money1, kdy1, null, id1));
+		return (new RecieveListvo(year1, month1, day1, money1, kdy1, tiaoxingma1, id1,Zhanghu1));
 	}
 	
 

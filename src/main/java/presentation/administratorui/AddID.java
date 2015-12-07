@@ -244,7 +244,7 @@ public class AddID extends javax.swing.JFrame {
     	String mes1=jTextField1.getText();
     	String mes2=jTextField2.getText();
     	String mes3=jTextField3.getText();
-    	if(mes1==""||mes2==""||mes3==""||type==0){
+    	if(mes1.equals("")||mes2.equals("")||mes3.equals("")||type==0){
     		missMes();//检查输入完整性
     		return;
     	}

@@ -14,6 +14,7 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.ExamineType;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 
 public class PaymentListIO implements FinancialmanService, OrderService {
 
@@ -294,6 +295,123 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 			e.printStackTrace();
 		} 
 	return null;
+	}
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Accountpo find(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Accountpo[] AllSearch() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CashReceiveOrderpo[] SearchRe(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CostOrderpo[] SearchPay(String text) throws Exception {
+		// TODO Auto-generated method stub
+		try{
+			System.out.println("........... ");
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/paymentList.txt");
+//			System.out.println("?");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CostOrderpo> result = (List<CostOrderpo>) ois.readObject();
+		ois.close();
+//		System.out.println("??");
+		int k=0;
+//		System.out.println("q");
+		for(int i=0;i<result.size();i++){
+//			System.out.println("66");
+			if(result.get(i).pay.account.equals(text)){
+				System.out.println("---");
+                    k++;
+			}
+		}
+		CostOrderpo[] sp = new CostOrderpo[k];
+//		System.out.println("???");
+			int p =0;
+		for(int i=0;i<result.size();i++){
+			if(result.get(i).pay.account.equals(text)){
+				sp[p]=result.get(i);
+				p++;
+			}
+		}
+//		System.out.println("????");
+		return sp;
+		}catch(Exception e){
+			e.printStackTrace();
+		} 
+	return null;
+	}
+
+	@Override
+	public Accountpo[] MoSearch(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteAcc(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deletePaymentList(String number) throws Exception {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/PaymentList.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<CostOrderpo> result = (List<CostOrderpo>) ois.readObject();
+			for(int i=0;i<result.size();i++){
+				if(((result.get(i)).beizhu.number).equals(number)){
+					result.remove(i);
+					i--;
+					System.out.println("Delete ING");
+				}}
+			ois.close();
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/PaymentList.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		return true;
+	}
+
+	@Override
+	public CostOrderpo searchp(String number) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/PaymentList.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CostOrderpo> list = (List<CostOrderpo>) ois.readObject();
+		ois.close();
+		for(int i = 0 ; i < list.size() ; i++){
+//			System.out.println("aaaa");
+			if(list.get(i).beizhu.number.equals(number))
+				return list.get(i);
+		}
+		return null;
 	}
 	}
 

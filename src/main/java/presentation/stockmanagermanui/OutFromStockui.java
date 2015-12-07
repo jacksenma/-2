@@ -226,7 +226,7 @@ public class OutFromStockui extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
-    	Outstockvo1 out1=new Outstockvo1(year.getText(),month.getText(),day.getText(),bianhao.getText(),destination.getText());
+    	Outstockvo1 out1=new Outstockvo1(year.getText(),month.getText(),day.getText(),bianhao.getText(),destination.getText(),jTextField1.getText());
         int zhuangyun=1;
         if(jRadioButton1.isSelected()) zhuangyun = 1;
         else if(jRadioButton2.isSelected()) zhuangyun = 2;

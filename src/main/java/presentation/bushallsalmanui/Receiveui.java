@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.ReceiveSendService;
+import blservice.queryblservice.QueryService;
 import data.orderdata.OrderIO;
 import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
@@ -21,6 +22,9 @@ import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.Receivevo;
 import vo.bushallsalmanvo.Receivevo1;
 import vo.bushallsalmanvo.Receivevo2;
+import vo.couriervo.Datevo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
 
 
 
@@ -31,6 +35,7 @@ import vo.bushallsalmanvo.Receivevo2;
 public class Receiveui extends javax.swing.JFrame {
 
 	static ReceiveSendService rss;
+	static QueryService q;
     /**
      * Creates new form ReceiveSendui
      * @throws Exception 
@@ -41,6 +46,7 @@ public class Receiveui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         rss=RMIClient.getReceiveSendService();
+        q=RMIClient.getQueryService();
     }
 
     /**
@@ -181,7 +187,12 @@ public class Receiveui extends javax.swing.JFrame {
         jButton1.setText("确定");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+					jButton1ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -218,9 +229,13 @@ public class Receiveui extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton1ActionPerformed(ActionEvent evt) {
+    private void jButton1ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
-    	Receivevo1 receive1 = new Receivevo1(year.getText(),month.getText(),day.getText(),zhongzhuan.getText(),chufa.getText(),tiaoxingma.getText());
+    	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
+    			Integer.parseInt(month.getText()),
+    			Integer.parseInt(day.getText()));
+    	
+    	Receivevo1 receive1 = new Receivevo1(date,zhongzhuan.getText(),chufa.getText(),tiaoxingma.getText());
     	
     	int zhuangtai=1;
     	 if(jRadioButton1.isSelected()) zhuangtai = 1;
@@ -261,6 +276,19 @@ public class Receiveui extends javax.swing.JFrame {
  				e.printStackTrace();
  			}
 
+ 			QueryOrdervo qovo;
+ 			qovo = q.checkOrder(new Queryvo(tiaoxingma.getText()));
+ 			
+ 			try {
+ 				if(!rss.checkDate(receive1, qovo)){
+ 					dateError2();
+ 					return;
+ 				}
+ 			} catch (RemoteException e2) {
+ 				// TODO Auto-generated catch block
+ 				e2.printStackTrace();
+ 			}
+ 			
     	 Receivevo2 receive2 = new Receivevo2(zhuangtai);
     	 Receivevo receive = new Receivevo(receive1,receive2);
     	try {
@@ -280,7 +308,12 @@ public class Receiveui extends javax.swing.JFrame {
             }
     }
 
-    private boolean errorID(String text) {
+    private void dateError2() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean errorID(String text) {
 		// TODO Auto-generated method stub
     	for(int i=0;i<text.length();i++){
     		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){

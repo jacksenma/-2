@@ -15,6 +15,7 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
+import po.financialmanpo.InitMespo;
 import vo.financialmanvo.IncomeInputvo;
 import vo.financialmanvo.SettlementManagevo;
 
@@ -110,6 +111,69 @@ public class SettlementListIO implements  FinancialmanService {
 	@Override
 	public CostOrderpo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
 			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean addInitMes(InitMespo initMespo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Accountpo find(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Accountpo[] AllSearch() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public CashReceiveOrderpo[] SearchRe(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public CostOrderpo[] SearchPay(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Accountpo[] MoSearch(String text) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean deleteAcc(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean deletePaymentList(String number) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public CostOrderpo searchp(String number) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

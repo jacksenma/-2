@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.ClExamineType;
+import po.bushallsalmanpo.SendOrderpo;
 import po.courierpo.CourierOrderpo;
 import po.generalmanagepo.Institutionpo;
 import po.otherdatapo.Staffpo;
@@ -97,7 +98,14 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<Warningpo> list1 = (List<Warningpo>) ois1.readObject();
 		//System.out.println(4*Integer.parseInt(list1.get(0).warning)/100);
-		if(list.size()>=1000*Integer.parseInt(list1.get(0).warning)/100){
+		int k=0;
+		for(int i=0;i<list1.size();i++){
+			if(list1.get(i).zhongzhuan==ipo.getZhongzhuan()){
+				k=i;
+				break;
+			}
+		}
+		if(list.size()>=1000*Integer.parseInt(list1.get(k).warning)/100){
 			JOptionPane.showMessageDialog(null, "库存数量已超过警戒比例", "警告！", 
             		JOptionPane.ERROR_MESSAGE);
 		}
@@ -165,7 +173,9 @@ public class Storing implements StockManagermanService {
 		
 		InStoringpo[] sp = new InStoringpo[list.size()];
 		for(int i=0;i<list.size();i++){
-				sp[i]=list.get(i);	
+//				if(list.get(i).getZhongzhuan()==zhongzhuan){
+				sp[i]=list.get(i);
+//				}
 		}
 		return sp;
 		
@@ -271,6 +281,43 @@ public class Storing implements StockManagermanService {
 		}catch(Exception e){
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public InStoringpo getInstock() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> result = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		 InStoringpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public OutStoringpo getOutstock() {
+		// TODO Auto-generated method stub
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/outstock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<OutStoringpo> result = (List<OutStoringpo>) ois.readObject();
+		ois.close();
+		 OutStoringpo cp =result.get(result.size()-1);
+         return cp;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

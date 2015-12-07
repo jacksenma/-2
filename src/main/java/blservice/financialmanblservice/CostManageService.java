@@ -3,6 +3,7 @@ package blservice.financialmanblservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
@@ -30,6 +31,10 @@ public interface CostManageService extends Remote {
 
 	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5,
 			String text6) throws RemoteException;
+
+	public void delete(String number) throws RemoteException;
+
+	public CheckPaymentListvo SearchP(String number) throws RemoteException;//用于审批的查找付款单
 	
 	
 }
