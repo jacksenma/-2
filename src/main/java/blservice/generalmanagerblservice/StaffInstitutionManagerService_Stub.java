@@ -18,9 +18,8 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		return null;
 	}
 
-	public Staffvo addStaff(Staffvo sv) throws RemoteException {
+	public void addStaff(Staffvo sv) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void deleteStaff(Staffvo sv) throws RemoteException {
@@ -33,10 +32,9 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		
 	}
 
-	public Institutionvo addInstitution(Institutionvo iv)
+	public void addInstitution(Institutionvo iv)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void deleteInstitution(Institutionvo iv) throws RemoteException {
