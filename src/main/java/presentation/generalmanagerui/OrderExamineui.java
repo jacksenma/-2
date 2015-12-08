@@ -14,6 +14,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
+import presentation.bushallsalmanui.ChangeCarLoading;
+import presentation.bushallsalmanui.ChangeCashRegister;
 import presentation.financialmanui.CheckPaymentListui;
 import blservice.generalmanagerblservice.OrderExamineService;
 import RMI.client.RMIClient;
@@ -82,16 +84,16 @@ public void showbytype(String s[],String type){                 //显示待审�
 		// TODO Auto-generated method stub
 		String split[] = o.split("     ");
 		switch(split[0]){
-		case"快递单":
-		case"营业厅到达单": 
-		case"装车单":
-		case"收款单":
-		case"中转单":
-		case"派件单":
-		case"中转中心到达单":
-		case"入库单":
-		case"出库单":
-		case"付款单":new CheckPaymentListui(split[1]).setVisible(true);
+		case"快递单":break;
+		case"营业厅到达单": break;
+		case"装车单":new ChangeCarLoading(split[1]).setVisible(true);break;
+		case"收款单":new ChangeCashRegister(split[1]).setVisible(true);break;
+		case"中转单":break;
+		case"派件单":break;
+		case"中转中心到达单":break;
+		case"入库单":break;
+		case"出库单":break;
+		case"付款单":new CheckPaymentListui(split[1]).setVisible(true);break;
 		}
 	} 
 };
