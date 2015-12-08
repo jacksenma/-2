@@ -42,6 +42,7 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         initComponents();
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
+        this.setVisible(true);
        
     }
 

@@ -7,7 +7,14 @@ package presentation.transitmanui;
 
 import RMI.client.RMIClient;
 import blservice.courierblservice.OrderInputService;
+import blservice.transitsalmanblservice.TrafficMesManageService;
 import blservice.transitsalmanblservice.TransitReceiveService;
+import vo.couriervo.Datevo;
+import vo.transitmanvo.TrafficMesManagevo;
+
+import java.rmi.RemoteException;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +22,9 @@ import blservice.transitsalmanblservice.TransitReceiveService;
  */
 public class TrafficManageui extends javax.swing.JFrame {
 
+    List<String> allID;
     
+    TrafficMesManageService tmms;
     
     /**
      * Creates new form TransitReceiiveu
@@ -26,6 +35,8 @@ public class TrafficManageui extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         carryer.setVisible(false);
         carryerName.setVisible(false);
+        RMIClient.init();
+        tmms = RMIClient.getTrafficMesManageService();
     }
 
     /**
@@ -124,8 +135,18 @@ public class TrafficManageui extends javax.swing.JFrame {
         });
 
         jButton1.setText("输入所有订单");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("确定");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("退出");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -301,6 +322,104 @@ public class TrafficManageui extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+
+        String cenID = jTextField4.getText();
+        if(cenID.length() != 4) {
+            errorCenID();
+            return;
+        }
+        String begin = jTextField5.getText();
+        String target = jTextField6.getText();
+        String tafficId = vehicleID.getText();
+        String counter = storeID.getText();
+        String person = jTextField9.getText();
+        
+        if(begin.equals("") || target.equals("") || tafficId.equals("") 
+                || counter.equals("") || person.equals("")){
+        	space();
+            return;
+        }
+        
+        int type = 0;
+        if(jRadioButton1.isSelected()) type = 1;
+        else if(jRadioButton2.isSelected()) type = 2;
+        else type = 3;
+        
+        
+        try{
+        Datevo date = new Datevo(Integer.parseInt(jTextField1.getText()),
+        		Integer.parseInt(jTextField2.getText()),
+        				Integer.parseInt(jTextField3.getText()));
+        if(allID == null || allID.size() == 0){
+        	noID();
+        	return;
+        }
+        TrafficMesManagevo tvo = new TrafficMesManagevo(date , cenID , 
+        		allID , begin , target , tafficId , counter , person , 
+        		type);
+        if(!tmms.checkDate(date, tvo)){
+        	novalidDate();
+        	return;
+        }
+        if(tmms.getMes(tvo)){
+        	success();
+        }
+        else {
+        	fail();
+        }
+        }catch(Exception e){
+        	errorDate();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+        new InputID(this);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void fail() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "无法生成中转单！", "输入失败", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void success() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "成功生成中转单！", "输入成功", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	private void novalidDate() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "输入日期必须不能早于订单输入日期"
+    			+ "或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void noID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "没有输入订单！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorDate() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "日期输入有误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void space() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "信息不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorPassw() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "密码错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void errorCenID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "中转中心编号为4位！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */

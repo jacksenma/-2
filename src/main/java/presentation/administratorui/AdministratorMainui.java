@@ -16,8 +16,9 @@ public class AdministratorMainui extends javax.swing.JFrame {
     /**
      * Creates new form AdministratorMainui
      */
-    public AdministratorMainui() {
+    public AdministratorMainui(String ID , String name) {
         initComponents();
+        this.setVisible(true);
         try {
 			RMIClient.init();
 		} catch (Exception e) {
@@ -171,7 +172,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministratorMainui().setVisible(true);
+//                new AdministratorMainui().setVisible(true);
             }
         });
     }

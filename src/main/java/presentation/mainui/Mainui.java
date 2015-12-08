@@ -7,8 +7,22 @@ package presentation.mainui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import RMI.client.RMIClient;
+import blservice.administratorblservice.UserAuthorityManagerService;
+import po.administratorpo.Rolepo;
+import presentation.administratorui.AdministratorMainui;
+import presentation.bushallsalmanui.BushallsalmanMainui;
+import presentation.courierui.CourierMainui;
+import presentation.financialmanui.FinancialmanMainui;
+import presentation.financialmanui.LowFinancialmanMainui;
+import presentation.generalmanagerui.GeneralManagerMainui;
 import presentation.queryui.Queryui;
+import presentation.stockmanagermanui.StockManagermanMainui;
+import presentation.transitmanui.TransitmanMainui;
+import vo.administratorvo.QueryMesvo;
+import vo.administratorvo.QueryUservo;
 
 /**
  *
@@ -19,10 +33,13 @@ public class Mainui extends javax.swing.JFrame {
     /**
      * Creates new form Mainui
      */
+	
+	static UserAuthorityManagerService uams;
     public Mainui() {
         initComponents();
         try {
 			RMIClient.init();
+			uams = RMIClient.getUserAuthorityManagerService();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,6 +92,11 @@ public class Mainui extends javax.swing.JFrame {
         PasswordInfo.setText("密码：");
 
         Signin.setText("登录");
+        Signin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SigninMouseClicked(evt);
+            }
+        });
 
         Exit.setText("退出");
         Exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,8 +174,64 @@ public class Mainui extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_QueryInfoMouseClicked
 
-    /**
-     * @param args the command line arguments
+    private void SigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SigninMouseClicked
+        // TODO add your handling code here:
+    	String ID = Account.getText();
+    	try {
+			QueryUservo quvo = uams.checkOrder(new QueryMesvo(ID));
+			if(quvo == null) {
+				errorID();
+				return;
+			}
+			String passw = Password.getText();
+			if(!passw.equals(quvo.getPassword())){
+				errorPassw();
+				return;
+			}
+			select(quvo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_SigninMouseClicked
+ 
+
+	private void select(QueryUservo quvo) {
+		// TODO Auto-generated method stub
+		if(quvo.getRole() == Rolepo.kdy)
+			new CourierMainui(quvo.getID() , quvo.getName());
+		else if(quvo.getRole() == Rolepo.gjcwy)
+			new FinancialmanMainui(quvo.getID() , quvo.getName());
+		else if(quvo.getRole() == Rolepo.gly)
+			new AdministratorMainui(quvo.getID() , quvo.getName());
+		else if(quvo.getRole() == Rolepo.ybcwy)
+			new LowFinancialmanMainui(quvo.getID() , quvo.getName());
+		else if(quvo.getRole() == Rolepo.yytywy)
+			new BushallsalmanMainui(quvo.getID() , quvo.getName());
+		else if(quvo.getRole() == Rolepo.zjl)
+			new GeneralManagerMainui(quvo.getID() , 1);
+		else if(quvo.getRole() == Rolepo.zzzxkcgly)
+			try {
+				new StockManagermanMainui(quvo.getID() , quvo.getName());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		else if(quvo.getRole() == Rolepo.zzzxywy)
+			new TransitmanMainui(quvo.getID() , quvo.getName());
+	}
+
+	private void errorPassw() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "密码错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorID(){
+        JOptionPane.showMessageDialog(null, "不存在此账户！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    
+     /* @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
