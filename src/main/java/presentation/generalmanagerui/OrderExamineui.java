@@ -16,7 +16,11 @@ import javax.swing.ListSelectionModel;
 
 import presentation.bushallsalmanui.ChangeCarLoading;
 import presentation.bushallsalmanui.ChangeCashRegister;
+import presentation.bushallsalmanui.ChangeReceive;
+import presentation.bushallsalmanui.ChangeSend;
 import presentation.financialmanui.CheckPaymentListui;
+import presentation.stockmanagermanui.ChangeOutFromStock;
+import presentation.stockmanagermanui.ChangePutInStore;
 import blservice.generalmanagerblservice.OrderExamineService;
 import RMI.client.RMIClient;
 
@@ -72,6 +76,7 @@ public void showbytype(String s[],String type){                 //显示待审�
           Object o = theList.getModel().getElementAt(index); 
          try {
 			openorder((String)o);
+//			System.out.println("qaq");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,16 +88,17 @@ public void showbytype(String s[],String type){                 //显示待审�
 	private void openorder(String o) throws Exception {                   //显示单据的具体信息
 		// TODO Auto-generated method stub
 		String split[] = o.split("     ");
+		System.out.println(split[0]);
 		switch(split[0]){
 		case"快递单":break;
-		case"营业厅到达单": break;
+		case"营业厅到达单":new ChangeReceive(split[1]).setVisible(true); break;
 		case"装车单":new ChangeCarLoading(split[1]).setVisible(true);break;
 		case"收款单":new ChangeCashRegister(split[1]).setVisible(true);break;
 		case"中转单":break;
-		case"派件单":break;
+		case"派件单":new ChangeSend(split[1]).setVisible(true); break;
 		case"中转中心到达单":break;
-		case"入库单":break;
-		case"出库单":break;
+		case"入库单":new ChangePutInStore(split[1]).setVisible(true);break;
+		case"出库单":new ChangeOutFromStock(split[1]).setVisible(true);break;
 		case"付款单":new CheckPaymentListui(split[1]).setVisible(true);break;
 		}
 	} 

@@ -102,12 +102,14 @@ public class QueryAccount extends javax.swing.JFrame {
 	    	for(int qw=0;qw<jqPaycount;qw++){
 	    		Pay+=Integer.parseInt(jqPay[qw]);
 	    	}
+	    	if (!uv[i].money.equals("")){
 	    	int zong=Integer.parseInt(uv[i].money)+Re-Pay;
 	    	allMoney+=zong;
+	    	s[i]=uv[i].accountName+"                                                "+zong+"元";}
 	    	
 	    		
-	    	System.out.println(zong+"zzzzzzzzzzzzzzzzzz");
-	    	s[i]=uv[i].accountName+"                                                "+zong+"元";
+//	    	System.out.println(zong+"zzzzzzzzzzzzzzzzzz");
+	    	
 //		  if(i!=uv.length-1)
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -170,7 +172,7 @@ public class QueryAccount extends javax.swing.JFrame {
         });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "              " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
