@@ -17,7 +17,7 @@ public class SendOrderpo implements Serializable{
 	public final String tiaoxingma;
 	public final String paijianyuan;
 	
-	final SoExamineType soe;
+	public SoExamineType soe;
 	
 	public final Datevo date1;
 
@@ -39,6 +39,11 @@ public class SendOrderpo implements Serializable{
 	public Sendvo getSend() {
 		// TODO Auto-generated method stub
 		return new Sendvo(date1,tiaoxingma,paijianyuan);
+	}
+
+	public String getID() {
+		// TODO Auto-generated method stub
+		return tiaoxingma;
 	}
 
 }

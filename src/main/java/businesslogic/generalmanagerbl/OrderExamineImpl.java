@@ -71,7 +71,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public String[] showpaijianorder() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		BusinessHall bh = new BusinessHall();
+		return bh.SearchUncheckedsend();
 	}
 
 	@Override
@@ -138,7 +139,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public void approvepaijianorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		BusinessHall bh = new BusinessHall();
+		bh.approvesendorder(ID);
 	}
 
 	@Override

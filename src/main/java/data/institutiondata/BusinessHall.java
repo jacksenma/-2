@@ -219,7 +219,6 @@ public class BusinessHall implements BushallsalmanService {
 			       k++;
 			}
 		}
-		System.out.println("find unchecked");
 		return result;
 	}catch(Exception e){
 			e.printStackTrace();
@@ -246,7 +245,6 @@ public class BusinessHall implements BushallsalmanService {
 				k++;
 					}
 			}
-			System.out.println("find unchecked");
 			return result;
 		}catch(Exception e){
 				e.printStackTrace();
@@ -273,7 +271,6 @@ public class BusinessHall implements BushallsalmanService {
                k++;
         }
 }
-	System.out.println("find unchecked");
 	return result;
 }catch(Exception e){
 		e.printStackTrace();
@@ -281,6 +278,53 @@ public class BusinessHall implements BushallsalmanService {
 	return null;
 }
 
+	public String[] SearchUncheckedsend(){
+		int count=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/sendOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<SendOrderpo> list = (List<SendOrderpo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(SoExamineType.NOApproval))
+				count++;
+		}
+	   int k=0;
+		String result [] = new String[count];
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(SoExamineType.NOApproval)){
+				result[i]=list.get(i).getID();
+	               k++;
+	        }
+	}
+		return result;
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void approvesendorder(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/sendOrder.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<SendOrderpo> list = (List<SendOrderpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(iD))
+					list.get(i).soe=SoExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/sendOrder.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	
 	public void approveshoukuanorder(String iD) {
 		// TODO Auto-generated method stub
 		try{
