@@ -88,7 +88,7 @@ public class StoreCheckui extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTextPane1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setText("当前截止点：");
 
