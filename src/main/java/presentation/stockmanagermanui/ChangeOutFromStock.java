@@ -34,8 +34,8 @@ public class ChangeOutFromStock extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        RMIClient.init();
         ID=id;
+        RMIClient.init();
         wms=RMIClient.getWarehouseManageService();
         setdefault(wms);
     }

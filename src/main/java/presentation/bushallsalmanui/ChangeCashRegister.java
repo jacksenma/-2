@@ -30,7 +30,7 @@ public class ChangeCashRegister extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        String ID2=ID;
+        ID2=ID;
         RMIClient.init();
         crs=RMIClient.getCashRegisterService();
         setdefault(crs);

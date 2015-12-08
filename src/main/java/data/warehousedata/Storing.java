@@ -315,7 +315,8 @@ public class Storing implements StockManagermanService {
 		List<OutStoringpo> result = (List<OutStoringpo>) ois.readObject();
 		ois.close();
 		for(int i = 0; i < result.size(); i++){
-			if(result.get(i).out1.bianhao.equals(ID))
+			System.out.println(result.get(i).getID());
+			if(result.get(i).getID().equals(ID))
 				return result.get(i);
 		}
 		}catch(Exception e){

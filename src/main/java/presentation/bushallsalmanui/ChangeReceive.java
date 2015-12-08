@@ -34,6 +34,7 @@ public class ChangeReceive extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
+        ID=tiaoxingma;
         rss=RMIClient.getReceiveSendService();
         setdefault(rss);
     }

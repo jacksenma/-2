@@ -375,7 +375,7 @@ public class BusinessHall implements BushallsalmanService {
 		List<CashReceiveOrderpo> result = (List<CashReceiveOrderpo>) ois.readObject();
 		ois.close();
 		for(int i = 0; i < result.size(); i++){
-			if(result.get(i).ID.equals(ID))
+			if(result.get(i).tiaoxingma.equals(ID))
 				return result.get(i);
 		}
 		}catch(Exception e){
