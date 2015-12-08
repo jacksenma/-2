@@ -1,5 +1,9 @@
 package blservice.financialmanblservice;
 
+import java.rmi.RemoteException;
+
+import vo.financialmanvo.PaymentInputvo;
+import vo.financialmanvo.RecieveListvo;
 import vo.financialmanvo.StatisticsListvo;
 
 public class StatisticsListService_Stub implements StatisticsListService {
@@ -14,6 +18,20 @@ public class StatisticsListService_Stub implements StatisticsListService {
 		System.out.println("是否导出");
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public RecieveListvo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
+			String text6) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 
 public class SettlementManageService_driver {
 	public void driver(SettlementManageService stub) throws RemoteException{
-		stub.shuRu(null, null, null, null, 0, null);
-		stub.baocun();
-		
+//		stub.shuRu(null, null, null, null, 0, null);
+//		stub.baocun();
+//		
 		
 		
 	}

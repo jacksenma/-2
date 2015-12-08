@@ -10,6 +10,7 @@ import java.util.Date;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.CostManageService;
+import blservice.financialmanblservice.StatisticsListService;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 
@@ -19,6 +20,7 @@ import vo.financialmanvo.RecieveListvo;
  */
 public class CostManageui extends javax.swing.JFrame {
 	static CostManageService cm;
+	static StatisticsListService sm;
     /**
      * Creates new form CostManageui
      * @throws Exception 
@@ -29,6 +31,7 @@ public class CostManageui extends javax.swing.JFrame {
          this.setVisible(true);
          RMIClient.init();
          cm = RMIClient.getCostManageService();
+         sm = RMIClient.getStatisticsListService();
     }
     static final String ss[] = new String [100];//计算合计收款单
     static final String sp[] = new String [100];//计算合计付款单
@@ -162,9 +165,9 @@ public class CostManageui extends javax.swing.JFrame {
          System.out.println(matter1.format(dt));
          System.out.println(matter2.format(dt));
          System.out.println(matter3.format(dt));
-         SearchAll1(cm.SearchReceive("0","0","0",
+         SearchAll1(sm.SearchReceive("0","0","0",
      			year2,month2,day2));
-     	 SearchAll2(cm.SearchPay("0","0","0",
+     	 SearchAll2(sm.SearchPay("0","0","0",
      			year2,month2,day2));
      	 
      	 //计算收款

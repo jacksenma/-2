@@ -64,19 +64,19 @@ public class CostManageService_Stub implements CostManageService {
 		return null;
 	}
 
-	@Override
-	public RecieveListvo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
-			String text6) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public RecieveListvo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
+//			String text6) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
+//			throws RemoteException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public void delete(String number) throws RemoteException {

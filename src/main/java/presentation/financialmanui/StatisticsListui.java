@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.CostManageService;
+import blservice.financialmanblservice.StatisticsListService;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 
@@ -19,7 +20,7 @@ import vo.financialmanvo.RecieveListvo;
  * @author user
  */
 public class StatisticsListui extends javax.swing.JFrame {
-	static CostManageService cm;
+	static StatisticsListService sm;
     /**
      * Creates new form StatisticsListui
      * @throws Exception 
@@ -29,7 +30,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
-        cm = RMIClient.getCostManageService();
+        sm = RMIClient.getStatisticsListService();
     }
     private void SearchAll1(RecieveListvo[] uv){
    	   final String s[] = new String [100];
@@ -307,9 +308,9 @@ public class StatisticsListui extends javax.swing.JFrame {
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
-    	SearchAll1(cm.SearchReceive(year1.getText(),month1.getText(),day1.getText(),
+    	SearchAll1(sm.SearchReceive(year1.getText(),month1.getText(),day1.getText(),
     			year2.getText(),month2.getText(),day2.getText()));
-    	SearchAll2(cm.SearchPay(year1.getText(),month1.getText(),day1.getText(),
+    	SearchAll2(sm.SearchPay(year1.getText(),month1.getText(),day1.getText(),
     			year2.getText(),month2.getText(),day2.getText()));
     	
     	

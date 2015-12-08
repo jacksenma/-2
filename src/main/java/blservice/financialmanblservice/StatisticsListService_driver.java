@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 
 public class StatisticsListService_driver {
 	public void driver(StatisticsListService stub) throws RemoteException{
-		stub.date(null, null);
-		stub.daochu();
-		
+//		stub.date(null, null);
+//		stub.daochu();
+//		
 		
 		
 		

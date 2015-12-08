@@ -262,6 +262,6 @@ public class RMIClient {
     	RMIClient.init();
     	UserAuthorityManagerService service = 
     			RMIClient.getUserAuthorityManagerService();
-    	service.findUser(2);
+//    	service.findUser(2);
     }
 }
