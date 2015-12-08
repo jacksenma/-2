@@ -14,7 +14,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
     /**
      * Creates new form FinancialMainui
      */
-    public GeneralManagerMainui(String name,int id) {
+    public GeneralManagerMainui(String name,String id) {
         initComponents();
         this.setVisible(true);
          jLabel2.setText("姓名："+name);
@@ -324,7 +324,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GeneralManagerMainui("周锐",141250206).setVisible(true);
+                new GeneralManagerMainui("周锐","141250206").setVisible(true);
             }
         });
     }

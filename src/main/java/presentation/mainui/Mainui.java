@@ -209,7 +209,7 @@ public class Mainui extends javax.swing.JFrame {
 		else if(quvo.getRole() == Rolepo.yytywy)
 			new BushallsalmanMainui(quvo.getID() , quvo.getName());
 		else if(quvo.getRole() == Rolepo.zjl)
-			new GeneralManagerMainui(quvo.getID() , 1);
+			new GeneralManagerMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.zzzxkcgly)
 			try {
 				new StockManagermanMainui(quvo.getID() , quvo.getName());
