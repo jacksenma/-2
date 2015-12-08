@@ -16,6 +16,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
      */
     public GeneralManagerMainui(String name,int id) {
         initComponents();
+        this.setVisible(true);
          jLabel2.setText("姓名："+name);
 
         jLabel3.setText("账号："+id);

@@ -7,6 +7,7 @@ public class LowFinancialmanMainui extends javax.swing.JFrame{
 	}
 	public LowFinancialmanMainui(String name , String ID){
 		    initComponents();
+		    this.setVisible(true);
 	        jLabel2.setText("姓名：" + name);
 	        jLabel3.setText("账号：" + ID);
 	}

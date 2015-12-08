@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import blservice.transitsalmanblservice.TrafficMesManageService;
+import vo.couriervo.Datevo;
 import vo.transitmanvo.TrafficMesManagevo;
 
 public class TrafficMesManageImpl extends UnicastRemoteObject implements TrafficMesManageService {
@@ -13,9 +14,17 @@ public class TrafficMesManageImpl extends UnicastRemoteObject implements Traffic
 		// TODO Auto-generated constructor stub
 	}
 
-	public TrafficMesManagevo getMes() throws RemoteException {
+	@Override
+	public boolean getMes(TrafficMesManagevo tvo) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
+
+	@Override
+	public boolean checkDate(Datevo d, TrafficMesManagevo tvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
