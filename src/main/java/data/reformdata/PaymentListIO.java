@@ -15,6 +15,7 @@ import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.ExamineType;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.Recordpo;
 
 public class PaymentListIO implements FinancialmanService, OrderService {
 
@@ -411,6 +412,18 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 			if(list.get(i).beizhu.number.equals(number))
 				return list.get(i);
 		}
+		return null;
+	}
+
+	@Override
+	public boolean writeRecord(Recordpo recordpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Recordpo[] AllSearchRec() throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	}

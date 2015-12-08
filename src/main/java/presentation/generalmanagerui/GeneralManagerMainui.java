@@ -43,6 +43,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        record = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -122,6 +123,18 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
             }
         });
 
+        record.setText("记录操作日志");
+        record.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+					recordMouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenu2.setText("修改账户信息");
@@ -167,7 +180,8 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(record, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -193,7 +207,9 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(record)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,6 +299,11 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
     	new StatisticsListui().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void recordMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_recordMouseClicked
+        // TODO add your handling code here:
+    	new recordui().setVisible(true);
+    }//GEN-LAST:event_recordMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -335,5 +356,6 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel name;
+    private javax.swing.JButton record;
     // End of variables declaration//GEN-END:variables
 }

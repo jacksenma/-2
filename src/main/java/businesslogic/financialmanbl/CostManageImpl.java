@@ -6,14 +6,17 @@ import java.rmi.server.UnicastRemoteObject;
 import blservice.financialmanblservice.CostManageService;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
+import data.safetydata.RecordIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.CostOrderpo;
+import po.financialmanpo.Recordpo;
 import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.financialmanvo.Recordvo;
 
 public class CostManageImpl extends UnicastRemoteObject implements CostManageService {
 
@@ -181,4 +184,42 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		
 	}
 
+	@Override
+	public boolean record(Recordvo rvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		 FinancialmanService cs = new RecordIO();
+         try {
+				System.out.println("sdweretr");
+         	if(cs.writeRecord(new Recordpo(rvo)))
+					return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         return false;
+
+}
+
+	@Override
+	public Recordvo[] AllRecordSearch() throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService as=new RecordIO();
+		Recordpo[] up;
+		try {
+			up = as.AllSearchRec();
+			if(up==null)  return null;
+			else{
+				Recordvo[] uv = new Recordvo[up.length];
+				for(int i=0;i<up.length;i++){
+					Recordvo s = up[i].geUser();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -4,12 +4,17 @@ import java.rmi.RemoteException;
 
 import data.accountdata.AccountIO;
 import data.reformdata.PaymentListIO;
+import data.safetydata.RecordIO;
 import dataservice.financialmandataservice.FinancialmanService;
+import po.financialmanpo.Accountpo;
+import po.financialmanpo.Recordpo;
+import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.financialmanvo.Recordvo;
 
 public class CostManageService_Stub implements CostManageService {
 
@@ -86,6 +91,18 @@ public class CostManageService_Stub implements CostManageService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean record(Recordvo rvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+	@Override
+	public Recordvo[] AllRecordSearch() throws RemoteException {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}}
 
 

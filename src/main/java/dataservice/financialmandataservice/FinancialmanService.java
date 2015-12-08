@@ -7,6 +7,7 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.Recordpo;
 
 public interface FinancialmanService {
 	 public CostOrderpo search(String ID) throws Exception ;
@@ -31,5 +32,7 @@ public interface FinancialmanService {
 	public boolean deleteAcc(String name) throws Exception;
 	public boolean deletePaymentList(String number) throws Exception;
 	public CostOrderpo searchp(String number) throws Exception;
+	public boolean writeRecord(Recordpo recordpo)  throws Exception;
+	public Recordpo[] AllSearchRec()  throws Exception;
 
 }

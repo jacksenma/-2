@@ -15,7 +15,7 @@ import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
 import po.financialmanpo.RecieveListpo;
-
+import po.financialmanpo.Recordpo;
 import vo.financialmanvo.SettlementManagevo;
 
 public class RecieveListIO implements  FinancialmanService {
@@ -379,6 +379,20 @@ public class RecieveListIO implements  FinancialmanService {
 
 	@Override
 	public CostOrderpo searchp(String number) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean writeRecord(Recordpo recordpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Recordpo[] AllSearchRec() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

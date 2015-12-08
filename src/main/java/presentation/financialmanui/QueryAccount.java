@@ -86,6 +86,7 @@ public class QueryAccount extends javax.swing.JFrame {
     		this.error.setVisible(true);
     		return;
     	}
+    	else this.error.setVisible(false);
   	   if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 try {

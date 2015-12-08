@@ -8,6 +8,7 @@ import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.financialmanvo.Recordvo;
 
 public interface CostManageService extends Remote {
 	public CostManagevo show(String date,int numOfBusHall) throws RemoteException;
@@ -35,6 +36,11 @@ public interface CostManageService extends Remote {
 	public void delete(String number) throws RemoteException;
 
 	public CheckPaymentListvo SearchP(String number) throws RemoteException;//用于审批的查找付款单
+
+	public boolean record(Recordvo rvo)throws RemoteException;
+
+	public Recordvo[] AllRecordSearch() throws RemoteException;;
+
 	
 	
 }

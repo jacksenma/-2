@@ -14,6 +14,7 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.Recordpo;
 
 public class AccountIO implements FinancialmanService{
 	public boolean addAccount(Accountpo apo) throws Exception {
@@ -241,6 +242,16 @@ public class AccountIO implements FinancialmanService{
 	}
 	@Override
 	public CostOrderpo searchp(String number) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean writeRecord(Recordpo recordpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Recordpo[] AllSearchRec() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
