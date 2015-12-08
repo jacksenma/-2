@@ -171,11 +171,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 		os.approve(ID);
 	}
 
-	@Override
-	public void disapprove(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 }

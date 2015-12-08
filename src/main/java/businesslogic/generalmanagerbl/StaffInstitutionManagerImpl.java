@@ -41,11 +41,10 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 	}
 
 
-	public Staffvo addStaff(Staffvo sv) throws RemoteException {
+	public void addStaff(Staffvo sv) throws RemoteException {
 		// TODO Auto-generated method stub
 		Staffservice ss = new Staff();
 		ss.writeStaff(new Staffpo(sv));
-		return null;
 	}
 
 
@@ -63,12 +62,11 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 	}
 
 
-	public Institutionvo addInstitution(Institutionvo iv)
+	public void addInstitution(Institutionvo iv)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		Institutionservice is = new Institution();
 		is.writeInstitution(new Institutionpo(iv));
-		return null;
 	}
 
 

@@ -7,8 +7,6 @@ import vo.generalmanagervo.OrderExaminevo;
 import vo.generalmanagervo.Staffvo;
 
 public interface OrderExamineService extends Remote {
-
-	public OrderExaminevo showOrders() throws RemoteException;
 	
 	public void approveexpressorder(String ID) throws RemoteException;
 	public void approvecarloadingorde(String ID) throws RemoteException;
@@ -20,9 +18,6 @@ public interface OrderExamineService extends Remote {
 	public void approveinstockorder(String ID) throws RemoteException;
 	public void approveoutstockorder(String ID) throws RemoteException;
 	public void approvepaymentorder(String ID) throws RemoteException;
-	
-	public void disapprove(String ID)
-	        throws RemoteException;
 	
 	public String[] showexpressorder() throws RemoteException;
 	public String[] showcarloadingorder() throws RemoteException;

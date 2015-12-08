@@ -15,7 +15,7 @@ public interface StaffInstitutionManagerService extends Remote {
        
        public Staffvo[] searchbyrole(String role) throws RemoteException;
        
-       public Staffvo addStaff(Staffvo sv)
+       public void addStaff(Staffvo sv)
     		   throws RemoteException;
        
        public void deleteStaff(Staffvo sv)
@@ -24,7 +24,7 @@ public interface StaffInstitutionManagerService extends Remote {
        public void modifyStaff(Staffvo oldsv,Staffvo sv)
     		   throws RemoteException;
        
-       public Institutionvo addInstitution(Institutionvo iv)
+       public void addInstitution(Institutionvo iv)
     		   throws RemoteException;
        
        public void deleteInstitution(Institutionvo iv) throws RemoteException;
