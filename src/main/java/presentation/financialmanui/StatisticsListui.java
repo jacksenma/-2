@@ -148,7 +148,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         jLabel9.setText("期间收款单信息");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "" };
+            String[] strings = { "                     " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -163,7 +163,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         jLabel13.setText("期间付款单信息");
 
         jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "" };
+            String[] strings = { "                     " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

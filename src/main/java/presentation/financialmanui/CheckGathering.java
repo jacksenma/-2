@@ -31,6 +31,7 @@ public class CheckGathering extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
+        System.out.println("sssss");
     }
 //    static final String s[] = new String [100];
     static final String ss[] = new String [100];//计算合计收款单
