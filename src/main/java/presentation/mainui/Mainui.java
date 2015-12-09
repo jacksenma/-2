@@ -199,26 +199,26 @@ public class Mainui extends javax.swing.JFrame {
 	private void select(QueryUservo quvo) {
 		// TODO Auto-generated method stub
 		if(quvo.getRole() == Rolepo.kdy)
-			new CourierMainui(quvo.getID() , quvo.getName());
+			new CourierMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.gjcwy)
-			new FinancialmanMainui(quvo.getID() , quvo.getName());
+			new FinancialmanMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.gly)
-			new AdministratorMainui(quvo.getID() , quvo.getName());
+			new AdministratorMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.ybcwy)
-			new LowFinancialmanMainui(quvo.getID() , quvo.getName());
+			new LowFinancialmanMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.yytywy)
-			new BushallsalmanMainui(quvo.getID() , quvo.getName());
+			new BushallsalmanMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.zjl)
 			new GeneralManagerMainui(quvo.getName() , quvo.getID());
 		else if(quvo.getRole() == Rolepo.zzzxkcgly)
 			try {
-				new StockManagermanMainui(quvo.getID() , quvo.getName());
+				new StockManagermanMainui(quvo.getName() , quvo.getID());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		else if(quvo.getRole() == Rolepo.zzzxywy)
-			new TransitmanMainui(quvo.getID() , quvo.getName());
+			new TransitmanMainui(quvo.getName() , quvo.getID());
 	}
 
 	private void errorPassw() {

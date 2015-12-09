@@ -16,9 +16,11 @@ public class AdministratorMainui extends javax.swing.JFrame {
     /**
      * Creates new form AdministratorMainui
      */
-    public AdministratorMainui(String ID , String name) {
+    public AdministratorMainui(String name, String ID) {
         initComponents();
         this.setVisible(true);
+        jLabel2.setText("姓名：" + name);
+        jLabel3.setText("账号：" + ID);
         try {
 			RMIClient.init();
 		} catch (Exception e) {
@@ -152,6 +154,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
+        	
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
