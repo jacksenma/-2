@@ -1,7 +1,6 @@
 package data.orderdata;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -231,13 +230,61 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<TrafficMespo> list = (List<TrafficMespo>) ois.readObject();
 		ois.close();
-		list.add(tmpo);
-		
+		list.add(tmpo);		
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/TafficOrder.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(list);
 		oos.close();
 		return true;
+	}
+	
+	public String[] SearchUncheckedtraffic() {
+		// TODO Auto-generated method stub	
+		int count=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/TafficOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<TrafficMespo> list = (List<TrafficMespo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
+				count++;
+		}
+		int k=0;
+		String result [] = new String[count];
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ExamineType.NOApproval)){
+				result[k]=list.get(i).getID();
+				k++;
+			}
+		}
+		return result;
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void approvetraffic(String s) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/TafficOrder.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<TrafficMespo> list = (List<TrafficMespo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(s))
+					list.get(i).ext=ExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/TafficOrder.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+			System.out.println("Approve");
+		}catch(Exception e){
+				e.printStackTrace();
+			}
 	}
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import po.courierpo.Datepo;
+import po.courierpo.ExamineType;
 import vo.transitmanvo.TrafficMesManagevo;
 
 public class TrafficMespo implements Serializable {
@@ -33,6 +34,8 @@ public class TrafficMespo implements Serializable {
     
     public final TafficType tt;
     
+    public ExamineType ext;
+    
     public TrafficMespo(TrafficMesManagevo tvo){
     	date = new Datepo(tvo.date.year , tvo.date.month
     			 , tvo.date.day);
@@ -46,7 +49,17 @@ public class TrafficMespo implements Serializable {
     	if(tvo.tafficType == 1) tt = TafficType.Plane;
     	else if(tvo.tafficType == 2) tt = TafficType.Train;
     	else tt = TafficType.Car;
-    	
+    	ext = ExamineType.NOApproval;
     }
+
+	public Object getExamineType() {
+		// TODO Auto-generated method stub
+		return ext;
+	}
+
+	public String getID() {
+		// TODO Auto-generated method stub
+		return tafficID;
+	}
 
 }
