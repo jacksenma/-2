@@ -16,6 +16,7 @@ import po.courierpo.CourierOrderpo;
 import po.courierpo.ExamineType;
 import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
+import po.transitmanpo.TrafficMespo;
 import po.transitmanpo.TransitReceiveOrderpo;
 
 public class OrderIO implements TransitManService, CourierService, ExpressService, OrderService {
@@ -221,5 +222,22 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 		}catch(Exception e){
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public boolean TrafficOrderWrite(TrafficMespo tmpo) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<TrafficMespo> list = (List<TrafficMespo>) ois.readObject();
+		ois.close();
+		list.add(tmpo);
+		
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/TafficOrder.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		return true;
 	}
 }
