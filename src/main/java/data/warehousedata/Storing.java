@@ -325,4 +325,81 @@ public class Storing implements StockManagermanService {
 		return null;
 	}
 
+	@Override
+	public String examinein(String qy, String qm, String qd, String zy, String zm, String zd) {
+		// TODO Auto-generated method stub
+		String inshu="";
+		int in=0;
+		int qiyear=Integer.parseInt(qy);
+		int qimonth=Integer.parseInt(qm);
+		int qiday =Integer.parseInt(qd);
+		int zhiyear =Integer.parseInt(zy);
+		int zhimonth=Integer.parseInt(zm);
+		int zhiday=Integer.parseInt(zd);
+		FileInputStream fis;
+				
+		try {
+			fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> result = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		
+		for(int i = 0; i < result.size(); i++){
+			int yearint=Integer.parseInt(result.get(i).year);
+			int monthint=Integer.parseInt(result.get(i).month);
+			int dayint=Integer.parseInt(result.get(i).day);
+			if(((yearint>qiyear)||(yearint==qiyear&&monthint>qimonth)||
+					(yearint==qiyear&&monthint==qimonth&&dayint>=qiday))&&
+					(yearint<zhiyear)||(yearint==zhiyear&&monthint<zhimonth)||
+					(yearint==zhiyear&&monthint==zhimonth&&dayint<=zhiday)){
+				in++;
+				
+			}
+		}
+		inshu = in+"";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return inshu;
+	}
+
+	@Override
+	public String examineout(String qy, String qm, String qd, String zy, String zm, String zd) {
+		// TODO Auto-generated method stub
+		String outshu="";
+		int out=0;
+		int qiyear=Integer.parseInt(qy);
+		int qimonth=Integer.parseInt(qm);
+		int qiday =Integer.parseInt(qd);
+		int zhiyear =Integer.parseInt(zy);
+		int zhimonth=Integer.parseInt(zm);
+		int zhiday=Integer.parseInt(zd);
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/main/java/data/save/outstock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<OutStoringpo> result = (List<OutStoringpo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < result.size(); i++){
+			int yearint=Integer.parseInt(result.get(i).out1.year);
+			int monthint=Integer.parseInt(result.get(i).out1.month);
+			int dayint=Integer.parseInt(result.get(i).out1.day);
+			if(((yearint>qiyear)||(yearint==qiyear&&monthint>qimonth)||
+					(yearint==qiyear&&monthint==qimonth&&dayint>=qiday))&&
+					(yearint<zhiyear)||(yearint==zhiyear&&monthint<zhimonth)||
+					(yearint==zhiyear&&monthint==zhimonth&&dayint<=zhiday)){
+				out++;
+				
+			}
+				
+		}
+		outshu=out+"";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return outshu;
+	}
+
 }

@@ -103,4 +103,19 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 		return null;
 	}
 
+	
+
+	@Override
+	public String examinein(String qy, String qm, String qd, String zy, String zm, String zd) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String examineout(String zy, String zm, String zd, String zy2, String zm2, String zd2)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

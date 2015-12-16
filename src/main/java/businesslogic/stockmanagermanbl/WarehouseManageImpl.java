@@ -173,4 +173,24 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		return false;
 	}
 
+
+	@Override
+	public String examinein(String qy, String qm, String qd,String zy,String zm,String zd) throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		String inshu=sms.examinein(qy,qm,qd,zy,zm,zd);
+		return inshu;
+	}
+
+
+	@Override
+	public String examineout(String qy,String qm,String qd,String zy, String zm, String zd) throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		String outshu=sms.examineout(qy,qm,qd,zy,zm,zd);
+		return outshu;
+	}
+	
+	
+
 }

@@ -23,4 +23,8 @@ public interface StockManagermanService {
 	public InStoringpo getInstock(String iD);
 
 	public OutStoringpo getOutstock(String iD);
+
+	public String examinein(String qy, String qm, String qd, String zy, String zm, String zd);
+
+	public String examineout(String qy, String qm, String qd, String zy, String zm, String zd);
 }

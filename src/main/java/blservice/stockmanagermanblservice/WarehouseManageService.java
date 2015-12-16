@@ -33,4 +33,8 @@ public interface WarehouseManageService extends Remote {
 	public Outstockvo showOutstock(String iD)throws RemoteException;
 
 	public boolean modifyOut(Outstockvo outstockvo)throws RemoteException;
+
+	public String examinein(String qy, String qm, String qd, String zy, String zm, String zd)throws RemoteException;
+
+	public String examineout(String zy, String zm, String zd, String zy2, String zm2, String zd2)throws RemoteException;
 }
