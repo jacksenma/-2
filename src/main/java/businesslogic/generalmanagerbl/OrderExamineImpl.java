@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import data.institutiondata.BusinessHall;
 import data.orderdata.OrderIO;
+import data.orderdata.ReceiveOrderInput;
 import data.reformdata.PaymentListIO;
 import data.warehousedata.Storing;
 import dataservice.generalmanagerdataservice.OrderService;
@@ -19,19 +20,6 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public OrderExamineImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public OrderExaminevo showOrders(){
-		System.out.println("显示所有未审批的订单");
-		return null;
-	}
-	
-	public void approve(String type,String identifier,Staffvo operator){
-		System.out.println("订单通过");
-	}
-	
-	public void disapprove(String type,String identifier,Staffvo operator){
-		System.out.println("订单通过");
 	}
 
 	@Override
@@ -52,7 +40,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public String[] showyingyetingorder() throws RemoteException {
 		// TODO Auto-generated method stub
 		BusinessHall bh = new BusinessHall();
-		return null;
+		return bh.SearchUncheckedbushall();
 	}
 
 	@Override
@@ -65,7 +53,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public String[] showzhongzhuanorder() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		OrderIO os = new OrderIO();
+		return os.SearchUncheckedtraffic();
 	}
 
 	@Override
@@ -78,7 +67,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public String[] showzhongzhuanzhongxinorder() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		OrderService os= new ReceiveOrderInput();
+		return os.SearchUnchecked();
 	}
 
 	@Override
@@ -133,7 +123,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public void approvezhongzhuanorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		OrderIO os = new OrderIO();
+	   os.approvetraffic(ID);
 	}
 
 	@Override
@@ -147,7 +138,8 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvezhongzhuanzhongxinorder(String ID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		OrderService os= new ReceiveOrderInput();
+		os.approve(ID);
 	}
 
 	@Override

@@ -1,8 +1,6 @@
 package po.transitmanpo;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import po.courierpo.Datepo;
 import po.courierpo.ExamineType;
 import vo.couriervo.Datevo;
@@ -34,7 +32,7 @@ public class TransitReceiveOrderpo implements Serializable {
 		ID = i;
 		start = s;
 		type = GoodStatepo.getState(t);
-		ext = ExamineType.NotApprove;
+		ext = ExamineType.NOApproval;
 	}
 
 	public Object getExamineType() {
