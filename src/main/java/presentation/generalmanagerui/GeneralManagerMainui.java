@@ -19,6 +19,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
      */
     public GeneralManagerMainui(String n,String id) {
         initComponents();
+        this.setVisible(true);
          name.setText("姓名："+n);
          
         account.setText("账号："+id);

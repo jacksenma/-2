@@ -193,10 +193,10 @@ public class CarMesManageui extends javax.swing.JFrame {
         if(b)return;
         boolean c=errorID(day.getText());
         if(c)return;
-        boolean d=errorID(cardaihao.getText());
-        if(d)return;
-        boolean e1=errorID(chepaihao.getText());
-        if(e1)return;
+       boolean d=errorID(cardaihao.getText());
+       if(d)return;
+//        boolean e1=errorID(chepaihao.getText());
+//        if(e1)return;
         try {
             boolean a1 = cms.inputVehicle(carMesManage);
             if(a1){

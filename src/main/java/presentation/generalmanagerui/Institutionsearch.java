@@ -147,6 +147,7 @@ else{
         // TODO add your handling code here:
     	 try {
  			sims.deleteInstitution(find);
+ 			this.dispose();
  		} catch (RemoteException e) {
  			// TODO Auto-generated catch block
  			e.printStackTrace();
