@@ -255,4 +255,81 @@ public class AccountIO implements FinancialmanService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void writeInit() throws Exception {
+		// TODO Auto-generated method stub
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/accountMes.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		List<String> l = new ArrayList<String>();
+		oos.writeObject(l);
+		oos.close();
+		
+		FileOutputStream fos1 = 
+				new FileOutputStream("src/main/java/data/save/PaymentList.txt");
+		ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
+		List<String> l1 = new ArrayList<String>();
+		oos1.writeObject(l1);
+		oos1.close();
+		
+		FileOutputStream fos2 = 
+				new FileOutputStream("src/main/java/data/save/carLoading.txt");
+		ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+		List<String> l2 = new ArrayList<String>();
+		oos2.writeObject(l2);
+		oos2.close();
+		
+		FileOutputStream fos3 = 
+				new FileOutputStream("src/main/java/data/save/carMes.txt");
+		ObjectOutputStream oos3 = new ObjectOutputStream(fos3);
+		List<String> l3= new ArrayList<String>();
+		oos3.writeObject(l3);
+		oos3.close();
+		
+		FileOutputStream fos4 = 
+				new FileOutputStream("src/main/java/data/save/cashReceive.txt");
+		ObjectOutputStream oos4 = new ObjectOutputStream(fos4);
+		List<String> l4 = new ArrayList<String>();
+		oos4.writeObject(l4);
+		oos4.close();
+		
+		
+		FileOutputStream fos5 = 
+				new FileOutputStream("src/main/java/data/save/courierOrder.txt");
+		ObjectOutputStream oos5 = new ObjectOutputStream(fos5);
+		List<String> l5 = new ArrayList<String>();
+		oos5.writeObject(l5);
+		oos5.close();
+		
+		FileOutputStream fos6 = 
+				new FileOutputStream("src/main/java/data/save/driverMes.txt");
+		ObjectOutputStream oos6 = new ObjectOutputStream(fos6);
+		List<String> l6 = new ArrayList<String>();
+		oos6.writeObject(l6);
+		oos6.close();
+		
+		FileOutputStream fos7 = 
+				new FileOutputStream("src/main/java/data/save/Institution.txt");
+		ObjectOutputStream oos7 = new ObjectOutputStream(fos7);
+		List<String> l7 = new ArrayList<String>();
+		oos7.writeObject(l7);
+		oos7.close();
+		
+		FileOutputStream fos8= 
+				new FileOutputStream("src/main/java/data/save/instock.txt");
+		ObjectOutputStream oos8 = new ObjectOutputStream(fos8);
+		List<String> l8 = new ArrayList<String>();
+		oos8.writeObject(l8);
+		oos8.close();
+		
+		FileOutputStream fos9= 
+				new FileOutputStream("src/main/java/data/save/outstock.txt");
+		ObjectOutputStream oos9 = new ObjectOutputStream(fos9);
+		List<String> l9 = new ArrayList<String>();
+		oos9.writeObject(l9);
+		oos9.close();//还有几个txt没有清空
+		
+		
+		
+	}
 }

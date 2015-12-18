@@ -226,4 +226,17 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
          return false;
 	}
 
+	@Override
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fs=new AccountIO();
+		try {
+			fs.writeInit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

@@ -39,5 +39,7 @@ public interface AccountManageService extends Remote {
 	public AccountManagevo[] searchMo(String text) throws RemoteException;
 
 	public boolean deleteAccount(String name) throws RemoteException;
+
+	public void init() throws RemoteException;
 	
 }

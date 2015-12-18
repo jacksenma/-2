@@ -426,6 +426,12 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void writeInit() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	}
 
 

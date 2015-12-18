@@ -34,5 +34,7 @@ public interface FinancialmanService {
 	public CostOrderpo searchp(String number) throws Exception;
 	public boolean writeRecord(Recordpo recordpo)  throws Exception;
 	public Recordpo[] AllSearchRec()  throws Exception;
+	public void writeInit()throws Exception;
+	
 
 }

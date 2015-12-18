@@ -139,11 +139,18 @@ public class AddAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     	String mes1=accountName.getText();
     	String mes2=initMoney.getText();
-    	if(mes1==""||mes2==""){
+    	if(mes1.equals("")||mes2.equals("")){
     		missMes();//检查输入完整性
     		return;
     	}
-    	
+    	for(int i=0;i<mes2.length();i++){
+    		if('0'>mes2.charAt(i)||mes2.charAt(i)>'9'){
+    			WrongMoney();
+    		    return;
+    		}
+    			
+    		
+    	}
     	AccountManagevo amvo=new AccountManagevo(mes1, mes2);
     	 try {
              boolean b = as.getOrder(amvo);
@@ -154,7 +161,7 @@ public class AddAccount extends javax.swing.JFrame {
                  this.dispose();
              }
              else{
-                 JOptionPane.showMessageDialog(null, "写入失败", "已存在相同账户！", 
+                 JOptionPane.showMessageDialog(null, "已存在相同账户！","写入失败", 
                  		JOptionPane.ERROR_MESSAGE);
              }
              // TODO add your handling code here:
@@ -164,6 +171,10 @@ public class AddAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_OKMouseClicked
     private void missMes(){
         JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void WrongMoney(){
+        JOptionPane.showMessageDialog(null, "请输入正确金额", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     /**
      * @param args the command line arguments

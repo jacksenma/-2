@@ -189,4 +189,10 @@ public class RecordIO implements FinancialmanService {
 				e.printStackTrace();
 			} 
 		return null;
-}}
+}
+
+	@Override
+	public void writeInit() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}}

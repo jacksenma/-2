@@ -87,5 +87,11 @@ public class AccountManageService_Stub implements AccountManageService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

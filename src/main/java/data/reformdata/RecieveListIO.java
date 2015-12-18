@@ -398,6 +398,13 @@ public class RecieveListIO implements  FinancialmanService {
 	}
 
 
+	@Override
+	public void writeInit() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 //	public boolean getOrder2(IncomeInputvo iivo) throws RemoteException {
 //		// TODO Auto-generated method stub
 //		return false;

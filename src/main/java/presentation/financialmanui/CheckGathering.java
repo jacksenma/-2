@@ -6,7 +6,11 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
@@ -294,12 +298,82 @@ public class CheckGathering extends javax.swing.JFrame {
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException{//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
+    	String y=year.getText();
+    	String m=month.getText();
+    	String d=day.getText();
+    	String yy=yytID.getText();
+    	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+    	if(y.equals("")||m.equals("")||d.equals("")||yy.equals("")){
+    		JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    		return;
+    	}
+    	
+    	
+    	
+    	//检测是否有非法字符
+    	for(int i=0;i<y.length();i++){
+    		if('0'>y.charAt(i)||y.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<m.length();i++){
+    		if('0'>m.charAt(i)||m.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<d.length();i++){
+    		if('0'>d.charAt(i)||d.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<yy.length();i++){
+    		if('0'>yy.charAt(i)||yy.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	
+    	
+    	if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
+    			||Integer.parseInt(time3)<Integer.parseInt(d)){
+    		WrongTime();
+    		return;
+    	}
+    	
+    	
+    	
+    	if(yy.length()!=6){
+    		JOptionPane.showMessageDialog(null, "营业厅编号为6位", "输入有误", JOptionPane.ERROR_MESSAGE);
+    		return;
+    	}
+    		
+    	
     	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
 //    	chu++;
 //    	System.out.println(count+"上");
   	  
 	    
     }//GEN-LAST:event_OKMouseClicked
+    private void Wrong(){
+    	 JOptionPane.showMessageDialog(null, "非法字符", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void WrongTime(){
+    	 JOptionPane.showMessageDialog(null, "请输入正确时间", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+   
 
     private void hejiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hejiActionPerformed
         // TODO add your handling code here:

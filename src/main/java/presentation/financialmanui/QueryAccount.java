@@ -80,9 +80,9 @@ public class QueryAccount extends javax.swing.JFrame {
     
     private void AllSearch(AccountManagevo[] uv){
   	    final String s[] = new String [100];
-  	    int allMoney=0;
+  	    int  allMoney=0;
     	if(uv.length==0){
-    		this.error.setText("未找到账户（模糊）");
+    		this.error.setText("未找到账户");
     		this.error.setVisible(true);
     		return;
     	}

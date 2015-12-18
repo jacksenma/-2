@@ -187,9 +187,11 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton3MouseClicked
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt)throws Exception{//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        new AccountManageui().setVisible(true);
+    	
+//        new queding().setVisible(true);
+    	new AccountManageui().setVisible(true);
 //        System.out.println("????????");
 //        new CheckPaymentListui("7452589632").setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
