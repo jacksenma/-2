@@ -129,6 +129,10 @@ public class Newcityui extends javax.swing.JFrame {
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
     	String s= city1.getText()+"      距离     "+city2.getText()+"      "+distance.getText()+"      "+"km";
+    	if(!isvalid(distance.getText())){
+    		JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+    	}
     	cfs.addcity(s);
     	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveMouseClicked
@@ -140,6 +144,18 @@ public class Newcityui extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    private boolean isvalid(String text) {
+		// TODO Auto-generated method stub
+    	boolean result=true;
+    	if(text.equals("")){
+    		return false;
+    	}
+    	for(int i=0;i<text.length();i++){
+    		if(!((text.charAt(i)<='9'&&text.charAt(i)>='0')||text.charAt(i)=='.'))
+    			result=false;	
+    	}
+		return result;
+	}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -16,4 +16,8 @@ public class SalaryFormulatevo implements Serializable {
 		how=s;
 		amount=d;
 	}
+	
+	public double getamount(){
+		return amount;
+	}
 }

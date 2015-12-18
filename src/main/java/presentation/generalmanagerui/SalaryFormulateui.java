@@ -7,6 +7,8 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import vo.generalmanagervo.SalaryFormulatevo;
 import blservice.generalmanagerblservice.SalaryFormulateService;
 import businesslogic.generalmanagerbl.SalaryFormulateImpl;
@@ -324,6 +326,35 @@ public class SalaryFormulateui extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
     	SalaryFormulatevo staffs[] = new SalaryFormulatevo [7];
+    	if(!isvalid(jTextField1.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整","失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField2.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField3.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField4.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField5.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField6.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	if(!isvalid(jTextField7.getText())){
+	    	JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+	    	}
+    	
     	 try {
     		 staffs[0]=new SalaryFormulatevo((String)Howcourier.getSelectedItem(),Double.parseDouble(jTextField1.getText()));
     		 staffs[1]=new SalaryFormulatevo((String)Howdriver.getSelectedItem(),Double.parseDouble(jTextField2.getText()));
@@ -332,8 +363,9 @@ public class SalaryFormulateui extends javax.swing.JFrame {
     		 staffs[4]=new SalaryFormulatevo((String)howstockman.getSelectedItem(),Double.parseDouble(jTextField5.getText()));
     		 staffs[5]=new SalaryFormulatevo((String)howfinanceman.getSelectedItem(),Double.parseDouble(jTextField6.getText()));
     		 staffs[6]=new SalaryFormulatevo((String)howadministrater.getSelectedItem(),Double.parseDouble(jTextField7.getText()));
+    		 			
 			sfs.modifystrategy(staffs);
-			 jLabel11.setVisible(true); 
+			 JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -341,7 +373,20 @@ public class SalaryFormulateui extends javax.swing.JFrame {
     	 setdefault(sfs);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void setdefault(SalaryFormulateService sfs2) {
+    private boolean isvalid(String text) {
+		// TODO Auto-generated method stub
+    	boolean result=true;
+    	if(text.equals("")){
+    		return false;
+    	}
+    	for(int i=0;i<text.length();i++){
+    		if(!((text.charAt(i)<='9'&&text.charAt(i)>='0')||text.charAt(i)=='.'))
+    			result=false;	
+    	}
+		return result;
+	}
+
+	private void setdefault(SalaryFormulateService sfs2) {
 		// TODO Auto-generated method stub
     	 SalaryFormulatevo sfv[] = new SalaryFormulatevo[7];
     	 try {

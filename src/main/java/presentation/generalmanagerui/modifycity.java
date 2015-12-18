@@ -157,11 +157,28 @@ public class modifycity extends javax.swing.JFrame {
     private void modifyMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_modifyMouseClicked
         // TODO add your handling code here:
     	String newc= city1.getText()+"      距离     "+city2.getText()+"      "+distance.getText()+"      "+"km";
+    	if(!isvalid(distance.getText())){
+    		JOptionPane.showMessageDialog(null, "格式错误或输入不完整", "失败", JOptionPane.ERROR_MESSAGE);
+	    	return;
+    	}
     	cfs.modifycity(oldc,newc);
     	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_modifyMouseClicked
 
-    /**
+    private boolean isvalid(String text) {
+		// TODO Auto-generated method stub
+    	boolean result=true;
+    	if(text.equals("")){
+    		return false;
+    	}
+    	for(int i=0;i<text.length();i++){
+    		if(!((text.charAt(i)<='9'&&text.charAt(i)>='0')||text.charAt(i)=='.'))
+    			result=false;	
+    	}
+		return result;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

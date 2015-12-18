@@ -56,7 +56,7 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 	
 	public static void write() throws Exception {
 		FileOutputStream fos = 
-				new FileOutputStream("src/main/java/data/save/courierOrder.txt");
+				new FileOutputStream("src/main/java/data/save/TafficOrder.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		List<String> l = new ArrayList<String>();
 		oos.writeObject(l);
@@ -226,7 +226,7 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 	@Override
 	public boolean TrafficOrderWrite(TrafficMespo tmpo) throws Exception {
 		// TODO Auto-generated method stub
-		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/TafficOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<TrafficMespo> list = (List<TrafficMespo>) ois.readObject();
 		ois.close();

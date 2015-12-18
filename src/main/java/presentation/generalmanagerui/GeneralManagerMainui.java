@@ -119,7 +119,12 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         jButton7.setActionCommand("");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+                try {
+					jButton7MouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -283,14 +288,11 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6MouseClicked
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        try {
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton7MouseClicke
 			
         	new OrderExamineui().setVisible(true);
-		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7MouseClicked
 

@@ -52,7 +52,7 @@ public class TrafficMespo implements Serializable {
     	ext = ExamineType.NOApproval;
     }
 
-	public Object getExamineType() {
+	public ExamineType getExamineType() {
 		// TODO Auto-generated method stub
 		return ext;
 	}
