@@ -32,9 +32,10 @@ public class StockManagermanMainui extends javax.swing.JFrame {
      */
     public StockManagermanMainui() throws Exception {
         initComponents();
-        wms=RMIClient.getWarehouseManageService();
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        RMIClient.init();
+        wms=RMIClient.getWarehouseManageService();
         
     }
     
@@ -72,7 +73,7 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("职位：库存管理员");
 
@@ -105,11 +106,10 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         });
 
         jButton4.setText("库存盘点");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
-
         });
 
         jButton5.setText("库存初始化");
@@ -254,14 +254,15 @@ public class StockManagermanMainui extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }
-    private void jButton4MouseClicked(MouseEvent evt) {
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)  {
     	// TODO Auto-generated method stub
     	try {
-             new StoreCheck();
+    		new StoreCheck();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
     }
     private void jButton5MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub

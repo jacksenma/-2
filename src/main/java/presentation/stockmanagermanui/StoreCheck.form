@@ -55,7 +55,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="          &#x8fdb;&#x884c;&#x5e93;&#x5b58;&#x76d8;&#x70b9;"/>
+        <Property name="text" type="java.lang.String" value="      &#x662f;&#x5426;&#x786e;&#x5b9a;&#x8fdb;&#x884c;&#x5e93;&#x5b58;&#x76d8;&#x70b9;&#xff1f;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

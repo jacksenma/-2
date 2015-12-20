@@ -201,6 +201,10 @@ public class CashRegisterui extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
+    	if(year.getText().equals("")||month.getText().equals("")||day.getText().equals("")||money.getText().equals("")||kuaidiyuan.getText().equals("")||zhanghu.getText().equals("")){
+    		errormiss();
+    		return;
+    	}
     	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
     			Integer.parseInt(month.getText()),
     			Integer.parseInt(day.getText()));
@@ -257,7 +261,12 @@ public class CashRegisterui extends javax.swing.JFrame {
                 Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void dateError2() {
+    private void errormiss() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void dateError2() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

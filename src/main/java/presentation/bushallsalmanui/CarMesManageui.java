@@ -172,6 +172,10 @@ public class CarMesManageui extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+    	if(cardaihao.getText().equals("")||chepaihao.getText().equals("")||year.getText().equals("")||month.getText().equals("")||day.getText().equals("")){
+    		errormiss();
+    		return;
+    	}
     	CarMesManagevo carMesManage=new CarMesManagevo(cardaihao.getText(),chepaihao.getText(),year.getText(),month.getText(),day.getText());
         String cdhID="";
         if((cdhID=cardaihao.getText()).equals("")||cdhID.length()!=9){
@@ -212,6 +216,11 @@ public class CarMesManageui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
+	private void errormiss() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private boolean errorID(String text) {
 		// TODO Auto-generated method stub

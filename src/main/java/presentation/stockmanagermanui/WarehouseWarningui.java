@@ -130,10 +130,20 @@ public class WarehouseWarningui extends javax.swing.JFrame {
     	WarehouseWarningvo warning = new WarehouseWarningvo(zhongzhuan.getText(),jTextField1.getText());
     	 String zzID="";
          // System.out.println(yingYeTing.getText());
+    	 if(zhongzhuan.getText().equals("")||jTextField1.getText().equals("")){
+    		 errormiss();
+    		 return;
+    	 }
           if((zzID=zhongzhuan.getText()).equals("")||zzID.length()!=4){
           	errorzzID();
           	return;
           }
+          
+          if(Integer.parseInt(jTextField1.getText())>100){
+        	  errorwarn();
+        	  return;
+          }
+          
     	
           try {
 			Institutionvo io=sims.showInstitutions(zzID);
@@ -164,7 +174,17 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         }
     }
 
-    private void notexit(String zzID) {
+    private void errormiss() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorwarn() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "警戒比例不能大于100%！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void notexit(String zzID) {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "不存在该中转中心编号"+zzID+"！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

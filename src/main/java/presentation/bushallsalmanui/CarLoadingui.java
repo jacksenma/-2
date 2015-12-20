@@ -266,11 +266,18 @@ public class CarLoadingui extends javax.swing.JFrame {
     }
     private void jButton2ActionPerformed(ActionEvent evt) throws RemoteException {
     	// TODO Auto-generated method stub
+    	if(year.getText().equals("")||month.getText().equals("")||day.getText().equals("")||yingYeTing.getText().equals("")||car.getText().equals("")||chuFaDi.getText().equals("")||destinaton.getText().equals("")||jianZhuang.getText().equals("")||
+    			yaYun.getText().equals("")||yunFei.getText().equals("")||tiaoxingma.getText().equals("")){
+    		errormiss();
+    		return;
+    	}
     	Datevo date = new Datevo(Integer.parseInt(year.getText()), 
     			Integer.parseInt(month.getText()),
     			Integer.parseInt(day.getText()));
     	CarLoadingvo carLoading=new CarLoadingvo(date,yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tiaoxingma.getText());
-        String yytID="";
+        
+    	
+    	String yytID="";
        // System.out.println(yingYeTing.getText());
         if((yytID=yingYeTing.getText()).equals("")||yytID.length()!=6){
         	erroryytID();
@@ -382,6 +389,11 @@ public class CarLoadingui extends javax.swing.JFrame {
         }
         }
     
+
+	private void errormiss() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private void dateError2() {
 		// TODO Auto-generated method stub
