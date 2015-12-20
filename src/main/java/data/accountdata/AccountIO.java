@@ -328,6 +328,90 @@ public class AccountIO implements FinancialmanService{
 		List<String> l9 = new ArrayList<String>();
 		oos9.writeObject(l9);
 		oos9.close();//还有几个txt没有清空
+		FileOutputStream fos10 = 
+				new FileOutputStream("src/main/java/data/save/city.txt");
+		ObjectOutputStream oos10 = new ObjectOutputStream(fos10);
+		List<String> l10 = new ArrayList<String>();
+		oos10.writeObject(l10);
+		oos10.close();
+		
+		FileOutputStream fos11 = 
+				new FileOutputStream("src/main/java/data/save/constancy.txt");
+		ObjectOutputStream oos11 = new ObjectOutputStream(fos11);
+		List<String> l11 = new ArrayList<String>();
+		oos11.writeObject(l11);
+		oos11.close();
+		
+		FileOutputStream fos12 = 
+				new FileOutputStream("src/main/java/data/save/receiveOrder.txt");
+		ObjectOutputStream oos12 = new ObjectOutputStream(fos12);
+		List<String> l12 = new ArrayList<String>();
+		oos12.writeObject(l12);
+		oos12.close();
+		
+		FileOutputStream fos13 = 
+				new FileOutputStream("src/main/java/data/save/record.txt");
+		ObjectOutputStream oos13 = new ObjectOutputStream(fos13);
+		List<String> l13= new ArrayList<String>();
+		oos13.writeObject(l13);
+		oos13.close();
+		
+		FileOutputStream fos14 = 
+				new FileOutputStream("src/main/java/data/save/salary.txt");
+		ObjectOutputStream oos14 = new ObjectOutputStream(fos14);
+		List<String> l14 = new ArrayList<String>();
+		oos14.writeObject(l14);
+		oos14.close();
+		
+		
+		FileOutputStream fos15 = 
+				new FileOutputStream("src/main/java/data/save/sendOrder.txt");
+		ObjectOutputStream oos15 = new ObjectOutputStream(fos15);
+		List<String> l15 = new ArrayList<String>();
+		oos15.writeObject(l15);
+		oos15.close();
+		
+		FileOutputStream fos16 = 
+				new FileOutputStream("src/main/java/data/save/SettlementList.txt");
+		ObjectOutputStream oos16 = new ObjectOutputStream(fos16);
+		List<String> l16 = new ArrayList<String>();
+		oos16.writeObject(l16);
+		oos16.close();
+		
+		FileOutputStream fos17 = 
+				new FileOutputStream("src/main/java/data/save/staff.txt");
+		ObjectOutputStream oos17 = new ObjectOutputStream(fos17);
+		List<String> l17 = new ArrayList<String>();
+		oos17.writeObject(l17);
+		oos17.close();
+		
+		FileOutputStream fos18= 
+				new FileOutputStream("src/main/java/data/save/TafficOrder.txt");
+		ObjectOutputStream oos18 = new ObjectOutputStream(fos18);
+		List<String> l18 = new ArrayList<String>();
+		oos18.writeObject(l18);
+		oos18.close();
+		
+		FileOutputStream fos19= 
+				new FileOutputStream("src/main/java/data/save/transitReceiveOrder.txt");
+		ObjectOutputStream oos19 = new ObjectOutputStream(fos19);
+		List<String> l19 = new ArrayList<String>();
+		oos19.writeObject(l19);
+		oos19.close();//还有几个txt没有清空
+		
+		FileOutputStream fos20= 
+				new FileOutputStream("src/main/java/data/save/UserMes.txt");
+		ObjectOutputStream oos20 = new ObjectOutputStream(fos20);
+		List<String> l20 = new ArrayList<String>();
+		oos20.writeObject(l20);
+		oos20.close();
+		
+		FileOutputStream fos21= 
+				new FileOutputStream("src/main/java/data/save/warning.txt");
+		ObjectOutputStream oos21 = new ObjectOutputStream(fos21);
+		List<String> l21 = new ArrayList<String>();
+		oos21.writeObject(l21);
+		oos21.close();//还有几个txt没有清空
 		
 		
 		

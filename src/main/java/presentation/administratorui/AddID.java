@@ -7,6 +7,8 @@ package presentation.administratorui;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -248,6 +250,13 @@ public class AddID extends javax.swing.JFrame {
     		missMes();//检查输入完整性
     		return;
     	}
+    	//判断密码中是否有中文字符
+    	 Pattern p=Pattern.compile("[\u4e00-\u9fa5]"); 
+	       Matcher m=p.matcher(mes2); 
+	       if(m.find()){ 
+	           Wrong();
+	           return;
+	       }
     		System.out.println(jTextField1.getText()+"id.getText()");
     	
     	UserAuthorityManagervo u=new UserAuthorityManagervo(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), type);
@@ -261,7 +270,7 @@ public class AddID extends javax.swing.JFrame {
                  this.dispose();
              }
              else{
-                 JOptionPane.showMessageDialog(null, "写入失败", "可能存在相同ID！", 
+                 JOptionPane.showMessageDialog(null, "可能存在相同ID！", "写入失败",
                  		JOptionPane.ERROR_MESSAGE);
              }
              // TODO add your handling code here:
@@ -275,7 +284,10 @@ public class AddID extends javax.swing.JFrame {
     	
     }//GEN-LAST:event_jButton1MouseClicked
     private void missMes(){
-        JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "信息输入不完整", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void Wrong(){
+        JOptionPane.showMessageDialog(null, "密码中不能含有中文字符", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -5,6 +5,11 @@
  */
 package presentation.financialmanui;
 
+import presentation.bushallsalmanui.CarMesManageui;
+import presentation.generalmanagerui.Institutionadd;
+import presentation.generalmanagerui.Staffadd;
+import presentation.stockmanagermanui.WarehouseWarningui;
+
 /**
  *
  * @author user
@@ -34,7 +39,7 @@ public class Init extends javax.swing.JFrame {
         accout = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jigou.setText("期初机构设置");
         jigou.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,19 +132,43 @@ public class Init extends javax.swing.JFrame {
 
     private void jigouMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jigouMouseClicked
         // TODO add your handling code here:
+    	try {
+			new Institutionadd().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }//GEN-LAST:event_jigouMouseClicked
 
     private void renyuanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_renyuanMouseClicked
         // TODO add your handling code here:
+    	try {
+			new Staffadd().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_renyuanMouseClicked
 
     private void cheliangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cheliangMouseClicked
         // TODO add your handling code here:
+    	try {
+			new CarMesManageui().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_cheliangMouseClicked
 
     private void kucunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kucunMouseClicked
         // TODO add your handling code here:
+    	try {
+			new WarehouseWarningui().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_kucunMouseClicked
 
     private void accoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accoutMouseClicked

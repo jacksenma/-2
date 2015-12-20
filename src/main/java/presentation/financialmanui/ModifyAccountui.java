@@ -119,6 +119,10 @@ public class ModifyAccountui extends javax.swing.JFrame {
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
+    	if(jTextField1.getText().equals("")){
+    		missMes();
+    		return;
+    	}
     	try {
 			as.deleteAccount(Name);
 			AccountManagevo amvo=new AccountManagevo(jTextField1.getText(),Money+"");
@@ -135,6 +139,9 @@ public class ModifyAccountui extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }//GEN-LAST:event_OKMouseClicked
+    private void missMes(){
+      	 JOptionPane.showMessageDialog(null, "信息输入不完整", "输入有误", JOptionPane.ERROR_MESSAGE);
+      }
 
     /**
      * @param args the command line arguments

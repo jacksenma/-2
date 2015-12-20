@@ -6,6 +6,9 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -31,6 +34,7 @@ public class SettleAccounts extends javax.swing.JFrame {
          this.setVisible(true);
          RMIClient.init();
          sms = RMIClient.getSettlementManageService();
+         create.setVisible(false);
     }
 
     /**
@@ -237,7 +241,64 @@ public class SettleAccounts extends javax.swing.JFrame {
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
+    	String y=year.getText();
+    	String m=money.getText();
+    	String d=day.getText();
+    	String p=person.getText();
+    	String mo=money.getText();
     	
+    	//完整性
+    	if(y.equals("")||m.equals("")||d.equals("")||p.equals("")||mo.equals("")){
+    		missMes();
+    		return;
+    	}
+    	
+    	
+    	//非法字符
+    	for(int i=0;i<y.length();i++){
+    		if('0'>y.charAt(i)||y.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<m.length();i++){
+    		if('0'>m.charAt(i)||m.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<d.length();i++){
+    		if('0'>d.charAt(i)||d.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<mo.length();i++){
+    		if('0'>mo.charAt(i)||mo.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	
+    	//时间
+    	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
+    			||Integer.parseInt(time3)<Integer.parseInt(d)){
+    		WrongTime();
+    		return;
+    	}
+		
+		
     	Datevo paydv=new Datevo(year.getText(),month.getText(),day.getText());
     	Incomevo invo=new Incomevo(unit.getText(), person.getText(), unit2.getText(),
     			money.getText(), address.getText());
@@ -246,7 +307,7 @@ public class SettleAccounts extends javax.swing.JFrame {
 //         System.out.println("sdsd");
          if(ax){
              System.out.println("成功！");
-             JOptionPane.showMessageDialog(null, "写入成功", "成功", 
+             JOptionPane.showMessageDialog(null, "保存成功", "成功", 
              		JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
              new SettleAccounts().setVisible(true);
@@ -256,6 +317,15 @@ public class SettleAccounts extends javax.swing.JFrame {
              		JOptionPane.ERROR_MESSAGE);
          }
     }//GEN-LAST:event_saveMouseClicked
+    private void missMes(){
+   	 JOptionPane.showMessageDialog(null, "日期，金额，收款人必填", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
+    private void Wrong(){
+   	 JOptionPane.showMessageDialog(null, "非法字符", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
+    private void WrongTime(){
+   	 JOptionPane.showMessageDialog(null, "请输入正确时间", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
 
     /**
      * @param args the command line arguments

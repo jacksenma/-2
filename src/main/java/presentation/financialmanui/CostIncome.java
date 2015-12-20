@@ -35,6 +35,7 @@ public class CostIncome extends javax.swing.JFrame {
          receive.setText(shou+"");
          payment.setText(zhichu+"");
          profit.setText(shouyi+"");
+         jButton1.setVisible(false);
     }
     
 

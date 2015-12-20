@@ -41,6 +41,7 @@ public class QueryMes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jLabel1.setText("账户名称：     "+name);
         jLabel2.setText("账户余额 ：    "+money+"  元");
+        Init.setVisible(false);
     }
 
     /**

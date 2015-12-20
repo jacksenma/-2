@@ -6,7 +6,11 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
@@ -308,6 +312,98 @@ public class StatisticsListui extends javax.swing.JFrame {
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
+    	
+    	//检查完整性
+    	String yy=year1.getText();
+    	String mm=month1.getText();
+    	String dd=day1.getText();
+    	String y=year2.getText();
+    	String m=month2.getText();
+    	String d=day2.getText();
+    	if(yy.equals("")||mm.equals("")||dd.equals("")||y.equals("")||m.equals("")||d.equals("")){
+    		lackMes();
+    		return;
+    	}
+    	
+    	//检查非法字符
+    	 for(int i = 0 ; i < yy.length(); i++){
+           	if(!(yy.charAt(i) >= '0' && yy.charAt(i) <= '9')){
+           		error();
+           		return;
+           	}
+           }
+    	 for(int i = 0 ; i < y.length(); i++){
+            	if(!(y.charAt(i) >= '0' && y.charAt(i) <= '9')){
+            		error();
+            		return;
+            	}
+            }
+    	 for(int i = 0 ; i < mm.length(); i++){
+            	if(!(mm.charAt(i) >= '0' && mm.charAt(i) <= '9')){
+            		error();
+            		return;
+            	}
+            }
+    	 for(int i = 0 ; i < m.length(); i++){
+            	if(!(m.charAt(i) >= '0' && m.charAt(i) <= '9')){
+            		error();
+            		return;
+            	}
+            }
+    	 for(int i = 0 ; i < dd.length(); i++){
+            	if(!(dd.charAt(i) >= '0' && dd.charAt(i) <= '9')){
+            		error();
+            		return;
+            	}
+            }
+    	 for(int i = 0 ; i < d.length(); i++){
+            	if(!(d.charAt(i) >= '0' && d.charAt(i) <= '9')){
+            		error();
+            		return;
+            	}
+            }
+    	 
+    	 //判断时间
+    	 Date date=new Date();
+  		DateFormat format=new SimpleDateFormat("yyyy");
+  		String time1=format.format(date);
+  		
+  		Date date2=new Date();
+  		DateFormat format2=new SimpleDateFormat("MM");
+  		String time2=format2.format(date2);
+  		
+  		Date date3=new Date();
+  		DateFormat format3=new SimpleDateFormat("dd");
+  		String time3=format3.format(date3);
+      	
+  		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
+     			||Integer.parseInt(time3)<Integer.parseInt(d)){
+     		WrongTime();
+     		return;
+     	}
+  		//起始时间和结束时间
+  		int py=Integer.parseInt(yy);
+  		int pm=Integer.parseInt(mm);
+  		int pd=Integer.parseInt(dd);
+  		int ay=Integer.parseInt(y);
+  		int am=Integer.parseInt(m);
+  		int ad=Integer.parseInt(d);
+  		if(ay<py){
+  			WrongTime1();
+  			return;
+  		}
+  		else if(ay==py){
+  			if(am<pm){
+  				WrongTime1();
+  	  			return;
+  			}
+  			else if(am==pm){
+  				if(ad<pd)
+  					WrongTime1();
+  	  			return;
+  			}
+  		}
+    	 
     	SearchAll1(sm.SearchReceive(year1.getText(),month1.getText(),day1.getText(),
     			year2.getText(),month2.getText(),day2.getText()));
     	SearchAll2(sm.SearchPay(year1.getText(),month1.getText(),day1.getText(),
@@ -315,6 +411,18 @@ public class StatisticsListui extends javax.swing.JFrame {
     	
     	
     }//GEN-LAST:event_OKMouseClicked
+    private void lackMes(){
+        JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void WrongTime(){
+   	 JOptionPane.showMessageDialog(null, "请输入正确时间", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
+    private void WrongTime1(){
+      	 JOptionPane.showMessageDialog(null, "开始日期不能晚于结束日期", "输入有误", JOptionPane.ERROR_MESSAGE);
+      }
+    private void error(){
+        JOptionPane.showMessageDialog(null, "非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
 
     /**
      * @param args the command line arguments

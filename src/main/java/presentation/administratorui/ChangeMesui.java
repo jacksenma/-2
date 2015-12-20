@@ -210,6 +210,7 @@ public class ChangeMesui extends javax.swing.JFrame {
 
     private void okMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_okMouseClicked
         // TODO add your handling code here:
+    	
     	int type=0;
     	if(kuai.isSelected()) type=1;
     	else if(yingywy.isSelected())type=2;
@@ -227,6 +228,10 @@ public class ChangeMesui extends javax.swing.JFrame {
     	
     	boolean b = u.changeOrder(o,n);
     	System.out.println("lalalalaalalalal");
+    	if(type==0){
+    		missMes();
+    		return;
+    	}
 		if(b){
 		    System.out.println("成功！");
 		    JOptionPane.showMessageDialog(null, "修改成功", "成功", 
@@ -245,6 +250,9 @@ public class ChangeMesui extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
    }//GEN-LAST:event_backMouseClicked
+    private void missMes(){
+        JOptionPane.showMessageDialog(null, "请选择修改项", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
 
     /**
      * @param args the command line arguments

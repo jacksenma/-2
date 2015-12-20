@@ -15,7 +15,6 @@ import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.CostManageService;
-import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 
 /**
@@ -314,7 +313,7 @@ public class CheckGathering extends javax.swing.JFrame {
 		DateFormat format3=new SimpleDateFormat("dd");
 		String time3=format3.format(date3);
     	if(y.equals("")||m.equals("")||d.equals("")||yy.equals("")){
-    		JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    		missMes();
     		return;
     	}
     	
@@ -371,8 +370,11 @@ public class CheckGathering extends javax.swing.JFrame {
     	 JOptionPane.showMessageDialog(null, "非法字符", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     private void WrongTime(){
-    	 JOptionPane.showMessageDialog(null, "请输入正确时间", "输入有误", JOptionPane.ERROR_MESSAGE);
+    	 JOptionPane.showMessageDialog(null, "请输入正确时间","输入有误",  JOptionPane.ERROR_MESSAGE);
     }
+    private void missMes(){
+      	 JOptionPane.showMessageDialog(null, "信息输入不完整","输入有误", JOptionPane.ERROR_MESSAGE);
+      }
    
 
     private void hejiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hejiActionPerformed

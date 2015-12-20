@@ -6,6 +6,9 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -210,6 +213,52 @@ public class recordui extends javax.swing.JFrame {
     	String mes2=month.getText();
     	String mes3=day.getText();
     	String mes4=behavior.getText();
+    	
+    	//完整性
+    	if(mes1.equals("")||mes2.equals("")||mes3.equals("")||mes4.equals("")){
+    		missMes();
+    		return;
+    		}
+    	
+    	//非法字符
+    	for(int i=0;i<mes1.length();i++){
+    		if('0'>mes1.charAt(i)||mes1.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<mes2.length();i++){
+    		if('0'>mes2.charAt(i)||mes2.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	for(int i=0;i<mes3.length();i++){
+    		if('0'>mes3.charAt(i)||mes3.charAt(i)>'9'){
+    			Wrong();
+    		    return;
+    		}
+    	}
+    	
+    	//时间判断
+    	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+		
+		if(Integer.parseInt(time1)<Integer.parseInt(mes1)||Integer.parseInt(time2)<Integer.parseInt(mes2)||
+    			Integer.parseInt(time3)<Integer.parseInt(mes3)){
+    		WrongTime();
+    		return;
+    	}
+    	
     	Recordvo rvo=new Recordvo(mes1, mes2, mes3, mes4);
     	 try {
              boolean b = rs.record(rvo);
@@ -217,12 +266,17 @@ public class recordui extends javax.swing.JFrame {
                  System.out.println("成功！");
                  JOptionPane.showMessageDialog(null, "增加操作记录成功", "成功", 
                  		JOptionPane.INFORMATION_MESSAGE);
-                 this.dispose();
+//                 SearchAllRecord(rs.AllRecordSearch());
+//                 this.dispose();
              }
              else{
                  JOptionPane.showMessageDialog(null, "写入失败", "已存在相同账户！", 
                  		JOptionPane.ERROR_MESSAGE);
              }
+             year.setText("");
+             month.setText("");
+             day.setText("");
+             behavior.setText("");
              // TODO add your handling code here:
          } catch (RemoteException ex) {
              Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,6 +284,15 @@ public class recordui extends javax.swing.JFrame {
     	
     	
     }//GEN-LAST:event_saveMouseClicked
+    private void Wrong(){
+   	 JOptionPane.showMessageDialog(null, "非法字符", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
+   private void WrongTime(){
+   	 JOptionPane.showMessageDialog(null, "请输入正确时间","输入有误",  JOptionPane.ERROR_MESSAGE);
+   }
+   private void missMes(){
+     	 JOptionPane.showMessageDialog(null, "信息输入不完整","输入有误", JOptionPane.ERROR_MESSAGE);
+     }
 
     private void allMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_allMouseClicked
         // TODO add your handling code here:
@@ -239,7 +302,7 @@ public class recordui extends javax.swing.JFrame {
 //    	String mes4=behavior.getText();
 //    	Recordvo rvo=new Recordvo(mes1, mes2, mes3, mes4);
     	SearchAllRecord(rs.AllRecordSearch());
-    	System.out.println("zz");
+//    	System.out.println("zz");
     	
     	
     	
