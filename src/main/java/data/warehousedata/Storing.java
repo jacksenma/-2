@@ -105,7 +105,7 @@ public class Storing implements StockManagermanService {
 				break;
 			}
 		}
-		if(list.size()>=1000*Integer.parseInt(list1.get(k).warning)/100){
+		if(list.size()>=10000*Integer.parseInt(list1.get(k).warning)/100){
 			JOptionPane.showMessageDialog(null, "库存数量已超过警戒比例", "警告！", 
             		JOptionPane.ERROR_MESSAGE);
 		}
