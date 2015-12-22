@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package presentation.financialmanui;
-import java.lang.annotation.Target;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,8 +14,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
 import blservice.financialmanblservice.CostManageService;
 import presentation.courierui.PriceAndTimeui;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
 import vo.financialmanvo.Beizhuvo;
 import vo.financialmanvo.Datevo;
 import vo.financialmanvo.PaymentInputvo;
@@ -36,16 +38,32 @@ public class PaymentList extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 7752463845942510707L;
 	static CostManageService cm;
+	static AccountManageService as;
     /**
      * Creates new form PaymentList
      * @throws Exception 
      */
+	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
     public PaymentList() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
+        as= RMIClient.getAccountManageService();
+        year.setText(time1);
+        mouth.setText(time2);
+        day.setText(time3);
         
        
     }
@@ -58,6 +76,8 @@ public class PaymentList extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	this.setLocationRelativeTo(null);
+    	setResizable(false);
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -311,7 +331,12 @@ public class PaymentList extends javax.swing.JFrame {
         jButton1.setText("确定");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                try {
+					jButton1MouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -360,7 +385,7 @@ public class PaymentList extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {                                      
         // TODO add your handling code here:
     	Datevo paydv=new Datevo(year.getText(),mouth.getText(),day.getText());
     	Payvo p=new Payvo(money.getText(),person.getText(),account.getText());
@@ -465,23 +490,20 @@ public class PaymentList extends javax.swing.JFrame {
     	 
     	
         //时间判断
-     	Date date=new Date();
- 		DateFormat format=new SimpleDateFormat("yyyy");
- 		String time1=format.format(date);
- 		
- 		Date date2=new Date();
- 		DateFormat format2=new SimpleDateFormat("MM");
- 		String time2=format2.format(date2);
- 		
- 		Date date3=new Date();
- 		DateFormat format3=new SimpleDateFormat("dd");
- 		String time3=format3.format(date3);
+     	
      	
  		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
-    			||Integer.parseInt(time3)<Integer.parseInt(d)){
+    			||Integer.parseInt(time3)<Integer.parseInt(d)||Integer.parseInt(y)<Integer.parseInt(time1)-1){
     		WrongTime();
     		return;
     	}
+ 		
+ 		AccountMesvo qvo=new AccountMesvo(account.getText());
+        AccountUservo avo=as.findUsers(qvo);
+        if(avo==null){
+        	noAccount();
+        	return;
+        }
     	 
     	
         
@@ -524,6 +546,9 @@ public class PaymentList extends javax.swing.JFrame {
    }
     private void error(){
         JOptionPane.showMessageDialog(null, "非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void noAccount(){
+        JOptionPane.showMessageDialog(null, "不存在此账户", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
 
     /**

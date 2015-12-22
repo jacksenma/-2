@@ -29,7 +29,8 @@ public class ChangeMesui extends javax.swing.JFrame {
      */
     public ChangeMesui(String id,String password,String name) throws Exception {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
+        setResizable(false);
 
         this.Id=id;
         this.Password=password;

@@ -7,6 +7,7 @@ package presentation.financialmanui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
@@ -35,6 +36,7 @@ public class QueryAccount extends javax.swing.JFrame {
          xsz.setVisible(false);
          RMIClient.init();
          as= RMIClient.getAccountManageService();
+         setResizable(false);
     }
     
     
@@ -68,7 +70,7 @@ public class QueryAccount extends javax.swing.JFrame {
 //    		   System.out.println(s1[i]+",,,,,,,,,"+jqPay[i]);
     	   }
     	  jqPaycount=x;
-    	  System.out.println(jqPaycount+"mmmmmmmmmmmmm");
+//    	  System.out.println(jqPaycount+"mmmmmmmmmmmmm");
     	    }}
 
     /**
@@ -80,44 +82,39 @@ public class QueryAccount extends javax.swing.JFrame {
     
     private void AllSearch(AccountManagevo[] uv){
   	    final String s[] = new String [100];
-  	    int  allMoney=0;
+//  	    int  allMoney=0;
     	if(uv.length==0){
-    		this.error.setText("未找到账户");
-    		this.error.setVisible(true);
+//    		this.error.setText("未找到账户");
+//    		this.error.setVisible(true);
+    		noFind();
     		return;
     	}
-    	else this.error.setVisible(false);
+//    	else this.error.setVisible(false);
   	   if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 try {
-  			 System.out.println(uv[i].accountName);
+
 			SearchAll1(as.searchRe(uv[i].accountName));
 			SearchAll2(as.searchPay(uv[i].accountName));
-			int Re=0;
-	    	for(int w=0;w<jqRecount;w++){
-	    		System.out.println(jqRe[w]);
-	    		Re+=Integer.parseInt(jqRe[w]);
-	    	}
-	    	System.out.println("...");
-	    	int Pay=0;
-	    	for(int qw=0;qw<jqPaycount;qw++){
-	    		Pay+=Integer.parseInt(jqPay[qw]);
-	    	}
+			
+			//计算总和
+			
+	    	
+	    	
 	    	if (!uv[i].money.equals("")){
-	    	int zong=Integer.parseInt(uv[i].money)+Re-Pay;
-	    	allMoney+=zong;
+//	    	int zong=Integer.parseInt(uv[i].money)+Re-Pay;
+	    	int zong=as.getZong(Integer.parseInt(uv[i].money),jqPay,jqRe,jqRecount,jqPaycount);
+//	    	allMoney+=zong;
 	    	s[i]=uv[i].accountName+"                                                "+zong+"元";}
 	    	
 	    		
-//	    	System.out.println(zong+"zzzzzzzzzzzzzzzzzz");
-	    	
-//		  if(i!=uv.length-1)
+
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-  		 xsz.setText("所有账户金额总和：   "+allMoney+" 元");
-  		 xsz.setVisible(true);
+//  		 xsz.setText("所有账户金额总和：   "+allMoney+" 元");
+//  		 xsz.setVisible(true);
   		 jList1.setModel(new javax.swing.AbstractListModel() {
              String[] strings = s;
              public int getSize() { return strings.length; }
@@ -304,8 +301,8 @@ public class QueryAccount extends javax.swing.JFrame {
 
     private void queryMMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_queryMMouseClicked
         // TODO add your handling code here:
-    	System.out.println(jq.getText());
-    	System.out.println(keywords.getText());
+//    	System.out.println(jq.getText());
+//    	System.out.println(keywords.getText());
     	
     	AllSearch(as.searchMo(keywords.getText()));
     	keywords.setText("");
@@ -332,21 +329,23 @@ public class QueryAccount extends javax.swing.JFrame {
     	AccountMesvo qvo=new AccountMesvo(nameOfAccount);
         AccountUservo avo=as.findUsers(qvo);
     	if(avo == null) {
-            error.setText("不存在该账户！");
-            this.error.setVisible(true);
+//            error.setText("不存在该账户！");
+//            this.error.setVisible(true);
+    		noFind();
             return;
         }
         try {
-        	int Re=0;
-        	for(int i=0;i<jqRecount;i++){
-        		Re+=Integer.parseInt(jqRe[i]);
-        	}
-        	int Pay=0;
-        	for(int i=0;i<jqPaycount;i++){
-        		Pay+=Integer.parseInt(jqPay[i]);
-        	}
-        	System.out.println(Re+"     "+Pay);
-        	int m=(Integer.parseInt(avo.getMoney())+Re-Pay);
+//        	int Re=0;
+//        	for(int i=0;i<jqRecount;i++){
+//        		Re+=Integer.parseInt(jqRe[i]);
+//        	}
+//        	int Pay=0;
+//        	for(int i=0;i<jqPaycount;i++){
+//        		Pay+=Integer.parseInt(jqPay[i]);
+//        	}
+//        	System.out.println(Re+"     "+Pay);
+//        	int m=(Integer.parseInt(avo.getMoney())+Re-Pay);
+        	int m=as.getZong(Integer.parseInt(avo.getMoney()),jqPay,jqRe,jqRecount,jqPaycount);
         	
         	
         	System.out.println(avo.getaccountName());
@@ -361,6 +360,9 @@ public class QueryAccount extends javax.swing.JFrame {
     	
 //    	new QueryMes().setVisible(true);
     }//GEN-LAST:event_queryJMouseClicked
+    private void noFind(){
+     	 JOptionPane.showMessageDialog(null, "不存在相关账户","输入有误", JOptionPane.ERROR_MESSAGE);
+     }
 
     /**
      * @param args the command line arguments

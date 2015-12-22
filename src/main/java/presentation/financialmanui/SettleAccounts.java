@@ -31,6 +31,7 @@ public class SettleAccounts extends javax.swing.JFrame {
     public SettleAccounts() throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
+         setResizable(false);
          this.setVisible(true);
          RMIClient.init();
          sms = RMIClient.getSettlementManageService();
@@ -241,6 +242,22 @@ public class SettleAccounts extends javax.swing.JFrame {
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
+    	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+		
+		year.setText(time1);
+		month.setText(time2);
+		day.setText(time3);
+    	
     	String y=year.getText();
     	String m=money.getText();
     	String d=day.getText();
@@ -281,19 +298,10 @@ public class SettleAccounts extends javax.swing.JFrame {
     	}
     	
     	//时间
-    	Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy");
-		String time1=format.format(date);
+    	
 		
-		Date date2=new Date();
-		DateFormat format2=new SimpleDateFormat("MM");
-		String time2=format2.format(date2);
-		
-		Date date3=new Date();
-		DateFormat format3=new SimpleDateFormat("dd");
-		String time3=format3.format(date3);
 		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
-    			||Integer.parseInt(time3)<Integer.parseInt(d)){
+    			||Integer.parseInt(time3)<Integer.parseInt(d)||Integer.parseInt(y)<Integer.parseInt(time1)-1){
     		WrongTime();
     		return;
     	}

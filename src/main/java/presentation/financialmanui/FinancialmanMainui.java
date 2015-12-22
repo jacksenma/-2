@@ -21,6 +21,8 @@ public class FinancialmanMainui extends javax.swing.JFrame {
     public FinancialmanMainui(String name , String ID) {
         initComponents();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
     }

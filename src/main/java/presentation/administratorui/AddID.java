@@ -30,10 +30,11 @@ public class AddID extends javax.swing.JFrame {
      */
     public AddID() throws Exception {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         uams = RMIClient.getUserAuthorityManagerService();
+        this.setLocationRelativeTo(null);
     }
 
     /**

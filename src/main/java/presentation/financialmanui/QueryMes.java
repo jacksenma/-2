@@ -37,6 +37,7 @@ public class QueryMes extends javax.swing.JFrame {
         this.Money=money;
         this.avo=avo;
         as= RMIClient.getAccountManageService();
+        setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         jLabel1.setText("账户名称：     "+name);

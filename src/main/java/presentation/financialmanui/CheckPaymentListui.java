@@ -6,14 +6,20 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
 import blservice.financialmanblservice.CostManageService;
 import presentation.courierui.PriceAndTimeui;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
 import vo.financialmanvo.Beizhuvo;
 import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.Datevo;
@@ -27,6 +33,7 @@ import vo.financialmanvo.Tiaomuvo;
  */
 public class CheckPaymentListui extends javax.swing.JFrame {
 	static CostManageService cm;
+	static AccountManageService as;
 	static String Number;
     /**
      * Creates new form CheckPaymentListui
@@ -35,9 +42,11 @@ public class CheckPaymentListui extends javax.swing.JFrame {
     public CheckPaymentListui(String num) throws Exception {
     	initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
+        as= RMIClient.getAccountManageService();
         Number=num;
         CheckPaymentListvo cpvo=cm.SearchP(num);
         
@@ -388,23 +397,125 @@ public class CheckPaymentListui extends javax.swing.JFrame {
     	 
     	
         
-    	 String ID = "";
-    	 System.out.println(number.getText());
-         if((ID = number.getText()).equals("") || ID.length() != 10) {
-        	 errorID();
-             return;
-         }
+    	//判断信息完整性
+   	 if(year.getText().equals("")||mouth.getText().equals("")
+       		 ||day.getText().equals("")||money.getText().equals("")
+       		 ||person.getText().equals("")||account.getText().equals("")
+       		 ||yearfee.getText().equals("")||trafficfee.getText().equals("")
+       		 ||salary.getText().equals("")||bonus.getText().equals("")
+       		 ||moneyyear.getText().equals("")||number.getText().equals("")
+       		 ||moneymouth.getText().equals("")){
+       	lackMes();
+       	return;
+        }
+   	 
+   	String y=year.getText();
+     	String m=mouth.getText();
+     	String d=day.getText();
+     //判断单号是否为10位
+  	 String ID = "";
 
-         for(int i = 0 ; i < ID.length(); i++){
-         	if(!(ID.charAt(i) >= '0' && ID.charAt(i) <= '9')){
-         		errorID();
+       if((ID = number.getText()).equals("") || ID.length() != 10) {
+      	 errorID();
+           return;
+       }
+   	 
+   	//判断是否有非法字符
+
+        for(int i = 0 ; i < ID.length(); i++){
+        	if(!(ID.charAt(i) >= '0' && ID.charAt(i) <= '9')){
+        		error();
+        		return;
+        	}
+        }
+        for(int i = 0 ; i < y.length(); i++){
+         	if(!(y.charAt(i) >= '0' && y.charAt(i) <= '9')){
+         		error();
          		return;
          	}
          }
-         
-//         PaymentInputvo pivo=new PaymentInputvo(paydv, p, t, b);
-//         
-         System.out.println("s");
+        for(int i = 0 ; i < m.length(); i++){
+         	if(!(m.charAt(i) >= '0' && m.charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < d.length(); i++){
+         	if(!(d.charAt(i) >= '0' && d.charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < money.getText().length(); i++){
+         	if(!(money.getText().charAt(i) >= '0' && money.getText().charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < yearfee.getText().length(); i++){
+         	if(!(yearfee.getText().charAt(i) >= '0' && yearfee.getText().charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < trafficfee.getText().length(); i++){
+         	if(!(trafficfee.getText().charAt(i) >= '0' && trafficfee.getText().charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < salary.getText().length(); i++){
+         	if(!(salary.getText().charAt(i) >= '0' &&salary.getText().charAt(i) <= '9')){
+         		error();
+         		return;
+         	}
+         }
+        for(int i = 0 ; i < bonus.getText().length(); i++){
+          	if(!(bonus.getText().charAt(i) >= '0' && bonus.getText().charAt(i) <= '9')){
+          		error();
+          		return;
+          	}
+          }
+         for(int i = 0 ; i < moneyyear.getText().length(); i++){
+          	if(!(moneyyear.getText().charAt(i) >= '0' && moneyyear.getText().charAt(i) <= '9')){
+          		error();
+          		return;
+          	}
+          }
+         for(int i = 0 ; i < moneymouth.getText().length(); i++){
+          	if(!(moneymouth.getText().charAt(i) >= '0' &&moneymouth.getText().charAt(i) <= '9')){
+          		error();
+          		return;
+          	}
+          }
+   	 
+   	 
+   	
+       //时间判断
+    	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+    	
+		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
+   			||Integer.parseInt(time3)<Integer.parseInt(d)||Integer.parseInt(y)<Integer.parseInt(time1)-1){
+   		WrongTime();
+   		return;
+   	}
+		
+		AccountMesvo qvo=new AccountMesvo(account.getText());
+        AccountUservo avo=as.findUsers(qvo);
+        if(avo==null){
+        	noAccount();
+        	return;
+        }
          try {
         	 PaymentInputvo pivo=new PaymentInputvo(paydv, p, t, b);
         	 System.out.println(pivo.beizhu.moneymouth);
@@ -432,6 +543,18 @@ public class CheckPaymentListui extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveMouseClicked
     private void errorID(){
         JOptionPane.showMessageDialog(null, "运单号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void lackMes(){
+        JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void WrongTime(){
+   	 JOptionPane.showMessageDialog(null, "请输入正确时间", "输入有误", JOptionPane.ERROR_MESSAGE);
+   }
+    private void error(){
+        JOptionPane.showMessageDialog(null, "非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    private void noAccount(){
+        JOptionPane.showMessageDialog(null, "不存在此账户", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
 
     /**

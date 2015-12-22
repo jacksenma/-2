@@ -6,6 +6,7 @@
 package presentation.administratorui;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
@@ -31,6 +32,7 @@ public class QueryID extends javax.swing.JFrame {
         this.error.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
     }
 //    static String kong(String s1,String s2){
 //   	 String re="             ";
@@ -76,6 +78,7 @@ public class QueryID extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -237,8 +240,9 @@ public class QueryID extends javax.swing.JFrame {
        QueryMesvo qvo=new QueryMesvo(s);
        QueryUservo quvo=u.checkOrder(qvo);
        if(quvo == null) {
-           error.setText("不存在该账号！");
-           this.error.setVisible(true);
+//           error.setText("不存在该账号！");
+//           this.error.setVisible(true);
+    	   noFind();
            return;
        }
        try {
@@ -257,6 +261,9 @@ public class QueryID extends javax.swing.JFrame {
         // TODO add your handling code here:
     	AllSearch(u.searchAll());
     }//GEN-LAST:event_AllMouseClicked
+    private void noFind(){
+     	 JOptionPane.showMessageDialog(null, "不存在该账户","输入有误", JOptionPane.ERROR_MESSAGE);
+     }
 
     /**
      * @param args the command line arguments

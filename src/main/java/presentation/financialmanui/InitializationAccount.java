@@ -30,6 +30,7 @@ public class InitializationAccount extends javax.swing.JFrame {
     public InitializationAccount() throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
+         setResizable(false);
          this.setVisible(true);
 //         error.setVisible(false);
          RMIClient.init();

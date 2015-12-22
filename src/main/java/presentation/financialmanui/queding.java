@@ -23,6 +23,8 @@ public class queding extends javax.swing.JFrame {
     public queding() throws Exception {
         initComponents();
         RMIClient.init();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         as= RMIClient.getAccountManageService();
     }
 

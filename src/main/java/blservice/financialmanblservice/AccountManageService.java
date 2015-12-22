@@ -41,5 +41,9 @@ public interface AccountManageService extends Remote {
 	public boolean deleteAccount(String name) throws RemoteException;
 
 	public void init() throws RemoteException;
+
+	
+
+	public int getZong(int parseInt, String[] jqPay, String[] jqRe, int jqRecount, int jqPaycount) throws RemoteException;
 	
 }

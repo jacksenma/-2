@@ -36,6 +36,8 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
     public UserAuthorityManagerui( QueryUservo quvo) throws Exception {
         initComponents();
         RMIClient.init();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
         this.quvo=quvo;
         u = RMIClient.getUserAuthorityManagerService();
         this.setVisible(true);

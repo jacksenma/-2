@@ -21,6 +21,8 @@ public class Init extends javax.swing.JFrame {
      */
     public Init() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

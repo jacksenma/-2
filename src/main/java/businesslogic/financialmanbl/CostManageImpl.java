@@ -176,4 +176,44 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		}
 		return null;
 	}
+
+	@Override
+	public int getSum(String[] ss,int count) throws RemoteException {
+		// TODO Auto-generated method stub
+    	int sum=0;
+//    	int q=count;
+    	
+    	for(int i=0;i<count;i++){
+    		sum+=Integer.parseInt(ss[i]);
+    	}
+    	return sum;
+	}
+
+	@Override
+	public int[] getIncome(String[] ss, String[] sp,int count,int chu) throws RemoteException {
+		// TODO Auto-generated method stub
+		//计算收款
+    	 int shou=0;
+    	 for(int i=0;i<count;i++)
+    		 shou+=Integer.parseInt(ss[i]);
+    	 System.out.println(shou);
+    	 
+    	 
+    	 //计算支出
+    	 int zhichu=0;
+    	 
+    	 for(int i=0;i<chu;i++)
+    		zhichu+=Integer.parseInt(sp[i]);
+    	 
+    	 System.out.println(zhichu);
+    	 
+    	 //计算收益
+    	 int shouyi=shou-zhichu;
+    	 System.out.println(shouyi);
+    	 int result[]=new int[3];
+    	 result[0]=shou;
+    	 result[1]=zhichu;
+    	 result[2]=shouyi;
+		return result;
+	}
 }

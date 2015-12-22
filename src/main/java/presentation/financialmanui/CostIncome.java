@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
 import blservice.financialmanblservice.CostManageService;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
@@ -20,6 +21,7 @@ import vo.financialmanvo.RecieveListvo;
  */
 public class CostIncome extends javax.swing.JFrame {
 	static CostManageService cm;
+	
     /**
      * Creates new form CostIncome
      * @param shouyi 
@@ -29,6 +31,7 @@ public class CostIncome extends javax.swing.JFrame {
     public CostIncome(int shou, int zhichu, int shouyi) throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
+         setResizable(false);
          this.setVisible(true);
          RMIClient.init();
          cm = RMIClient.getCostManageService();

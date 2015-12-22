@@ -26,17 +26,38 @@ import vo.financialmanvo.Recordvo;
  *
  * @author user
  */
+
 public class recordui extends javax.swing.JFrame {
     /**
      * Creates new form recordui
      */
 	static CostManageService rs;
+	
+	
+	Date date=new Date();
+	DateFormat format=new SimpleDateFormat("yyyy");
+	String time1=format.format(date);
+
+	Date date2=new Date();
+	DateFormat format2=new SimpleDateFormat("MM");
+	String time2=format2.format(date2);
+
+	Date date3=new Date();
+	DateFormat format3=new SimpleDateFormat("dd");
+	String time3=format3.format(date3);
+	
+	
+	
     public recordui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         rs = RMIClient.getCostManageService();
+        year.setText(time1);
+        month.setText(time2);
+        day.setText(time3);
     }
     
     private void SearchAllRecord(Recordvo[] rv){
@@ -241,17 +262,7 @@ public class recordui extends javax.swing.JFrame {
     	}
     	
     	//时间判断
-    	Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy");
-		String time1=format.format(date);
-		
-		Date date2=new Date();
-		DateFormat format2=new SimpleDateFormat("MM");
-		String time2=format2.format(date2);
-		
-		Date date3=new Date();
-		DateFormat format3=new SimpleDateFormat("dd");
-		String time3=format3.format(date3);
+    	
 		
 		if(Integer.parseInt(time1)<Integer.parseInt(mes1)||Integer.parseInt(time2)<Integer.parseInt(mes2)||
     			Integer.parseInt(time3)<Integer.parseInt(mes3)){

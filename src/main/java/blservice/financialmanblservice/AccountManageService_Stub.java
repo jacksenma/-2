@@ -93,5 +93,15 @@ public class AccountManageService_Stub implements AccountManageService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getZong(int parseInt, String[] jqPay, String[] jqRe,int a,int b) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+
+	
 	
 }

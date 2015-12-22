@@ -30,6 +30,8 @@ public class ModifyAccountui extends javax.swing.JFrame {
         initComponents();
         RMIClient.init();
         as= RMIClient.getAccountManageService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         Name=name;
         Money=money;
         this.setVisible(true);

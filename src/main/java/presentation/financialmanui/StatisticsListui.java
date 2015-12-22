@@ -29,19 +29,36 @@ public class StatisticsListui extends javax.swing.JFrame {
      * Creates new form StatisticsListui
      * @throws Exception 
      */
+	Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy");
+		String time1=format.format(date);
+		
+		Date date2=new Date();
+		DateFormat format2=new SimpleDateFormat("MM");
+		String time2=format2.format(date2);
+		
+		Date date3=new Date();
+		DateFormat format3=new SimpleDateFormat("dd");
+		String time3=format3.format(date3);
+		
+		
     public StatisticsListui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         sm = RMIClient.getStatisticsListService();
+        year2.setText(time1);
+		month2.setText(time2);
+		day2.setText(time3);
     }
     private void SearchAll1(RecieveListvo[] uv){
    	   final String s[] = new String [100];
    	   if(uv!=null){	   
    	   for(int i=0;i<uv.length;i++){
    		   s[i]=uv[i].yearq+"-"+uv[i].monthq+"-"+uv[i].dayq+"             "+uv[i].moneyq+"元"+"                      "
-   				   +uv[i].IDq;
+   				   +uv[i].IDq+"          "+uv[i].Zhanghu;
    	   }
    	   jList1.setModel(new javax.swing.AbstractListModel() {
               String[] strings = s;
@@ -76,7 +93,7 @@ public class StatisticsListui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	
         jLabel1 = new javax.swing.JLabel();
         year1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -313,6 +330,7 @@ public class StatisticsListui extends javax.swing.JFrame {
     private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
     	
+    	
     	//检查完整性
     	String yy=year1.getText();
     	String mm=month1.getText();
@@ -364,17 +382,7 @@ public class StatisticsListui extends javax.swing.JFrame {
             }
     	 
     	 //判断时间
-    	 Date date=new Date();
-  		DateFormat format=new SimpleDateFormat("yyyy");
-  		String time1=format.format(date);
-  		
-  		Date date2=new Date();
-  		DateFormat format2=new SimpleDateFormat("MM");
-  		String time2=format2.format(date2);
-  		
-  		Date date3=new Date();
-  		DateFormat format3=new SimpleDateFormat("dd");
-  		String time3=format3.format(date3);
+    	
       	
   		if(Integer.parseInt(time1)<Integer.parseInt(y)||Integer.parseInt(time2)<Integer.parseInt(m)
      			||Integer.parseInt(time3)<Integer.parseInt(d)){

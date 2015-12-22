@@ -103,6 +103,18 @@ public class CostManageService_Stub implements CostManageService {
 		return null;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getSum(String[] ss,int count) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int[] getIncome(String[] ss, String[] sp,int a,int b) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}}
 
 

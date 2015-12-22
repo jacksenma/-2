@@ -239,4 +239,21 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 		
 	}
 
+	@Override
+	public int getZong(int parseInt, String[] jqPay, String[] jqRe,int jqRecount,int jqPaycount) throws RemoteException {
+		// TODO Auto-generated method stub
+		int Re=0;
+    	for(int w=0;w<jqRecount;w++){
+
+    		Re+=Integer.parseInt(jqRe[w]);
+    	}
+
+    	int Pay=0;
+    	for(int qw=0;qw<jqPaycount;qw++){
+    		Pay+=Integer.parseInt(jqPay[qw]);
+    	}
+    	int result=parseInt+Re-Pay;
+    	return result;
+	}
+
 }

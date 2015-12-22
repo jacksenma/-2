@@ -17,7 +17,9 @@ public class AdministratorMainui extends javax.swing.JFrame {
      * Creates new form AdministratorMainui
      */
     public AdministratorMainui(String name, String ID) {
+    	this.setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
         this.setVisible(true);
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);

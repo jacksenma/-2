@@ -16,6 +16,8 @@ public class AccountManageui extends javax.swing.JFrame {
      */
     public AccountManageui() {
         initComponents();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -177,7 +177,15 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 //				System.out.println("---");
 //                    k++;
 //			}
-			if(y1==Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)==y2){
+			//
+			if(y1<Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)<y2){
+				k++;
+			}
+			
+			
+			
+			//
+			else if(y1==Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)==y2){
 				if(m1==Integer.parseInt(result.get(i).dvo.mouth)&&Integer.parseInt(result.get(i).dvo.mouth)==m2){
 					if(d1<=Integer.parseInt(result.get(i).dvo.day)&&Integer.parseInt(result.get(i).dvo.day)<=d2)
 						k++;
@@ -228,7 +236,14 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 //				sp[p]=result.get(i);
 //				p++;
 //			}
-			if(y1==Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)==y2){
+			//
+			if(y1<Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)<y2){
+				sp[p]=result.get(i);
+				p++;
+			}
+			
+			//
+			else if(y1==Integer.parseInt(result.get(i).dvo.year)&&Integer.parseInt(result.get(i).dvo.year)==y2){
 				if(m1==Integer.parseInt(result.get(i).dvo.mouth)&&Integer.parseInt(result.get(i).dvo.mouth)==m2){
 					if(d1<=Integer.parseInt(result.get(i).dvo.day)&&Integer.parseInt(result.get(i).dvo.day)<=d2){
 						sp[p]=result.get(i);

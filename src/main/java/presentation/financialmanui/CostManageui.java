@@ -28,6 +28,7 @@ public class CostManageui extends javax.swing.JFrame {
     public CostManageui() throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
+         setResizable(false);
          this.setVisible(true);
          RMIClient.init();
          cm = RMIClient.getCostManageService();
@@ -170,27 +171,12 @@ public class CostManageui extends javax.swing.JFrame {
      	 SearchAll2(sm.SearchPay("0","0","0",
      			year2,month2,day2));
      	 
-     	 //计算收款
-     	 int shou=0;
-     	 for(int i=0;i<count;i++)
-     		 shou+=Integer.parseInt(ss[i]);
-     	 System.out.println(shou);
-     	 
-     	 
-     	 //计算支出
-     	 int zhichu=0;
-     	 
-     	 for(int i=0;i<chu;i++)
-     		zhichu+=Integer.parseInt(sp[i]);
-     	 
-     	 System.out.println(zhichu);
-     	 
-     	 //计算收益
-     	 int shouyi=shou-zhichu;
-     	 System.out.println(shouyi);
+     	
+     	 int result[]=new int[3];
+     	 result=cm.getIncome(ss,sp,count,chu);
          
-         
-   new CostIncome(shou,zhichu,shouyi).setVisible(true);
+//     	new CostIncome().setVisible(true);     
+   new CostIncome(result[0],result[1],result[2]).setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked

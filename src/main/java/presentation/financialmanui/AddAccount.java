@@ -29,6 +29,7 @@ public class AddAccount extends javax.swing.JFrame {
     public AddAccount() throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
+         setResizable(false);
          this.setVisible(true);
          error.setVisible(false);
          RMIClient.init();

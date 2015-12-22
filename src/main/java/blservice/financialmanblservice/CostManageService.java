@@ -34,7 +34,11 @@ public interface CostManageService extends Remote {
 
 	public boolean record(Recordvo rvo)throws RemoteException;
 
-	public Recordvo[] AllRecordSearch() throws RemoteException;;
+	public Recordvo[] AllRecordSearch() throws RemoteException;
+
+	public int getSum(String[] ss, int count)throws RemoteException;
+
+	public int[] getIncome(String[] ss, String[] sp, int count, int chu)throws RemoteException;
 
 	
 	

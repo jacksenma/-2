@@ -31,10 +31,11 @@ public class CheckGathering extends javax.swing.JFrame {
         initComponents();
         receive.setVisible(false);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
-        System.out.println("sssss");
+//        System.out.println("sssss");
     }
 //    static final String s[] = new String [100];
     static final String ss[] = new String [100];//计算合计收款单
@@ -312,6 +313,8 @@ public class CheckGathering extends javax.swing.JFrame {
 		Date date3=new Date();
 		DateFormat format3=new SimpleDateFormat("dd");
 		String time3=format3.format(date3);
+		
+		//完整性
     	if(y.equals("")||m.equals("")||d.equals("")||yy.equals("")){
     		missMes();
     		return;
@@ -383,21 +386,17 @@ public class CheckGathering extends javax.swing.JFrame {
 
     private void hejiMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_hejiMouseClicked
         // TODO add your handling code here:
-//    	heji.setText(s[0].yearq);
-//    	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
-//    	System.out.println(count+"下");
-//    	chu++;
-//    	receive.setText(ss[0]);
+
     	//算合计的时候在UI层直接算还是到logic里面算好再传回来！！！！！！！！！！！！！！！！！！！！！！！
-    	int sum=0;
-//    	System.out.println(count);
-//    	count/=chu;
-    	int q=count;
-    	System.out.println(count+"sssdd");
-    	for(int i=0;i<q;i++){
-    		sum+=Integer.parseInt(ss[i]);
-    	}
-//    	System.out.println(sum);
+//    	int sum=0;
+//    	int q=count;
+//    	
+//    	for(int i=0;i<q;i++){
+//    		sum+=Integer.parseInt(ss[i]);
+//    	}
+    	int sum=cm.getSum(ss,count);
+    	
+
     	receive.setText(sum+" 元");
     	receive.setVisible(true);
     }//GEN-LAST:event_hejiMouseClicked
