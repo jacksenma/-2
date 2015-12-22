@@ -30,6 +30,8 @@ public class Staffsearch extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -62,7 +64,7 @@ public class Staffsearch extends javax.swing.JFrame {
 
         jLabel3.setText("编号：");
 
-        jLabel4.setText("上岗时间：");
+        jLabel4.setText("年龄：              ");
 
         jLabel5.setText("工作单位：");
 

@@ -7,6 +7,7 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
@@ -33,13 +34,15 @@ public class StaffManageui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
    private void roleSearch(Staffvo[] sv){
 	   final String s[] = new String [100];
 	   if(sv!=null){	   
 	   for(int i=0;i<sv.length;i++){
-		   s[i]=sv[i].role+"      "+sv[i].name+"     "+sv[i].id+"       "+sv[i].worktime+"    "+sv[i].workunit;
+		   s[i]=sv[i].role+"        "+sv[i].name+"            "+sv[i].id+"          "+sv[i].worktime+"                "+sv[i].workunit;
 	   }
 	   jList1.setModel(new javax.swing.AbstractListModel() {
            String[] strings = s;
@@ -158,7 +161,7 @@ public class StaffManageui extends javax.swing.JFrame {
 
         jLabel3.setText("职务");
 
-        jLabel4.setText("上岗时间");
+        jLabel4.setText("年龄");
 
         jLabel5.setText("单位");
 
@@ -167,7 +170,7 @@ public class StaffManageui extends javax.swing.JFrame {
         jLabel1.setText("编号");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { ""};
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -180,15 +183,15 @@ public class StaffManageui extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(29, 29, 29)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel2)
-                .addGap(27, 27, 27)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
@@ -403,8 +406,17 @@ public class StaffManageui extends javax.swing.JFrame {
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_searchMouseClicked
         // TODO add your handling code here:
+    	if(isvalid(ID.getText())&&ID.getText().length()==6){
     	Staffvo sv = sims.showStaffRole(ID.getText());
+    	if(sv==null){
+    		JOptionPane.showMessageDialog(null, "不存在该编号的员工", "失败", JOptionPane.ERROR_MESSAGE);
+     		return;	
+    	}		
     	new Staffsearch(sv).setVisible(true);
+    	}
+    	else{
+    		JOptionPane.showMessageDialog(null, "员工编号应为6位数字", "失败", JOptionPane.ERROR_MESSAGE);
+    	}
     }//GEN-LAST:event_searchMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton1MouseClicked
@@ -412,6 +424,14 @@ public class StaffManageui extends javax.swing.JFrame {
         roleSearch(sims.searchbyrole("总经理"));
     }//GEN-LAST:event_jButton1MouseClicked
 
+    public static boolean isvalid(String id){
+    	boolean result =true;
+    	for(int i=0;i<id.length();i++){
+    		if(id.charAt(i)<'0'||id.charAt(i)>'9')
+    			result=false;
+    	}
+    	return result;
+    }
     /**
      * @param args the command line arguments
      */

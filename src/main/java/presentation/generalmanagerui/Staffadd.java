@@ -30,6 +30,8 @@ public class Staffadd extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -67,7 +69,7 @@ public class Staffadd extends javax.swing.JFrame {
 
         jLabel2.setText("编号：");
 
-        jLabel3.setText("上岗时间：");
+        jLabel3.setText("年龄：        ");
 
         jLabel4.setText("工作单位：");
 

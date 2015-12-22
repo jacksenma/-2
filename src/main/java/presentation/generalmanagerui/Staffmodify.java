@@ -32,6 +32,8 @@ public class Staffmodify extends javax.swing.JFrame {
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
         defaultdata(find);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     private void defaultdata(Staffvo sv) {
@@ -87,7 +89,7 @@ public class Staffmodify extends javax.swing.JFrame {
 
         jLabel2.setText("编号：");
 
-        jLabel3.setText("上岗时间：");
+        jLabel3.setText("年龄：        ");
 
         jLabel4.setText("工作单位：");
 

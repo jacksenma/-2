@@ -7,6 +7,8 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import vo.generalmanagervo.Institutionvo;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import RMI.client.RMIClient;
@@ -29,6 +31,8 @@ public class InstitutionManageui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -166,10 +170,13 @@ try {
     	try {
     		if(isvalid(zhongzhuanid.getText())&&zhongzhuanid.getText().length()==4){
 			Institutionvo iv =sims.showInstitutions(zhongzhuanid.getText());
-			new Institutionsearch(iv).setVisible(true);}
+			if(iv==null){
+     			JOptionPane.showMessageDialog(null, "不存在该编号的机构", "失败", JOptionPane.ERROR_MESSAGE);
+			return;
+			}
+			new Institutionsearch(iv).setVisible(true);}  		
     		else{
-    			jLabel3.setText("格式错误：中转中心编号应为4位数字");
-    			jLabel3.setVisible(true);
+    			JOptionPane.showMessageDialog(null, "中转中心编号应为4位数字", "失败", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -182,10 +189,13 @@ try {
      	try {
      		if(isvalid(yingyetingid.getText())&&yingyetingid.getText().length()==6){
      		Institutionvo iv= sims.showInstitutions(yingyetingid.getText());
+     		if(iv==null){
+     			JOptionPane.showMessageDialog(null, "不存在该编号的机构", "失败", JOptionPane.ERROR_MESSAGE);
+     		return;	
+     		}
 			new Institutionsearch(iv).setVisible(true);
      		}else{
-     			jLabel3.setText("格式错误：营业厅编号应为6位数字");
-    			jLabel3.setVisible(true);
+     			JOptionPane.showMessageDialog(null, "营业厅编号应为6位数字", "失败", JOptionPane.ERROR_MESSAGE);
      		}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -199,7 +209,6 @@ public static boolean isvalid(String id){
 			result=false;
 	}
 	return result;
-	
 }
     /**
      * @param args the command line arguments

@@ -42,6 +42,8 @@ static OrderExamineService oes;
         this.setVisible(true);
         RMIClient.init();
         oes = RMIClient.getOrderExamineService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
     
     
@@ -128,73 +130,20 @@ public void showbytype(String s[],String type){                 //显示待审�
         instockorder = new javax.swing.JButton();
         outstockorder = new javax.swing.JButton();
         paymentorder = new javax.swing.JButton();
-        disapprove = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {""};
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         selectall.setText("全选");
-        selectall.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selectallMouseClicked(evt);
-            }
-        });
-
 
         approve.setText("审批通过");
-        approve.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-					approveMouseClicked(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-
-			private void approveMouseClicked(MouseEvent evt) throws RemoteException {
-				// TODO Auto-generated method stub
-			int selected[] = jList1.getSelectedIndices();
-			for(int i=0;i<selected.length;i++)
-				approve((String)jList1.getModel().getElementAt(i));
-			JOptionPane.showMessageDialog(null, "审批成功", "成功", JOptionPane.INFORMATION_MESSAGE);
-			}  
-
-			private void approve(String s) throws RemoteException {
-				// TODO Auto-generated method stub
-				String split[] = s.split("     ");
-			switch(split[0]){
-			case "快递单":oes.approveexpressorder(split[1]); showbytype(oes.showexpressorder(),"快递单"); 
-			break;
-			case "装车单":oes.approvecarloadingorde(split[1]); showbytype(oes.showcarloadingorder(),"装车单");
-            break;         
-			case "营业厅到达单":oes.approvecarloadingorde(split[1]);showbytype(oes.showyingyetingorder(),"营业厅到达单"); 
-            break;  
-			case "收款单":oes.approvecarshoukuanorder(split[1]); showbytype(oes.showshoukuanorder(),"收款单");
-            break;  
-			case "中转单":oes.approvezhongzhuanorder(split[1]); showbytype(oes.showzhongzhuanorder(),"中转单");
-            break;  
-			case "派件单":oes.approvepaijianorder(split[1]);showbytype(oes.showpaijianorder(),"派件单"); showbytype(oes.showpaijianorder(),"派件单");
-            break;  
-			case "中转中心到达单":oes.approvezhongzhuanzhongxinorder(split[1]); showbytype(oes.showzhongzhuanzhongxinorder(),"中转中心到达单");
-            break;  
-			case "入库单":oes.approveinstockorder(split[1]); showbytype(oes.showinstockorder(),"入库单");
-            break;  
-			case "出库单":oes.approveoutstockorder(split[1]); showbytype(oes.showoutstockorder(),"出库单");
-            break;  
-			case "付款单":oes.approvepaymentorder(split[1]); showbytype(oes.showpaymentorder(),"付款单");
-            break;  
-                        
-			}
-			}
-        });
 
         expressorder.setText("快递单");
         expressorder.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,7 +204,7 @@ public void showbytype(String s[],String type){                 //显示待审�
 				}
             }
         });
-        
+
         paijianorder.setText("派件单");
         paijianorder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -316,36 +265,34 @@ public void showbytype(String s[],String type){                 //显示待审�
             }
         });
 
-        disapprove.setText("审批不通过");
+        jLabel1.setText("ctrl+左击 多选");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bushallorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zhuangcheorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(expressorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(shoukuanorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zhongzhuanorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(paijianorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(zhongzhuanzhongxinorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(instockorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(outstockorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(paymentorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bushallorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(zhuangcheorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(expressorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(shoukuanorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(zhongzhuanorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paijianorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(zhongzhuanzhongxinorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(instockorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(outstockorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paymentorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(selectall)
                         .addGap(18, 18, 18)
-                        .addComponent(approve)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(disapprove)))
+                        .addComponent(approve))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -380,7 +327,7 @@ public void showbytype(String s[],String type){                 //显示待审�
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(selectall)
                             .addComponent(approve)
-                            .addComponent(disapprove))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
         );
 
@@ -489,9 +436,9 @@ public void showbytype(String s[],String type){                 //显示待审�
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approve;
     private javax.swing.JButton bushallorder;
-    private javax.swing.JButton disapprove;
     private javax.swing.JButton expressorder;
     private javax.swing.JButton instockorder;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton outstockorder;

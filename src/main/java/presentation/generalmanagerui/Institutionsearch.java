@@ -29,6 +29,8 @@ public class Institutionsearch extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -61,11 +63,7 @@ if(iv!=null){
         ID.setText(iv.ID);
         leader.setText(iv.leader);
 }
-else{
-	 name.setText("无");
-     ID.setText("无");
-     leader.setText("无");
-}
+
         modify.setText("修改该机构信息");
         modify.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

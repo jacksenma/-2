@@ -30,6 +30,8 @@ public class Newcityui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cfs = RMIClient.getConstantFormulateService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

@@ -29,6 +29,8 @@ public class Institutionadd extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.

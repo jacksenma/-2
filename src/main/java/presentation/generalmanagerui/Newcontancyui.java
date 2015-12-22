@@ -38,6 +38,8 @@ public class Newcontancyui extends javax.swing.JFrame {
         RMIClient.init();
         cfs = RMIClient.getConstantFormulateService();
         setdefault(cfs);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     private void setdefault(ConstantFormulateService cfs2) throws RemoteException, Exception {
@@ -304,11 +306,28 @@ public class Newcontancyui extends javax.swing.JFrame {
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
+    	if(isvalid(bushalldistance.getText())&&isvalid(standardprice.getText())){
     	cfs.modifyconstancy(new Constancyvo(Double.parseDouble(bushalldistance.getText()),Double.parseDouble(standardprice.getText())));
     	setdefault(cfs);
     	JOptionPane.showMessageDialog(null, "修改成功", "成功", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else{
+    		JOptionPane.showMessageDialog(null, "数据输入格式错误", "失败", JOptionPane.ERROR_MESSAGE);
+    	}
     }//GEN-LAST:event_saveMouseClicked
 
+    public static boolean isvalid(String id){
+    	boolean result =true;
+    	
+    	for(int i=0;i<id.length();i++){
+    		if(id.charAt(i)<'0'||id.charAt(i)>'9')
+    			result=false;
+    		if(id.charAt(i)=='.')
+    			result=true;
+    	}
+    	return result;
+    }
+    
     private void addcityMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_addcityMouseClicked
         // TODO add your handling code here:
     	this.dispose();

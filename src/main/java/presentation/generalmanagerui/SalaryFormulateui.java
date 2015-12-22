@@ -32,6 +32,8 @@ public class SalaryFormulateui extends javax.swing.JFrame {
         RMIClient.init();
         sfs = RMIClient.getSalaryFormulateService();
         setdefault(sfs);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

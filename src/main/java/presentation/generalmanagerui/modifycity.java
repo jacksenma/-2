@@ -32,6 +32,8 @@ public class modifycity extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cfs = RMIClient.getConstantFormulateService();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     private void setdefault(String s) {

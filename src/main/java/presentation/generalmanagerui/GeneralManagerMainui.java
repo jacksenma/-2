@@ -7,6 +7,7 @@ package presentation.generalmanagerui;
 
 import presentation.financialmanui.QueryAccount;
 import presentation.financialmanui.StatisticsListui;
+import presentation.financialmanui.recordui;
 
 /**
  *
@@ -21,8 +22,9 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
          name.setText("姓名："+n);
-         
         account.setText("账号："+id);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

@@ -31,6 +31,8 @@ public class Institutionmodify extends javax.swing.JFrame {
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
         defaultdata(find);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
