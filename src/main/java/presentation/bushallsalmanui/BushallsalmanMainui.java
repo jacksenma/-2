@@ -24,6 +24,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     public BushallsalmanMainui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+//        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         cls=RMIClient.getCarLoadingService();
@@ -43,6 +44,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	setResizable(false);
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();

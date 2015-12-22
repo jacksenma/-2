@@ -63,6 +63,7 @@ public class StoreExamineui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	setResizable(false);
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
