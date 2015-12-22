@@ -14,10 +14,13 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.CashRegisterService;
+import blservice.financialmanblservice.AccountManageService;
 import blservice.queryblservice.QueryService;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.CashRegistervo;
 import vo.couriervo.Datevo;
+import vo.financialmanvo.AccountMesvo;
+import vo.financialmanvo.AccountUservo;
 import vo.queryvo.QueryOrdervo;
 import vo.queryvo.Queryvo;
 
@@ -26,7 +29,7 @@ import vo.queryvo.Queryvo;
  * @author user
  */
 public class CashRegisterui extends javax.swing.JFrame {
-
+	static AccountManageService as;//blservice里处理账户
 	static CashRegisterService crs;
 	static QueryService q;
     /**
@@ -40,6 +43,7 @@ public class CashRegisterui extends javax.swing.JFrame {
         RMIClient.init();
         crs=RMIClient.getCashRegisterService();
         q=RMIClient.getQueryService();
+        as=RMIClient.getAccountManageService();
     }
 
     /**
@@ -224,6 +228,13 @@ public class CashRegisterui extends javax.swing.JFrame {
         QueryOrdervo qovo;
 		qovo = q.checkOrder(new Queryvo(tiaoxingma.getText()));
 		
+		AccountMesvo qvo=new AccountMesvo(zhanghu.getText());
+        AccountUservo avo=as.findUsers(qvo);
+    	if(avo == null) {
+            noaccount();
+            return;
+        }
+		
 		try {
 			if(!crs.checkDate(cashRegister, qovo)){
 				dateError2();
@@ -262,7 +273,12 @@ public class CashRegisterui extends javax.swing.JFrame {
                 Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void errormiss() {
+    private void noaccount() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该账户！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errormiss() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "信息输入不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
