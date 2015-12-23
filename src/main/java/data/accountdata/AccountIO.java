@@ -1,7 +1,9 @@
 package data.accountdata;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -52,14 +54,21 @@ public class AccountIO implements FinancialmanService{
 		List<String> l = new ArrayList<String>();
 		oos.writeObject(l);
 		oos.close();
+		
+		
 	}
+	
 	public static void main(String[] args) throws Exception {
 		write();
 		write1();
+		
+		System.out.println("s");
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/accountMes.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<CostOrderpo> list = (List<CostOrderpo>) ois.readObject();
 		ois.close();
+		
+		
 //		for(int i = 0 ; i < list.size() ; i++){
 //			System.out.println(list.get(i).getExpressType().toString() + list.get(i)
 //			.getPackingType().toString());
@@ -400,7 +409,7 @@ public class AccountIO implements FinancialmanService{
 		oos19.close();//还有几个txt没有清空
 		
 		FileOutputStream fos20= 
-				new FileOutputStream("src/main/java/data/save/UserMes.txt");
+				new FileOutputStream("src/main/java/data/save/Initjigou.txt");
 		ObjectOutputStream oos20 = new ObjectOutputStream(fos20);
 		List<String> l20 = new ArrayList<String>();
 		oos20.writeObject(l20);
@@ -413,7 +422,93 @@ public class AccountIO implements FinancialmanService{
 		oos21.writeObject(l21);
 		oos21.close();//还有几个txt没有清空
 		
+		FileOutputStream fos22= 
+				new FileOutputStream("src/main/java/data/save/Initrenyuan.txt");
+		ObjectOutputStream oos22 = new ObjectOutputStream(fos22);
+		List<String> l22 = new ArrayList<String>();
+		oos22.writeObject(l22);
+		oos22.close();
+		
+		FileOutputStream fos23= 
+				new FileOutputStream("src/main/java/data/save/Initkucun.txt");
+		ObjectOutputStream oos23 = new ObjectOutputStream(fos23);
+		List<String> l23 = new ArrayList<String>();
+		oos23.writeObject(l23);
+		oos23.close();
+		
+		FileOutputStream fos24= 
+				new FileOutputStream("src/main/java/data/save/Initcheliang.txt");
+		ObjectOutputStream oos24 = new ObjectOutputStream(fos24);
+		List<String> l24 = new ArrayList<String>();
+		oos24.writeObject(l24);
+		oos24.close();
+		
+		FileOutputStream fos25= 
+				new FileOutputStream("src/main/java/data/save/Initzhanghu.txt");
+		ObjectOutputStream oos25 = new ObjectOutputStream(fos25);
+		List<String> l25 = new ArrayList<String>();
+		oos25.writeObject(l25);
+		oos25.close();
+		
+//		FileOutputStream fos26= 
+//				new FileOutputStream("src/main/java/data/save/warning.txt");
+//		ObjectOutputStream oos26 = new ObjectOutputStream(fos26);
+//		List<String> l26 = new ArrayList<String>();
+//		oos26.writeObject(l26);
+//		oos26.close();
 		
 		
+		
+	}
+	@Override
+	public boolean addInitAccount(Accountpo apo) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/Initzhanghu.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<Accountpo> list = (List<Accountpo>) ois.readObject();
+		ois.close();
+//		for(int i = 0 ; i < list.size() ; i++){
+//			if(list.get(i).getAccountName().equals(apo.getAccountName()))
+//				return false;
+//		}
+		list.add(apo);
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/Initzhanghu.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		return true;
+	}
+	@Override
+	public Accountpo[] AllSearchInitAccount() throws Exception {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initzhanghu.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Accountpo> result = (List<Accountpo>) ois.readObject();
+			ois.close();
+			
+//			int k=0;
+//			for(int i=0;i<result.size();i++){
+//				if(result.get(i).role.equals(role)){
+//	                    k++;
+//				}
+//			}
+			Accountpo[] up = new Accountpo[result.size()];
+//				int p =0;
+			for(int i=0;i<result.size();i++){
+				
+					up[i]=result.get(i);
+					
+				
+			}
+			return up;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
 	}
 }

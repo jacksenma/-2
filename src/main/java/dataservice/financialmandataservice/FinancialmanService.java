@@ -35,6 +35,8 @@ public interface FinancialmanService {
 	public boolean writeRecord(Recordpo recordpo)  throws Exception;
 	public Recordpo[] AllSearchRec()  throws Exception;
 	public void writeInit()throws Exception;
+	public boolean addInitAccount(Accountpo accountpo)throws Exception;
+	public Accountpo[] AllSearchInitAccount()throws Exception;
 	
 
 }

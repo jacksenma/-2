@@ -5,6 +5,12 @@
  */
 package presentation.financialmanui;
 
+import java.rmi.RemoteException;
+
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
 import presentation.bushallsalmanui.CarMesManageui;
 import presentation.generalmanagerui.Institutionadd;
 import presentation.generalmanagerui.Staffadd;
@@ -15,14 +21,19 @@ import presentation.stockmanagermanui.WarehouseWarningui;
  * @author user
  */
 public class Init extends javax.swing.JFrame {
+	static AccountManageService as;
 
     /**
      * Creates new form Init
+     * @throws Exception 
      */
-    public Init() {
+    public Init() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
+        this.setVisible(true);
+        RMIClient.init();
+        as= RMIClient.getAccountManageService();
     }
 
     /**
@@ -81,7 +92,12 @@ public class Init extends javax.swing.JFrame {
         jButton6.setText("返回");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                try {
+					jButton6MouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -127,9 +143,41 @@ public class Init extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-         this.dispose();
+         
+         //以下为点了返回之后，把期初信息单独存储起来
+         //机构
+    	if(!as.writeInitJigou()){
+    		missJigou();
+    		return;//未写完机构，只到bl层
+    	}
+//         人员
+    	if(!as.writeInitRenyuan()){
+    		missRenyuan();
+    		return;//未写完机构，只到bl层
+    	}
+//         库存
+    	if(!as.writeInitKucun()){
+    		missKucun();
+    		return;//未写完机构，只到bl层
+    	}
+//         银行账户
+        if(!as.writeInitAccount()){
+        	missAccount();
+        	return;
+        	
+        }
+        	
+//         车辆
+        if(!as.writeInitCheliang()){
+        	missCheliang();
+        	return;
+        }
+    	
+    	
+    	
+    	this.dispose();
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jigouMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jigouMouseClicked
@@ -182,6 +230,21 @@ public class Init extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }//GEN-LAST:event_accoutMouseClicked
+    private void missAccount(){
+     	 JOptionPane.showMessageDialog(null, "未设置期初账户信息","设置遗漏", JOptionPane.ERROR_MESSAGE);
+     }
+    private void missJigou(){
+    	 JOptionPane.showMessageDialog(null, "未设置期初机构信息","设置遗漏", JOptionPane.ERROR_MESSAGE);
+    }
+    private void missCheliang(){
+    	 JOptionPane.showMessageDialog(null, "未设置期初车辆信息","设置遗漏", JOptionPane.ERROR_MESSAGE);
+    }
+   private void missRenyuan(){
+   	 JOptionPane.showMessageDialog(null, "未设置期初人员信息","设置遗漏", JOptionPane.ERROR_MESSAGE);
+   }
+   private void missKucun(){
+	   	 JOptionPane.showMessageDialog(null, "未设置期初库存信息","设置遗漏", JOptionPane.ERROR_MESSAGE);
+	   }
 
     /**
      * @param args the command line arguments
@@ -213,7 +276,12 @@ public class Init extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Init().setVisible(true);
+                try {
+					new Init().setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }

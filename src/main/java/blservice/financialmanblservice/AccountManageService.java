@@ -31,6 +31,7 @@ public interface AccountManageService extends Remote {
 	public AccountUservo findUsers(AccountMesvo qvo)throws RemoteException;
 
 	public AccountManagevo[] searchAll() throws RemoteException;
+	public AccountManagevo[] searchAllInitAccount()throws RemoteException;
 
 	public RecieveListvo[] searchRe(String text) throws RemoteException;
 
@@ -45,5 +46,19 @@ public interface AccountManageService extends Remote {
 	
 
 	public int getZong(int parseInt, String[] jqPay, String[] jqRe, int jqRecount, int jqPaycount) throws RemoteException;
+
+	public boolean writeInitAccount()throws RemoteException;
+
+	public boolean writeInitJigou()throws RemoteException;
+
+	public boolean writeInitRenyuan()throws RemoteException;
+
+	public boolean writeInitKucun()throws RemoteException;
+
+	public boolean writeInitCheliang()throws RemoteException;
+
+	
+
+	
 	
 }

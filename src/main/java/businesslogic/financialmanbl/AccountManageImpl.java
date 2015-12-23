@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 import blservice.financialmanblservice.AccountManageService;
 import data.accountdata.AccountIO;
+import data.institutiondata.BusinessHall;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.administratorpo.UserMespo;
+import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
@@ -254,6 +256,94 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
     	}
     	int result=parseInt+Re-Pay;
     	return result;
+	}
+
+	@Override
+	public boolean writeInitAccount() throws RemoteException {
+		
+		try {
+			FinancialmanService fs=new AccountIO();
+			Accountpo[] ap;
+			ap = fs.AllSearch();
+			if(ap==null)  return false;
+			else{
+				for(int i=0;i<ap.length;i++){
+					boolean a=fs.addInitAccount(ap[i]);
+					if(a==false)
+						return false;
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+
+	@Override
+	public AccountManagevo[] searchAllInitAccount() throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService as=new AccountIO();
+		Accountpo[] up;
+		try {
+			up = as.AllSearchInitAccount();
+			if(up==null)  return null;
+			else{
+				AccountManagevo[] uv = new AccountManagevo[up.length];
+				for(int i=0;i<up.length;i++){
+					AccountManagevo s = up[i].geUser();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean writeInitJigou() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitRenyuan() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitKucun() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitCheliang() throws RemoteException {
+		// TODO Auto-generated method stub
+//		try {
+//			BusinessHall fs=new BusinessHall();
+//			CarLoadingpo[] ap;
+////			ap = fs.AllSearch();
+//			if(ap==null)  return false;
+//			else{
+//				for(int i=0;i<ap.length;i++){
+////					boolean a=fs.addInitCheliang(ap[i]);
+////					if(a==false)
+//						return false;
+//				}
+//				return true;
+//			}
+//		} catch (Exception e) {
+//			
+//			e.printStackTrace();
+//		}
+		return false;
 	}
 
 }

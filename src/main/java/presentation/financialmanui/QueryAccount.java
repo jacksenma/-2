@@ -32,8 +32,7 @@ public class QueryAccount extends javax.swing.JFrame {
     	 initComponents();
          this.setLocationRelativeTo(null);
          this.setVisible(true);
-         error.setVisible(false);
-         xsz.setVisible(false);
+        
          RMIClient.init();
          as= RMIClient.getAccountManageService();
          setResizable(false);
@@ -46,31 +45,31 @@ public class QueryAccount extends javax.swing.JFrame {
     static int jqPaycount=0;//同上
     
     private void SearchAll1(RecieveListvo[] uv){
-//    	   final String s[] = new String [100];
+
     	   int j=0;
     	   if(uv!=null){	   
     	   for(int i=0;i<uv.length;i++){
-//    		   s[i]=uv[i].Zhanghu+"  "+uv[i].moneyq;
+
     		   jqRe[i]=uv[i].moneyq;
     		   j++;
-//    		   System.out.println(s[i]+"    "+jqRe[i]);
+
     	   }
     	   jqRecount=j;
     	   System.out.println(jqRecount+"usagidscd");
     	    }}
      
      private void SearchAll2(PaymentInputvo[] pv){
-//    	   final String s1[] = new String [100];
+
     	   int x=0;
     	   if(pv!=null){	   
     	   for(int i=0;i<pv.length;i++){
-//    		   s1[i]=pv[i].pay.account+"   "+pv[i].pay.money;
+
     		   jqPay[i]=pv[i].pay.money;
     		   x++;
-//    		   System.out.println(s1[i]+",,,,,,,,,"+jqPay[i]);
+
     	   }
     	  jqPaycount=x;
-//    	  System.out.println(jqPaycount+"mmmmmmmmmmmmm");
+
     	    }}
 
     /**
@@ -82,14 +81,13 @@ public class QueryAccount extends javax.swing.JFrame {
     
     private void AllSearch(AccountManagevo[] uv){
   	    final String s[] = new String [100];
-//  	    int  allMoney=0;
+
     	if(uv.length==0){
-//    		this.error.setText("未找到账户");
-//    		this.error.setVisible(true);
+
     		noFind();
     		return;
     	}
-//    	else this.error.setVisible(false);
+
   	   if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 try {
@@ -102,9 +100,9 @@ public class QueryAccount extends javax.swing.JFrame {
 	    	
 	    	
 	    	if (!uv[i].money.equals("")){
-//	    	int zong=Integer.parseInt(uv[i].money)+Re-Pay;
+
 	    	int zong=as.getZong(Integer.parseInt(uv[i].money),jqPay,jqRe,jqRecount,jqPaycount);
-//	    	allMoney+=zong;
+
 	    	s[i]=uv[i].accountName+"                                                "+zong+"元";}
 	    	
 	    		
@@ -113,8 +111,7 @@ public class QueryAccount extends javax.swing.JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//  		 xsz.setText("所有账户金额总和：   "+allMoney+" 元");
-//  		 xsz.setVisible(true);
+
   		 jList1.setModel(new javax.swing.AbstractListModel() {
              String[] strings = s;
              public int getSize() { return strings.length; }
@@ -123,7 +120,7 @@ public class QueryAccount extends javax.swing.JFrame {
   	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   	    jScrollPane1.setViewportView(jList1);
   		   
-//  		   s[i]=uv[i].ID+kong(uv[i].ID,uv[i+1].ID)+uv[i].Mima+"                     "+uv[i].Name+"                     "+uv[i].Type;
+
   	   }
   	  
   	    }}
@@ -139,14 +136,12 @@ public class QueryAccount extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         all = new javax.swing.JButton();
-        xsz = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jq = new javax.swing.JTextField();
         queryJ = new javax.swing.JButton();
-        error = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("输入关键字（模糊查找）：");
 
@@ -170,7 +165,7 @@ public class QueryAccount extends javax.swing.JFrame {
         });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "" };
+            String[] strings = { " ", " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -197,8 +192,6 @@ public class QueryAccount extends javax.swing.JFrame {
             }
         });
 
-        xsz.setText("总金额：");
-
         jLabel5.setText("输入账户名称（精确查找）：");
 
         queryJ.setText("精确查找");
@@ -212,9 +205,6 @@ public class QueryAccount extends javax.swing.JFrame {
 				}
             }
         });
-
-        error.setForeground(new java.awt.Color(255, 0, 0));
-        error.setText("未找到账户");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,19 +236,13 @@ public class QueryAccount extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(xsz)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(all)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(all)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(95, 140, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(error)
-                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,17 +258,13 @@ public class QueryAccount extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(queryJ))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(error)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(xsz)
-                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(all))
@@ -406,7 +386,6 @@ public class QueryAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton all;
-    private javax.swing.JLabel error;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -419,6 +398,5 @@ public class QueryAccount extends javax.swing.JFrame {
     private javax.swing.JTextField keywords;
     private javax.swing.JButton queryJ;
     private javax.swing.JButton queryM;
-    private javax.swing.JLabel xsz;
     // End of variables declaration//GEN-END:variables
 }

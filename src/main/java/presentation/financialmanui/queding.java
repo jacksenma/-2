@@ -49,12 +49,14 @@ public class queding extends javax.swing.JFrame {
         OK.setText("确定");
         OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-					OKMouseClicked(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                
+					try {
+						OKMouseClicked(evt);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
             }
         });
 
@@ -100,7 +102,7 @@ public class queding extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_OKMouseClicked
+    private void OKMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
     	as.init();
     	new Init().setVisible(true);

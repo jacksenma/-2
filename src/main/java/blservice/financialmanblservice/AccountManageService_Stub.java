@@ -100,6 +100,43 @@ public class AccountManageService_Stub implements AccountManageService{
 		return 0;
 	}
 
+	@Override
+	public boolean writeInitAccount() throws RemoteException {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public AccountManagevo[] searchAllInitAccount() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean writeInitJigou() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitRenyuan() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitKucun() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeInitCheliang() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 	

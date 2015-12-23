@@ -201,6 +201,20 @@ public class SettlementListIO implements  FinancialmanService {
 	}
 
 
+	@Override
+	public boolean addInitAccount(Accountpo accountpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Accountpo[] AllSearchInitAccount() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 //	public boolean getOrder2(IncomeInputvo iivo) throws RemoteException {
 //		// TODO Auto-generated method stub
 //		return false;
