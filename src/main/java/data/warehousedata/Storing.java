@@ -254,7 +254,7 @@ public class Storing implements StockManagermanService {
 				        }
 				            try  
 				                    {  
-				                        FileOutputStream fout = new FileOutputStream("C:/Users/dlydd/Desktop/kucundaochu.xls"); 
+				                        FileOutputStream fout = new FileOutputStream("C:/大作业代码/kucundaochu.xls"); 
 				                       wb.write(fout);  
 				                        fout.close();  
 				                    }  
