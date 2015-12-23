@@ -118,4 +118,10 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 		return null;
 	}
 
+	@Override
+	public void daochu() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

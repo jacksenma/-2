@@ -190,6 +190,20 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		String outshu=sms.examineout(qy,qm,qd,zy,zm,zd);
 		return outshu;
 	}
+
+
+	@Override
+	public void daochu() throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		try {
+			sms.Daochu();
+			//System.out.println("sssss");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 
