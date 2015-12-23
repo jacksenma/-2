@@ -1,6 +1,7 @@
 package data.institutiondata;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -133,6 +134,15 @@ public class BusinessHall implements BushallsalmanService {
 		oos.writeObject(list);
 		oos.close();
 		return true;
+	}
+	public CarMespo searchcar() throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/carMes.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CarMespo> list = (List<CarMespo>) ois.readObject();
+		ois.close();
+		return list.get(0);
 	}
 
 	public boolean writeDriverMes(DriverMespo dmpo) throws Exception {
@@ -387,7 +397,7 @@ public class BusinessHall implements BushallsalmanService {
 				e.printStackTrace();
 			}
 	}
-
+	@Override
     public CarLoadingpo getLoad(String car){
     	FileInputStream fis;
 		try {
@@ -467,5 +477,7 @@ public class BusinessHall implements BushallsalmanService {
 		}
 		return null;
 	}
+
+	
 
 }
