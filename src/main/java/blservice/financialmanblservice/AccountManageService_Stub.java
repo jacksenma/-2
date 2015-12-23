@@ -9,6 +9,8 @@ import vo.financialmanvo.AccountUservo;
 import vo.financialmanvo.InitMesvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.generalmanagervo.Institutionvo;
+import vo.generalmanagervo.Staffvo;
 
 public class AccountManageService_Stub implements AccountManageService{
 	public AccountManagevo showAccount(){
@@ -135,6 +137,18 @@ public class AccountManageService_Stub implements AccountManageService{
 	public boolean writeInitCheliang() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Institutionvo[] searchAllInitJigou() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Staffvo[] searchAllInitRenyuan() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

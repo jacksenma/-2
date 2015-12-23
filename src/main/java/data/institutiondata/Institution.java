@@ -143,4 +143,45 @@ public class Institution implements Institutionservice{
 		List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
 		ois.close();
 	}
+
+	public boolean addInitAccount(Institutionpo ip) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initjigou.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Institutionpo> result = (List<Institutionpo>) ois.readObject();
+			ois.close();
+			result.add(ip);
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/Initjigou.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();	     
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			System.out.println("success write Institution");
+			return true;
+	}
+
+	public Institutionpo[] AllSearchInitAccount() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initjigou.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Institutionpo> result = (List<Institutionpo>) ois.readObject();
+			Institutionpo[] ip = new Institutionpo[result.size()];
+			for(int i=0;i<result.size();i++){
+		            ip[i]=result.get(i);
+				}
+			return ip;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+			return null;
+	}
 }

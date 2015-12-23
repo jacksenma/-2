@@ -11,9 +11,13 @@ import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.AccountManageService;
+import blservice.generalmanagerblservice.StaffInstitutionManagerService;
+import data.institutiondata.Institution;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.generalmanagervo.Institutionvo;
+import vo.generalmanagervo.Staffvo;
 
 /**
  *
@@ -21,6 +25,7 @@ import vo.financialmanvo.RecieveListvo;
  */
 public class checkInitMesui extends javax.swing.JFrame {
 	static AccountManageService as;
+	static StaffInstitutionManagerService ss;
     /**
      * Creates new form checkInitMesui
      * @throws Exception 
@@ -32,7 +37,10 @@ public class checkInitMesui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         as= RMIClient.getAccountManageService();
+        ss= RMIClient.getStaffInstitutionManagerService();
         AllSearch(as.searchAllInitAccount());
+        AllSearch2(as.searchAllInitJigou());
+        AllSearch3(as.searchAllInitRenyuan());
     }
     
    
@@ -65,6 +73,61 @@ public class checkInitMesui extends javax.swing.JFrame {
   	   }
   	  
   	    }}
+    
+    private void AllSearch2(Institutionvo[] uv){
+	    final String s[] = new String [100];
+  	    if(uv!=null){	   
+  	   for(int i=0;i<uv.length;i++){
+  		 if (!uv[i].ID.equals("")){
+  			 String leibie="";
+  			 if(uv[i].type==0)
+  				 leibie="中转中心";
+  			 else
+  				 leibie="营业厅";
+  				 
+  			 s[i]=leibie+"    "+uv[i].ID+"    "+uv[i].name+"     "+uv[i].leader;}
+
+  		 jList2.setModel(new javax.swing.AbstractListModel() {
+             String[] strings = s;
+             public int getSize() { return strings.length; }
+             public Object getElementAt(int i) { return strings[i]; }
+         });
+  	   jList2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  	    jScrollPane2.setViewportView(jList2);
+  		   
+
+  	   }
+  	  
+  	    }
+    }
+    
+    
+    private void AllSearch3(Staffvo[] uv){
+	    final String s[] = new String [100];
+  	    if(uv!=null){	   
+  	   for(int i=0;i<uv.length;i++){
+  		 if (!uv[i].id.equals("")){
+//  			 String leibie="";
+//  			 if(uv[i].type==0)
+//  				 leibie="中转中心";
+//  			 else
+//  				 leibie="营业厅";
+  				 
+  			 s[i]=uv[i].name+"     "+uv[i].id+"     "+uv[i].worktime+"    "+uv[i].workunit+"       "+uv[i].role;}
+
+  		 jList3.setModel(new javax.swing.AbstractListModel() {
+             String[] strings = s;
+             public int getSize() { return strings.length; }
+             public Object getElementAt(int i) { return strings[i]; }
+         });
+  	   jList3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  	    jScrollPane3.setViewportView(jList3);
+  		   
+
+  	   }
+  	  
+  	    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

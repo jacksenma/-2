@@ -30,4 +30,6 @@ public interface StaffInstitutionManagerService extends Remote {
        public void deleteInstitution(Institutionvo iv) throws RemoteException;
  
        public void modifyInstitution(Institutionvo oldiv,Institutionvo iv) throws RemoteException;
+
+	
 }

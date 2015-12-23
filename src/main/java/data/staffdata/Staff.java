@@ -180,5 +180,48 @@ public class Staff implements Staffservice{
 		ois.close();
 	}
 
+	public boolean addInitRenyuan(Staffpo ip) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initrenyuan.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Staffpo> result = (List<Staffpo>) ois.readObject();
+			ois.close();
+			result.add(ip);
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/Initrenyuan.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();	     
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			System.out.println("success write Staff");
+			return true;
+	}
+
+	public Staffpo[] AllSearchInitAccount() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initrenyuan.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Staffpo> result = (List<Staffpo>) ois.readObject();
+			ois.close();
+			
+				Staffpo[] sp = new Staffpo[result.size()];
+			for(int i=0;i<result.size();i++){
+					sp[i]=result.get(i);
+			}
+			return sp;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
+
 
 }

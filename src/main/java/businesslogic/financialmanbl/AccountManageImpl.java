@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import blservice.financialmanblservice.AccountManageService;
 import data.accountdata.AccountIO;
 import data.institutiondata.BusinessHall;
+import data.institutiondata.Institution;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
+import data.staffdata.Staff;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.administratorpo.UserMespo;
 import po.bushallsalmanpo.CarLoadingpo;
@@ -16,6 +18,8 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.InitMespo;
+import po.generalmanagepo.Institutionpo;
+import po.otherdatapo.Staffpo;
 import vo.administratorvo.UserAuthorityManagervo;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.AccountMesvo;
@@ -23,6 +27,8 @@ import vo.financialmanvo.AccountUservo;
 import vo.financialmanvo.InitMesvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
+import vo.generalmanagervo.Institutionvo;
+import vo.generalmanagervo.Staffvo;
 
 public class AccountManageImpl extends UnicastRemoteObject implements AccountManageService {
 
@@ -308,12 +314,48 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 	@Override
 	public boolean writeInitJigou() throws RemoteException {
 		// TODO Auto-generated method stub
+		try {
+			Institution fs=new Institution();
+			Institutionpo[] ap;
+			ap = fs.searchAll();
+			if(ap==null)  return false;
+			else{
+				for(int i=0;i<ap.length;i++){
+					boolean a=fs.addInitAccount(ap[i]);
+					if(a==false)
+						return false;
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean writeInitRenyuan() throws RemoteException {
 		// TODO Auto-generated method stub
+		
+		
+		try {
+			Staff fs=new Staff();
+			Staffpo[] ap;
+			ap = fs.searchAll();
+			if(ap==null)  return false;
+			else{
+				for(int i=0;i<ap.length;i++){
+					boolean a=fs.addInitRenyuan(ap[i]);
+					if(a==false)
+						return false;
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -344,6 +386,52 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 //			e.printStackTrace();
 //		}
 		return false;
+	}
+
+	@Override
+	public Institutionvo[] searchAllInitJigou() throws RemoteException {
+		// TODO Auto-generated method stub
+		Institution as=new Institution();
+		Institutionpo[] up;
+		try {
+			up = as.AllSearchInitAccount();
+			if(up==null)  return null;
+			else{
+				Institutionvo[] uv = new Institutionvo[up.length];
+				for(int i=0;i<up.length;i++){
+					Institutionvo s = up[i].getInstitution();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Staffvo[] searchAllInitRenyuan() throws RemoteException {
+		// TODO Auto-generated method stub
+		Staff as=new Staff();
+		Staffpo[] up;
+		try {
+			up = as.AllSearchInitAccount();
+			if(up==null)  return null;
+			else{
+				Staffvo[] uv = new Staffvo[up.length];
+				for(int i=0;i<up.length;i++){
+					Staffvo s = up[i].getStaff();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
