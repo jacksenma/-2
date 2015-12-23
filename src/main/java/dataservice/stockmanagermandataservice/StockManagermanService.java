@@ -27,6 +27,4 @@ public interface StockManagermanService {
 	public String examinein(String qy, String qm, String qd, String zy, String zm, String zd);
 
 	public String examineout(String qy, String qm, String qd, String zy, String zm, String zd);
-
-	public void Daochu()throws Exception;
 }

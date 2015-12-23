@@ -1,47 +1,27 @@
 package data.warehousedata;
 
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
 import dataservice.stockmanagermandataservice.StockManagermanService;
+import po.bushallsalmanpo.CarLoadingpo;
+import po.bushallsalmanpo.ClExamineType;
+import po.bushallsalmanpo.SendOrderpo;
+import po.courierpo.CourierOrderpo;
+import po.generalmanagepo.Institutionpo;
+import po.otherdatapo.Staffpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.IsExamineType;
 import po.stockmanagermanpo.OsExamineType;
 import po.stockmanagermanpo.OutStoringpo;
+import po.stockmanagermanpo.StoreCheckpo;
 import po.stockmanagermanpo.Warningpo;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;  
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;  
-import org.apache.poi.hssf.usermodel.HSSFClientAnchor;  
-import org.apache.poi.hssf.usermodel.HSSFComment;  
-import org.apache.poi.hssf.usermodel.HSSFFont;  
-import org.apache.poi.hssf.usermodel.HSSFPatriarch;  
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;  
-import org.apache.poi.hssf.usermodel.HSSFRow;  
-import org.apache.poi.hssf.usermodel.HSSFSheet;  
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.formula.functions.T;  
-
 
 public class Storing implements StockManagermanService {
 	
@@ -102,8 +82,8 @@ public class Storing implements StockManagermanService {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<Warningpo> list = (List<Warningpo>) ois.readObject();
 		ois.close();
+		
 	}
-
 
 	public boolean in(InStoringpo ipo) throws Exception {
 		// TODO Auto-generated method stub
@@ -198,77 +178,10 @@ public class Storing implements StockManagermanService {
 //				}
 		}
 		return sp;
+		
 	
 	}
 
-	@SuppressWarnings("deprecation")
-	public void Daochu() throws Exception{
-		HSSFWorkbook wb = new HSSFWorkbook();  
-		HSSFSheet sheet = wb.createSheet("库存盘点表");  
-		HSSFRow row = sheet.createRow((int) 0);  
-		HSSFCellStyle style = wb.createCellStyle();  
-	    style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-	    HSSFCell cell = row.createCell((short) 0);  
-	     cell.setCellValue("快递编号");  
-	     cell.setCellStyle(style);  
-	     cell = row.createCell((short) 1);  
-	     cell.setCellValue("目的地");  
-	     cell.setCellStyle(style);  
-	     cell = row.createCell((short) 2);  
-	     cell.setCellValue("入库日期");  
-	     cell.setCellStyle(style);  
-	     cell = row.createCell((short) 3);  
-	     cell.setCellValue("区号");  
-	     cell.setCellStyle(style);  
-	     cell = row.createCell((short) 4);  
-	     cell.setCellValue("排号");  
-	     cell.setCellStyle(style);
-	     cell = row.createCell((short) 5);  
-	     cell.setCellValue("架号");  
-	     cell.setCellStyle(style);
-	     cell = row.createCell((short) 6);  
-	     cell.setCellValue("位号");  
-	     cell.setCellStyle(style);
-	     cell = row.createCell((short) 7);  
-	     cell.setCellValue("中转中心");  
-	     cell.setCellStyle(style);
-	     FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			@SuppressWarnings("unchecked")
-			List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
-			ois.close();
-			InStoringpo[] sp = new InStoringpo[list.size()];
-			for (int i = 0; i < list.size(); i++)  
-				        {  
-				            row = sheet.createRow((int) i + 1);  
-				            sp[i]=list.get(i);  
-				            // 第四步，创建单元格，并设置值  
-				            row.createCell((short) 0).setCellValue(sp[i].bianhao);  
-				            row.createCell((short) 1).setCellValue(sp[i].destination);  
-				            row.createCell((short) 2).setCellValue(sp[i].year+"-"+sp[i].month+"-"+sp[i].day);  
-				            row.createCell((short) 3).setCellValue(sp[i].quhao);  
-				            row.createCell((short) 4).setCellValue(sp[i].paihao);
-				            row.createCell((short) 5).setCellValue(sp[i].jiahao);
-				            row.createCell((short) 6).setCellValue(sp[i].weihao);
-				            row.createCell((short) 7).setCellValue(sp[i].zhongzhuan);
-				        }
-				            try  
-				                    {  
-				                        FileOutputStream fout = new FileOutputStream("C:/Users/dlydd/Desktop/kucundaochu.xls"); 
-				                       wb.write(fout);  
-				                        fout.close();  
-				                    }  
-				                    catch (Exception e)  
-				                    {  
-				                        e.printStackTrace();  
-				                    }  
-				            System.out.println("导出成功！");
-
-				          
-
-	}
-
-	
 	public String[] SearchUncheckedoutstock() {
 		// TODO Auto-generated method stub
 		int count=0;
