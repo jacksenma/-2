@@ -3,6 +3,7 @@ package blservice.financialmanblservice;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import vo.bushallsalmanvo.CarMesManagevo;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.AccountMesvo;
 import vo.financialmanvo.AccountUservo;
@@ -11,6 +12,7 @@ import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.Staffvo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
 
 public class AccountManageService_Stub implements AccountManageService{
 	public AccountManagevo showAccount(){
@@ -147,6 +149,18 @@ public class AccountManageService_Stub implements AccountManageService{
 
 	@Override
 	public Staffvo[] searchAllInitRenyuan() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CarMesManagevo[] searchAllInitCheliang() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WarehouseWarningvo[] searchAllInitKucun() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

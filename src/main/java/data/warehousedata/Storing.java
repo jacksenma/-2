@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import dataservice.stockmanagermandataservice.StockManagermanService;
+import po.otherdatapo.Staffpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.IsExamineType;
 import po.stockmanagermanpo.OsExamineType;
@@ -487,6 +488,70 @@ public class Storing implements StockManagermanService {
 			e.printStackTrace();
 		}
 		return outshu;
+	}
+
+	public Warningpo[] AllSearch() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/warning.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Warningpo> result = (List<Warningpo>) ois.readObject();
+			ois.close();
+			
+			Warningpo[] sp = new Warningpo[result.size()];
+			for(int i=0;i<result.size();i++){
+					sp[i]=result.get(i);
+			}
+			return sp;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
+
+	public boolean addInitKucun(Warningpo ip) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initkucun.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Warningpo> result = (List<Warningpo>) ois.readObject();
+			ois.close();
+			result.add(ip);
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/Initkucun.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();	     
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+//			System.out.println("success write Staff");
+			return true;
+	}
+
+	public Warningpo[] AllSearchInitkucun() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initkucun.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Warningpo> result = (List<Warningpo>) ois.readObject();
+			ois.close();
+			
+			Warningpo[] sp = new Warningpo[result.size()];
+			for(int i=0;i<result.size();i++){
+					sp[i]=result.get(i);
+			}
+			return sp;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
 	}
 
 }

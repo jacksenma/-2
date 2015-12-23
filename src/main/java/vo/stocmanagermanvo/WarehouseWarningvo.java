@@ -21,4 +21,5 @@ public class WarehouseWarningvo implements Serializable {
 	public static WarehouseWarningvo getInformation(){
 		return new WarehouseWarningvo(null, null);
 	}
+	
 }

@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import vo.bushallsalmanvo.CarMesManagevo;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.AccountMesvo;
 import vo.financialmanvo.AccountUservo;
@@ -12,6 +13,7 @@ import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.Staffvo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
 
 public interface AccountManageService extends Remote {
 //	public AccountManagevo showAccount() throws RemoteException;
@@ -36,6 +38,8 @@ public interface AccountManageService extends Remote {
 	public AccountManagevo[] searchAllInitAccount()throws RemoteException;
 	public Institutionvo[] searchAllInitJigou()throws RemoteException;
 	public Staffvo[] searchAllInitRenyuan()throws RemoteException;
+	public CarMesManagevo[] searchAllInitCheliang()throws RemoteException;
+	public WarehouseWarningvo[] searchAllInitKucun()throws RemoteException;
 
 	public RecieveListvo[] searchRe(String text) throws RemoteException;
 
@@ -60,6 +64,10 @@ public interface AccountManageService extends Remote {
 	public boolean writeInitKucun()throws RemoteException;
 
 	public boolean writeInitCheliang()throws RemoteException;
+
+	
+
+	
 
 	
 
