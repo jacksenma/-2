@@ -106,7 +106,25 @@ public class Institution implements Institutionservice{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		
+	}
+	
+	public Institutionpo[] searchAll() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Institution.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Institutionpo> result = (List<Institutionpo>) ois.readObject();
+			Institutionpo[] ip = new Institutionpo[result.size()];
+			for(int i=0;i<result.size();i++){
+		            ip[i]=result.get(i);
+				}
+			return ip;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+			return null;
 	}
 	public static void write() throws Exception {
 		FileOutputStream fos = 

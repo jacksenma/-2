@@ -42,7 +42,7 @@ public class StaffManageui extends javax.swing.JFrame {
 	   final String s[] = new String [100];
 	   if(sv!=null){	   
 	   for(int i=0;i<sv.length;i++){
-		   s[i]=sv[i].role+"        "+sv[i].name+"            "+sv[i].id+"          "+sv[i].worktime+"                "+sv[i].workunit;
+		   s[i]=sv[i].role+"        "+sv[i].name+"            "+sv[i].id+"          "+sv[i].worktime+"      "+sv[i].workunit;
 	   }
 	   jList1.setModel(new javax.swing.AbstractListModel() {
            String[] strings = s;

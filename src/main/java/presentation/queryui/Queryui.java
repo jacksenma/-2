@@ -49,7 +49,7 @@ public class Queryui extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         error = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("订单号");
 

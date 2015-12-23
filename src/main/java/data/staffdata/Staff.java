@@ -141,6 +141,26 @@ public class Staff implements Staffservice{
 		return null;
 	}
 	
+	public Staffpo[] searchAll() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/staff.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Staffpo> result = (List<Staffpo>) ois.readObject();
+			ois.close();
+			
+				Staffpo[] sp = new Staffpo[result.size()];
+			for(int i=0;i<result.size();i++){
+					sp[i]=result.get(i);
+			}
+			return sp;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
 	
 	public static void write() throws Exception {
 		FileOutputStream fos = 
