@@ -1,6 +1,7 @@
 package data.institutiondata;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,16 +14,13 @@ import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.CarMespo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.bushallsalmanpo.ClExamineType;
-import po.bushallsalmanpo.CmExamineType;
 import po.bushallsalmanpo.CrExamineType;
-import po.bushallsalmanpo.DmExamineType;
 import po.bushallsalmanpo.DriverMespo;
 import po.bushallsalmanpo.ReceiveOrderpo;
 import po.bushallsalmanpo.RoExamineType;
 import po.bushallsalmanpo.SendOrderpo;
 import po.bushallsalmanpo.SoExamineType;
-import po.courierpo.ExamineType;
-import po.generalmanagepo.Constancypo;
+import po.otherdatapo.Staffpo;
 
 
 public class BusinessHall implements BushallsalmanService {
@@ -468,4 +466,93 @@ public class BusinessHall implements BushallsalmanService {
 		return null;
 	}
 
-}
+	public CarMespo[] AllSearch() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/carMes.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<CarMespo> result = (List<CarMespo>) ois.readObject();
+			ois.close();
+			
+//			int k=0;
+//			for(int i=0;i<result.size();i++){
+//				if(result.get(i).role.equals(role)){
+//	                    k++;
+//				}
+//			}
+			CarMespo[] up = new CarMespo[result.size()];
+//				int p =0;
+			for(int i=0;i<result.size();i++){
+				
+					up[i]=result.get(i);
+					
+				
+			}
+			return up;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
+
+	public boolean addInitCheliang(CarMespo ip) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initcheliang.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<CarMespo> result = (List<CarMespo>) ois.readObject();
+			ois.close();
+			result.add(ip);
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/Initcheliang.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();	     
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+//			System.out.println("success write Staff");
+			return true;
+	}
+
+	public CarMespo[] AllSearchInitAccount() {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/Initcheliang.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<CarMespo> result = (List<CarMespo>) ois.readObject();
+			ois.close();
+			
+//			int k=0;
+//			for(int i=0;i<result.size();i++){
+//				if(result.get(i).role.equals(role)){
+//	                    k++;
+//				}
+//			}
+			CarMespo[] up = new CarMespo[result.size()];
+//				int p =0;
+			for(int i=0;i<result.size();i++){
+				
+					up[i]=result.get(i);
+					
+				
+			}
+			return up;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
+
+	
+		
+	}
+
+	
+

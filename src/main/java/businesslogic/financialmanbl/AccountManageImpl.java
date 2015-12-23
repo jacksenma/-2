@@ -11,16 +11,20 @@ import data.institutiondata.Institution;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
 import data.staffdata.Staff;
+import data.warehousedata.Storing;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.administratorpo.UserMespo;
 import po.bushallsalmanpo.CarLoadingpo;
+import po.bushallsalmanpo.CarMespo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.InitMespo;
 import po.generalmanagepo.Institutionpo;
 import po.otherdatapo.Staffpo;
+import po.stockmanagermanpo.Warningpo;
 import vo.administratorvo.UserAuthorityManagervo;
+import vo.bushallsalmanvo.CarMesManagevo;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.AccountMesvo;
 import vo.financialmanvo.AccountUservo;
@@ -29,6 +33,7 @@ import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.Staffvo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
 
 public class AccountManageImpl extends UnicastRemoteObject implements AccountManageService {
 
@@ -362,29 +367,46 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 	@Override
 	public boolean writeInitKucun() throws RemoteException {
 		// TODO Auto-generated method stub
+		try {
+			Storing fs=new Storing();
+			Warningpo[] ap;
+			ap = fs.AllSearch();
+			if(ap==null)  return false;
+			else{
+				for(int i=0;i<ap.length;i++){
+					boolean a=fs.addInitKucun(ap[i]);
+					if(a==false)
+						return false;
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean writeInitCheliang() throws RemoteException {
 		// TODO Auto-generated method stub
-//		try {
-//			BusinessHall fs=new BusinessHall();
-//			CarLoadingpo[] ap;
-////			ap = fs.AllSearch();
-//			if(ap==null)  return false;
-//			else{
-//				for(int i=0;i<ap.length;i++){
-////					boolean a=fs.addInitCheliang(ap[i]);
-////					if(a==false)
-//						return false;
-//				}
-//				return true;
-//			}
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
+		try {
+			BusinessHall fs=new BusinessHall();
+			CarMespo[] ap;
+			ap = fs.AllSearch();
+			if(ap==null)  return false;
+			else{
+				for(int i=0;i<ap.length;i++){
+					boolean a=fs.addInitCheliang(ap[i]);
+					if(a==false)
+						return false;
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -423,6 +445,52 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 				Staffvo[] uv = new Staffvo[up.length];
 				for(int i=0;i<up.length;i++){
 					Staffvo s = up[i].getStaff();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public CarMesManagevo[] searchAllInitCheliang() throws RemoteException {
+		// TODO Auto-generated method stub
+		BusinessHall as=new BusinessHall();
+		CarMespo[] up;
+		try {
+			up = as.AllSearchInitAccount();
+			if(up==null)  return null;
+			else{
+				CarMesManagevo[] uv = new CarMesManagevo[up.length];
+				for(int i=0;i<up.length;i++){
+					CarMesManagevo s = up[i].getCarMes();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public WarehouseWarningvo[] searchAllInitKucun() throws RemoteException {
+		// TODO Auto-generated method stub
+		Storing as=new Storing();
+		Warningpo[] up;
+		try {
+			up = as.AllSearchInitkucun();
+			if(up==null)  return null;
+			else{
+				WarehouseWarningvo[] uv = new WarehouseWarningvo[up.length];
+				for(int i=0;i<up.length;i++){
+					WarehouseWarningvo s = up[i].getMes();
 					uv[i]= s;
 				}
 				return uv;

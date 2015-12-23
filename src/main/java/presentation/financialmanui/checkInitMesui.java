@@ -5,19 +5,16 @@
  */
 package presentation.financialmanui;
 
-import java.rmi.RemoteException;
-
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.AccountManageService;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
-import data.institutiondata.Institution;
+import vo.bushallsalmanvo.CarMesManagevo;
 import vo.financialmanvo.AccountManagevo;
-import vo.financialmanvo.PaymentInputvo;
-import vo.financialmanvo.RecieveListvo;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.Staffvo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
 
 /**
  *
@@ -41,6 +38,9 @@ public class checkInitMesui extends javax.swing.JFrame {
         AllSearch(as.searchAllInitAccount());
         AllSearch2(as.searchAllInitJigou());
         AllSearch3(as.searchAllInitRenyuan());
+        AllSearch4(as.searchAllInitCheliang());
+        AllSearch5(as.searchAllInitKucun());
+        
     }
     
    
@@ -59,7 +59,7 @@ public class checkInitMesui extends javax.swing.JFrame {
   	    if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 if (!uv[i].money.equals("")){
-  			 s[i]=uv[i].accountName+"                                      "+uv[i].money+"元";}
+  			 s[i]=uv[i].accountName+"                                           "+uv[i].money+"元";}
 
   		 jList5.setModel(new javax.swing.AbstractListModel() {
              String[] strings = s;
@@ -85,7 +85,7 @@ public class checkInitMesui extends javax.swing.JFrame {
   			 else
   				 leibie="营业厅";
   				 
-  			 s[i]=leibie+"    "+uv[i].ID+"    "+uv[i].name+"     "+uv[i].leader;}
+  			 s[i]=leibie+"    "+uv[i].ID+"         "+uv[i].name+"              "+uv[i].leader;}
 
   		 jList2.setModel(new javax.swing.AbstractListModel() {
              String[] strings = s;
@@ -113,7 +113,8 @@ public class checkInitMesui extends javax.swing.JFrame {
 //  			 else
 //  				 leibie="营业厅";
   				 
-  			 s[i]=uv[i].name+"     "+uv[i].id+"     "+uv[i].worktime+"    "+uv[i].workunit+"       "+uv[i].role;}
+  			 s[i]=uv[i].name+"         "+uv[i].id+"        "
+  			 +uv[i].worktime+"        "+uv[i].workunit+"           "+uv[i].role;}
 
   		 jList3.setModel(new javax.swing.AbstractListModel() {
              String[] strings = s;
@@ -122,6 +123,56 @@ public class checkInitMesui extends javax.swing.JFrame {
          });
   	   jList3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   	    jScrollPane3.setViewportView(jList3);
+  		   
+
+  	   }
+  	  
+  	    }
+    }
+    
+    private void AllSearch4(CarMesManagevo[] uv){
+	    final String s[] = new String [100];
+  	    if(uv!=null){	   
+  	   for(int i=0;i<uv.length;i++){
+  		 if (!uv[i].cardaihao.equals("")){
+//  			 String leibie="";
+//  			 if(uv[i].type==0)
+//  				 leibie="中转中心";
+//  			 else
+//  				 leibie="营业厅";
+  				 
+  			 s[i]=uv[i].cardaihao+"    "+uv[i].chepaihao+"       "+uv[i].year+"-"+uv[i].month+"-"+uv[i].day;}
+
+  		 jList4.setModel(new javax.swing.AbstractListModel() {
+             String[] strings = s;
+             public int getSize() { return strings.length; }
+             public Object getElementAt(int i) { return strings[i]; }
+         });
+  	   jList4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  	    jScrollPane4.setViewportView(jList4);
+  		   
+
+  	   }
+  	  
+  	    }
+    }
+    
+    private void AllSearch5(WarehouseWarningvo[] uv){
+	    final String s[] = new String [100];
+  	    if(uv!=null){	   
+  	   for(int i=0;i<uv.length;i++){
+  		 if (!uv[i].warning.equals("")){
+
+  				 
+  			 s[i]=uv[i].warning+"                                   "+uv[i].zhongzhuan+"%";}
+
+  		 jList1.setModel(new javax.swing.AbstractListModel() {
+             String[] strings = s;
+             public int getSize() { return strings.length; }
+             public Object getElementAt(int i) { return strings[i]; }
+         });
+  	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  	    jScrollPane1.setViewportView(jList1);
   		   
 
   	   }
@@ -166,8 +217,11 @@ public class checkInitMesui extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,14 +294,23 @@ public class checkInitMesui extends javax.swing.JFrame {
 
         jLabel20.setText("五、期初库存信息");
 
-        jLabel21.setText("警戒比例：    ");
-
         back.setText("返回");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);
             }
         });
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { " ", " ", " ", " ", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jLabel22.setText("中转中心编号");
+
+        jLabel23.setText("警戒比例");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,15 +371,21 @@ public class checkInitMesui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(299, 299, 299)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel21)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(back)
-                                .addGap(13, 13, 13))))
+                        .addComponent(jLabel20))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(292, 292, 292)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(312, 312, 312)
+                        .addComponent(back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(71, 71, 71)
+                                .addComponent(jLabel23))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -329,14 +398,15 @@ public class checkInitMesui extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,11 +430,15 @@ public class checkInitMesui extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel21)
-                .addGap(47, 47, 47)
                 .addComponent(back)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -430,7 +504,8 @@ public class checkInitMesui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -438,10 +513,12 @@ public class checkInitMesui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
     private javax.swing.JList jList5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

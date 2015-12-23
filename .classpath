@@ -12,22 +12,22 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-ooxml-3.13-20150929.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-ooxml-schemas-3.13-20150929.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-examples-3.13-20150929.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-excelant-3.13-20150929.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-scratchpad-3.13-20150929.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-bin-3.13-20150929/poi-3.13/poi-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-examples-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dlydd/Downloads/poi-ooxml-schemas-3.13-20150929.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

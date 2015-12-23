@@ -33,5 +33,10 @@ public class CarMespo implements Serializable{
         return cme;
     }
 
+	public CarMesManagevo getCarMes() {
+		// TODO Auto-generated method stub
+		return (new CarMesManagevo(cardaihao, chepaihao, year, month, day));
+	}
+
 	
 }
