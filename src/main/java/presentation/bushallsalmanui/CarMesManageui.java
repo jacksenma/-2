@@ -199,9 +199,9 @@ public class CarMesManageui extends javax.swing.JFrame {
         if(c)return;
        boolean d=errorID(cardaihao.getText());
        if(d)return;
-       BushallsalmanService bss = new BusinessHall();
+       
        try {
-		if(bss.searchcar().chepaihao.equals(chepaihao.getText())){
+		if(cms.AllSearch(chepaihao.getText())){
 			   chong();
 			   return;
 		   }

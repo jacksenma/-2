@@ -29,7 +29,7 @@ public interface BushallsalmanService {
 
 	public SendOrderpo getSend(String iD);
 
-	public CarMespo searchcar() throws Exception;
+	public CarMespo[] AllSearch() throws Exception;
 	
 	
 }
