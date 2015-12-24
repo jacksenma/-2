@@ -353,7 +353,7 @@ public class PriceQueryui extends javax.swing.JFrame {
         else if(jRadioButton6.isSelected()) type = 3;
         else if(jRadioButton7.isSelected()) type = 2;
         String ID = "";
-        Othervo other = new Othervo(pack, type, ID);
+        Othervo other = new Othervo(type, pack, ID);
         try {
             String num = jTextField3.getText();
             String volume = jTextField4.getText();
@@ -369,7 +369,10 @@ public class PriceQueryui extends javax.swing.JFrame {
                 missMes();
                 return;
             }
-            
+            if(send.length() < 2 || receive.length() < 2){
+            	cityError();
+            	return;
+            }
             PriceAndTimevo patv = new PriceAndTimevo(send, 
         			receive, goods, other);
         	patv = pqs.getPriceAndTime(patv);
@@ -387,6 +390,10 @@ public class PriceQueryui extends javax.swing.JFrame {
 
         private void negativeInput(){
             JOptionPane.showMessageDialog(null, "输入数量不能为负！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        private void cityError(){
+            JOptionPane.showMessageDialog(null, "城市名至少为两个字！", "输入有误", JOptionPane.ERROR_MESSAGE);
         }
     
         private void numberError(){

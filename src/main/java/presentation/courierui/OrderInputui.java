@@ -498,6 +498,11 @@ public class OrderInputui extends javax.swing.JFrame {
         		negativeInput();
         		return;
         	}
+        	if(sender.address.length() < 2 ||
+        			consignee.address.length() < 2){
+        		cityError();
+        		return;
+        	}
         	PriceAndTimevo patv = new PriceAndTimevo(sender.address, 
         			consignee.address, goods, other);
         	patv = pqs.getPriceAndTime(patv);
@@ -518,6 +523,10 @@ public class OrderInputui extends javax.swing.JFrame {
     
     private void errorID(){
         JOptionPane.showMessageDialog(null, "条形码输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void cityError(){
+        JOptionPane.showMessageDialog(null, "城市名至少为两个字！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     
     private void negativeInput(){
