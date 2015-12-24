@@ -28,6 +28,8 @@ public interface BushallsalmanService {
 	public ReceiveOrderpo getReceive(String iD);
 
 	public SendOrderpo getSend(String iD);
+
+	public CarMespo[] AllSearch() throws Exception;
 	
 	
 }

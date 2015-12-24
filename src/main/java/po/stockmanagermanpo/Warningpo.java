@@ -18,5 +18,8 @@ public class Warningpo implements Serializable{
 		warning=wa.warning;
 		zhongzhuan=wa.zhongzhuan;
 	}
+	public WarehouseWarningvo getMes(){
+		return new WarehouseWarningvo(warning, zhongzhuan);
+	}
 
 }

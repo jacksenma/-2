@@ -30,4 +30,22 @@ public class CarMesManageImpl extends UnicastRemoteObject implements CarMesManag
 		return false;
 	}
 
+	@Override
+	public boolean AllSearch(String string) throws RemoteException {
+		// TODO Auto-generated method stub
+		BushallsalmanService bss = new BusinessHall();
+		try{
+			CarMespo[] cmpo = bss.AllSearch();
+			for(int i=0;i<cmpo.length;i++){
+				if(cmpo[i].chepaihao.equals(string)){
+					return true;
+				}
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.CarMesManageService;
+import data.institutiondata.BusinessHall;
+import dataservice.bushallsalmandataservice.BushallsalmanService;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.CarMesManagevo;
 
@@ -197,8 +199,16 @@ public class CarMesManageui extends javax.swing.JFrame {
         if(c)return;
        boolean d=errorID(cardaihao.getText());
        if(d)return;
-//        boolean e1=errorID(chepaihao.getText());
-//        if(e1)return;
+       
+       try {
+		if(cms.AllSearch(chepaihao.getText())){
+			   chong();
+			   return;
+		   }
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
         try {
             boolean a1 = cms.inputVehicle(carMesManage);
             if(a1){
@@ -217,6 +227,11 @@ public class CarMesManageui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
+	private void chong() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "车牌号输入重复！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private void errormiss() {
 		// TODO Auto-generated method stub
@@ -240,7 +255,7 @@ public class CarMesManageui extends javax.swing.JFrame {
     }
 	private void errorcphID() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "车牌号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "车牌号输入错误！应输入如苏A00001", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
 
 	/**

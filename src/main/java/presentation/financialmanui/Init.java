@@ -52,7 +52,7 @@ public class Init extends javax.swing.JFrame {
         accout = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jigou.setText("期初机构设置");
         jigou.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,10 +158,10 @@ public class Init extends javax.swing.JFrame {
     		return;//未写完机构，只到bl层
     	}
 //         库存
-//    	if(!as.writeInitKucun()){
-//    		missKucun();
-//    		return;//未写完机构，只到bl层
-//    	}
+    	if(!as.writeInitKucun()){
+    		missKucun();
+    		return;//未写完机构，只到bl层
+    	}
 //         银行账户
         if(!as.writeInitAccount()){
         	missAccount();
@@ -170,10 +170,10 @@ public class Init extends javax.swing.JFrame {
         }
         	
 //         车辆
-//        if(!as.writeInitCheliang()){
-//        	missCheliang();
-//        	return;
-//        }
+        if(!as.writeInitCheliang()){
+        	missCheliang();
+        	return;
+        }
     	
     	
     	
