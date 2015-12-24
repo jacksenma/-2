@@ -76,7 +76,7 @@ public class CashRegisterui extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         zhanghu = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("收款日期：");
 
