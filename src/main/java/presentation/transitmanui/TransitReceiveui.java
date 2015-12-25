@@ -7,6 +7,7 @@ package presentation.transitmanui;
 
 import RMI.client.RMIClient;
 import blservice.courierblservice.OrderInputService;
+import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import blservice.queryblservice.QueryService;
 import blservice.transitsalmanblservice.TransitReceiveService;
 import vo.couriervo.Datevo;
@@ -239,6 +240,17 @@ public class TransitReceiveui extends javax.swing.JFrame {
             errorcenID();
             return;
         }
+        StaffInstitutionManagerService sms = 
+        		RMIClient.getStaffInstitutionManagerService();
+        try {
+			if(sms.showInstitutions(cenID) == null) {
+				NullCen();
+				return;
+			}
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         try{
         	Datevo date = new Datevo(Integer.parseInt(jTextField2.getText()), 
     				Integer.parseInt(jTextField3.getText()),
@@ -285,7 +297,12 @@ public class TransitReceiveui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     
-    private void dateError2() {
+    private void NullCen() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该编号的中转中心！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void dateError2() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

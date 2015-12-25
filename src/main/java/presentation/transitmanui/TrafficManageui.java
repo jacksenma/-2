@@ -7,6 +7,7 @@ package presentation.transitmanui;
 
 import RMI.client.RMIClient;
 import blservice.courierblservice.OrderInputService;
+import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import blservice.transitsalmanblservice.TrafficMesManageService;
 import blservice.transitsalmanblservice.TransitReceiveService;
 import vo.couriervo.Datevo;
@@ -329,6 +330,17 @@ public class TrafficManageui extends javax.swing.JFrame {
             errorCenID();
             return;
         }
+        StaffInstitutionManagerService sms = 
+        		RMIClient.getStaffInstitutionManagerService();
+        try {
+			if(sms.showInstitutions(cenID) == null){
+				NullCen();
+				return;
+			}
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         String begin = jTextField5.getText();
         String target = jTextField6.getText();
         String tafficId = vehicleID.getText();
@@ -374,7 +386,12 @@ public class TrafficManageui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void NullCen() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该编号的中转中心！", "输入失败", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
         new InputID(this);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked

@@ -8,6 +8,7 @@ package presentation.courierui;
 import RMI.client.RMIClient;
 import blservice.courierblservice.OrderInputService;
 import blservice.courierblservice.PriceQueryService;
+import blservice.queryblservice.QueryService;
 
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -19,6 +20,8 @@ import vo.couriervo.OrderInputvo;
 import vo.couriervo.Othervo;
 import vo.couriervo.Personvo;
 import vo.couriervo.PriceAndTimevo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
 
 /**
  *
@@ -29,6 +32,12 @@ public class OrderInputui extends javax.swing.JFrame {
     static OrderInputService ois;
     
     static PriceQueryService pqs;
+    
+    static QueryService os;
+    
+    boolean isChange = false;
+    
+    QueryOrdervo qovo;
     /**
      * Creates new form OrderInputui
      * @throws Exception 
@@ -42,6 +51,52 @@ public class OrderInputui extends javax.swing.JFrame {
         pqs = RMIClient.getPriceQueryService();
     }
 
+    public OrderInputui(String s) {
+    	os = RMIClient.getQueryService();
+    	QueryOrdervo q = null;
+		try {
+			q = os.checkOrder(new Queryvo(s));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        try {
+			RMIClient.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        ois = RMIClient.getOrderInputService();
+        pqs = RMIClient.getPriceQueryService();
+        isChange = true;
+        qovo = q;
+        OrderInit(q);
+    }
+    
+    private void OrderInit(QueryOrdervo q){
+    	senderName.setText(q.getSenderName());
+    	senderCompany.setText(q.getSenderUnit());
+    	senderPhone.setText(q.getSenderPhone());
+    	senderTele.setText(q.getSenderTelephone());
+    	senderAddress.setText(q.getSenderAddress());
+    	
+    	consigneeName.setText(q.getConsigneeName());
+    	consigneeAddress.setText(q.getConsigneeAddress());
+    	consigneeCompany.setText(q.getConsigneeUnit());
+    	consigneePhone.setText(q.getConsigneePhone());
+    	consigneeTele.setText(q.getConsigneeTelephone());
+    	
+    	goodsName.setText(q.getGoodsName());
+    	volume.setText(q.getGoodsVolume() + "");
+    	weight.setText(q.getGoodsWeight() + "");
+    	num.setText(q.getNumberOfGoods() + "");
+    	
+    	jTextField15.setText(q.getID());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -494,6 +549,17 @@ public class OrderInputui extends javax.swing.JFrame {
         		missMes();
         		return;
         	}
+        	if(sender.telephone.length() != 11 
+        			|| consignee.telephone.length() != 11) 
+        	{
+        		errorTele();
+        		return;
+        	}
+        	if(!checkNum(sender.telephone) || !checkNum(sender.phone) 
+        			|| !checkNum(consignee.phone) || !checkNum(consignee.telephone)){
+        		errorPhone();
+        		return;
+        	}
         	if(ois.hasNegative(goods)){
         		negativeInput();
         		return;
@@ -517,7 +583,27 @@ public class OrderInputui extends javax.swing.JFrame {
   	   }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void missMes(){
+    private void errorPhone() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "手机和电话号码均为数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean checkNum(String telephone) {
+		// TODO Auto-generated method stub
+		for(int i = 0 ; i < telephone.length(); i++){
+        	if(!(telephone.charAt(i) >= '0' && telephone.charAt(i) <= '9')){
+        		return false;
+        	}
+        }
+		return true;
+	}
+
+	private void errorTele() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "手机为十一位数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void missMes(){
         JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     

@@ -9,6 +9,7 @@ import businesslogic.generalmanagerbl.ConstantFormulateImpl;
 import data.orderdata.OrderIO;
 import dataservice.courierdataservice.CourierService;
 import po.courierpo.ExpressTypepo;
+import po.courierpo.PackingTypepo;
 import po.courierpo.PriceAndTimepo;
 import vo.couriervo.Datevo;
 import vo.couriervo.PriceAndTimevo;
@@ -28,6 +29,11 @@ public class PriceQueryImpl extends UnicastRemoteObject implements PriceQuerySer
 		Constancyvo csvo = cfi.showConstancy();
 		p.price = csvo.standardprice;
 		PriceAndTimepo ptpo = new PriceAndTimepo(p);
+		if(ptpo.pt == PackingTypepo.WoodBox) p.price *= 2.3;
+		else if(ptpo.pt == PackingTypepo.Bag) p.price *= 1.6;
+		else if(ptpo.pt == PackingTypepo.Paper) p.price *= 1.3;
+		if(ptpo.goods.weight > 5) p.price += (ptpo.goods.weight - 5) * 0.3;
+		if(ptpo.goods.volume > 2) p.price += (ptpo.goods.volume - 2) * 0.2;
 		if(ptpo.et == ExpressTypepo.Economic) p.price = 
 				p.price / 23 * 18;
 		else if(ptpo.et == ExpressTypepo.SpecialExpress) p.price =

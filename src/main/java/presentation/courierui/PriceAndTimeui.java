@@ -28,6 +28,8 @@ public class PriceAndTimeui extends javax.swing.JFrame {
     
     PriceAndTimevo pato;
     
+    OrderInputui oiui;
+    
     public PriceAndTimeui(OrderInputui o, PriceAndTimevo p, OrderInputvo oivo) {
         initComponents();
         this.setVisible(true);
@@ -40,6 +42,7 @@ public class PriceAndTimeui extends javax.swing.JFrame {
         ois = o.ois;
         oiv = oivo;
         pato = p;
+        oiui = o;
     }
     
     public PriceAndTimeui(PriceQueryui o, PriceAndTimevo p) {
@@ -163,6 +166,7 @@ public class PriceAndTimeui extends javax.swing.JFrame {
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
+                oiui.dispose();
                 this.dispose();
             }
             else{

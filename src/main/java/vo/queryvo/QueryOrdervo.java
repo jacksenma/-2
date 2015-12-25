@@ -82,6 +82,14 @@ public class QueryOrdervo implements Serializable {
         return co.getGoodMes().num;
     }
     
+    public double getGoodsWeight() {
+    	return co.getGoodMes().weight;
+    }
+    
+    public double getGoodsVolume() {
+    	return co.getGoodMes().volume;
+    }
+    
     public String getGoodsName() {
         return co.getGoodMes().name;
     }
