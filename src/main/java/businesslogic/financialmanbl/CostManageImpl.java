@@ -7,7 +7,9 @@ import blservice.financialmanblservice.CostManageService;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
 import data.safetydata.RecordIO;
+import data.warehousedata.Storing;
 import dataservice.financialmandataservice.FinancialmanService;
+import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.Recordpo;
@@ -62,9 +64,19 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		return null;
 	}
 
-	public boolean daochu() {
+	@Override
+	public void daochu(String year,String month,String day,String idd,String shouru,String zhichu,String lirun,int i) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		FinancialmanService fms = new RecieveListIO();
+		try {
+			fms.Daochu( year, month, day, idd,shouru,zhichu,lirun,i);
+				
+			//System.out.println("sssss");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public CostManagevo profit() {

@@ -176,7 +176,7 @@ public class CostManageui extends javax.swing.JFrame {
      	 result=cm.getIncome(ss,sp,count,chu);
          
 //     	new CostIncome().setVisible(true);     
-   new CostIncome(result[0],result[1],result[2]).setVisible(true);
+   new CostIncome(result[0],result[1],result[2],year2,month2,day2).setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked

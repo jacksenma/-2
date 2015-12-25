@@ -40,6 +40,8 @@ public interface CostManageService extends Remote {
 
 	public int[] getIncome(String[] ss, String[] sp, int count, int chu)throws RemoteException;
 
+	public void daochu(String year,String month,String day,String idd, String shouru, String zhichu1, String lirun, int i)throws RemoteException;
+
 	
 	
 }

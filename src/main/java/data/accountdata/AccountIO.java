@@ -511,4 +511,10 @@ public class AccountIO implements FinancialmanService{
 			} 
 		return null;
 	}
+	@Override
+	public void Daochu(String year,String month,String day,String idd,String a,String b,String c,int i) throws Exception {
+//		return false;
+		// TODO Auto-generated method stub
+		
+	}
 }

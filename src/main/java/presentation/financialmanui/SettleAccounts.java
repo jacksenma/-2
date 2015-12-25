@@ -35,7 +35,7 @@ public class SettleAccounts extends javax.swing.JFrame {
          this.setVisible(true);
          RMIClient.init();
          sms = RMIClient.getSettlementManageService();
-         create.setVisible(false);
+
     }
 
     /**
@@ -65,7 +65,6 @@ public class SettleAccounts extends javax.swing.JFrame {
         money = new javax.swing.JTextField();
         ad = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
-        create = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         save = new javax.swing.JButton();
 
@@ -130,7 +129,7 @@ public class SettleAccounts extends javax.swing.JFrame {
                             .addComponent(unit2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,19 +166,7 @@ public class SettleAccounts extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        create.setText("新建");
-        create.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-					createMouseClicked(evt);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        });
-
-        exit.setText("退出");
+        exit.setText("返回");
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -206,13 +193,11 @@ public class SettleAccounts extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(create)
-                .addGap(18, 18, 18)
+                .addGap(90, 90, 90)
                 .addComponent(save)
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addComponent(exit)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +205,6 @@ public class SettleAccounts extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(create)
                     .addComponent(exit)
                     .addComponent(save))
                 .addGap(0, 13, Short.MAX_VALUE))
@@ -233,12 +217,6 @@ public class SettleAccounts extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_exitMouseClicked
-
-    private void createMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_createMouseClicked
-        // TODO add your handling code here:
-    	this.dispose();
-    	new SettleAccounts().setVisible(true);
-    }//GEN-LAST:event_createMouseClicked
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
@@ -378,7 +356,6 @@ public class SettleAccounts extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ad;
     private javax.swing.JTextField address;
-    private javax.swing.JButton create;
     private javax.swing.JLabel danwei;
     private javax.swing.JTextField day;
     private javax.swing.JButton exit;

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package presentation.financialmanui;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,14 +22,18 @@ import vo.financialmanvo.RecieveListvo;
  */
 public class CostIncome extends javax.swing.JFrame {
 	static CostManageService cm;
+	static String year,month,day,zhichu1,shouru,lirun;
 	
     /**
      * Creates new form CostIncome
      * @param shouyi 
      * @param zhichu 
      * @param shou 
+     * @param day2 
+     * @param month2 
+     * @param year2 
      */
-    public CostIncome(int shou, int zhichu, int shouyi) throws Exception {
+    public CostIncome(int shou, int zhichu, int shouyi, String year2, String month2, String day2) throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
          setResizable(false);
@@ -38,7 +43,15 @@ public class CostIncome extends javax.swing.JFrame {
          receive.setText(shou+"");
          payment.setText(zhichu+"");
          profit.setText(shouyi+"");
-         jButton1.setVisible(false);
+         daochu.setVisible(true);
+         year=year2;
+         month=month2;
+         day=day2;
+         shouru=Integer.toString(shou);
+         zhichu1=Integer.toString(zhichu);
+         lirun=Integer.toString(shouyi);
+         
+         
     }
     
 
@@ -61,10 +74,10 @@ public class CostIncome extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        daochu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("成本收益表"));
 
@@ -110,7 +123,7 @@ public class CostIncome extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +146,12 @@ public class CostIncome extends javax.swing.JFrame {
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
-        jButton1.setText("导出");
+        daochu.setText("导出Excel");
+        daochu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daochuMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("退出");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,11 +166,11 @@ public class CostIncome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jButton1)
-                .addGap(43, 43, 43)
+                .addGap(71, 71, 71)
+                .addComponent(daochu)
+                .addGap(36, 36, 36)
                 .addComponent(jButton2)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +178,7 @@ public class CostIncome extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(daochu)
                     .addComponent(jButton2))
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -172,6 +190,16 @@ public class CostIncome extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void daochuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daochuMouseClicked
+        // TODO add your handling code here:
+    	try {
+			cm.daochu(year, month, day, null,shouru,zhichu1,lirun,2);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_daochuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -209,7 +237,7 @@ public class CostIncome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton daochu;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

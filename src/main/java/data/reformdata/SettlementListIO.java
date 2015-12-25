@@ -215,6 +215,14 @@ public class SettlementListIO implements  FinancialmanService {
 	}
 
 
+	@Override
+	public void Daochu(String year,String month,String day,String idd,String a,String b,String c,int i) throws Exception {
+//		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+
 //	public boolean getOrder2(IncomeInputvo iivo) throws RemoteException {
 //		// TODO Auto-generated method stub
 //		return false;

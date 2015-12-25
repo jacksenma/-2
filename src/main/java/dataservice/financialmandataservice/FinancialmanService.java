@@ -37,6 +37,7 @@ public interface FinancialmanService {
 	public void writeInit()throws Exception;
 	public boolean addInitAccount(Accountpo accountpo)throws Exception;
 	public Accountpo[] AllSearchInitAccount()throws Exception;
+	public void Daochu(String year,String month,String day,String idd, String shouru, String zhichu, String lirun, int i)throws Exception;
 	
 
 }
