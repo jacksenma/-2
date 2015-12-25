@@ -300,8 +300,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6MouseClicked
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) throws Exception {                                     
-			
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) throws Exception {                                     	
         	new OrderExamineui().setVisible(true);
 			// TODO Auto-generated catch block
 
