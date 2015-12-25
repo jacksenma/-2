@@ -142,9 +142,23 @@ public void showbytype(String s[],String type){                 //显示待审�
         jScrollPane1.setViewportView(jList1);
 
         selectall.setText("全选");
+        selectall.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectallMouseClicked(evt);
+            }
+        });
 
         approve.setText("审批通过");
-
+        approve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+					approveMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
         expressorder.setText("快递单");
         expressorder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,7 +407,43 @@ public void showbytype(String s[],String type){                 //显示待审�
     	showbytype(oes.showpaymentorder(),"付款单");
     }//GEN-LAST:event_paymentorderMouseClicked
 
-    /**
+    private void approveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_paymentorderMouseClicked
+        // TODO add your handling code here:
+    	int selected[] = jList1.getSelectedIndices();
+		for(int i=0;i<selected.length;i++)
+			approve((String)jList1.getModel().getElementAt(0));
+		JOptionPane.showMessageDialog(null, "审批成功", "成功", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_paymentorderMouseClicked
+
+	private void approve(String s) throws RemoteException {
+		// TODO Auto-generated method stub
+		String split[] = s.split("     ");
+	switch(split[0]){
+	case "快递单":oes.approveexpressorder(split[1]); showbytype(oes.showexpressorder(),"快递单"); 
+	break;
+	case "装车单":oes.approvecarloadingorde(split[1]); showbytype(oes.showcarloadingorder(),"装车单");
+    break;         
+	case "营业厅到达单":oes.approvecarloadingorde(split[1]);showbytype(oes.showyingyetingorder(),"营业厅到达单"); 
+    break;  
+	case "收款单":oes.approvecarshoukuanorder(split[1]); showbytype(oes.showshoukuanorder(),"收款单");
+    break;  
+	case "中转单":oes.approvezhongzhuanorder(split[1]); showbytype(oes.showzhongzhuanorder(),"中转单");
+    break;  
+	case "派件单":oes.approvepaijianorder(split[1]);showbytype(oes.showpaijianorder(),"派件单"); showbytype(oes.showpaijianorder(),"派件单");
+    break;  
+	case "中转中心到达单":oes.approvezhongzhuanzhongxinorder(split[1]); showbytype(oes.showzhongzhuanzhongxinorder(),"中转中心到达单");
+    break;  
+	case "入库单":oes.approveinstockorder(split[1]); showbytype(oes.showinstockorder(),"入库单");
+    break;  
+	case "出库单":oes.approveoutstockorder(split[1]); showbytype(oes.showoutstockorder(),"出库单");
+    break;  
+	case "付款单":oes.approvepaymentorder(split[1]); showbytype(oes.showpaymentorder(),"付款单");
+    break;  
+                
+	}
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
