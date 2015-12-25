@@ -47,8 +47,8 @@ public class recordui extends javax.swing.JFrame {
 	String time3=format3.format(date3);
 	
 	
-	
-    public recordui() throws Exception {
+	static String name;
+    public recordui(String n) throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -58,6 +58,7 @@ public class recordui extends javax.swing.JFrame {
         year.setText(time1);
         month.setText(time2);
         day.setText(time3);
+        name=n;
     }
     
     private void SearchAllRecord(Recordvo[] rv){
@@ -233,7 +234,7 @@ public class recordui extends javax.swing.JFrame {
     	String mes1=year.getText();
     	String mes2=month.getText();
     	String mes3=day.getText();
-    	String mes4=behavior.getText();
+    	String mes4=name+":"+behavior.getText();
     	
     	//完整性
     	if(mes1.equals("")||mes2.equals("")||mes3.equals("")||mes4.equals("")){
@@ -347,16 +348,13 @@ public class recordui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-					new recordui().setVisible(true);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                
+//					new recordui(time1).setVisible(true);
+//				
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
