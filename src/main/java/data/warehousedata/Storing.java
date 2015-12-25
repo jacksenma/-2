@@ -139,6 +139,27 @@ public class Storing implements StockManagermanService {
 		return true;
 	}
 
+	public boolean tiaozheng(InStoringpo ipo) throws Exception{
+		FileInputStream fis1 = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois1 = new ObjectInputStream(fis1);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> list1 = (List<InStoringpo>) ois1.readObject();
+		for(int i=0;i<list1.size();i++){
+			if(((list1.get(i)).weihao).equals(ipo.weihao)&&((list1.get(i)).quhao).equals(ipo.quhao)&&((list1.get(i)).paihao).equals(ipo.paihao)
+					&&((list1.get(i)).jiahao).equals(ipo.jiahao)){
+				list1.remove(i);
+				i--;
+				//System.out.println("Delete ");
+			}}
+		ois1.close();
+        FileOutputStream fos1 = 
+				new FileOutputStream("src/main/java/data/save/instock.txt");
+		ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
+		oos1.writeObject(list1);
+		oos1.close();
+
+		return true;
+	}
 	public boolean out(OutStoringpo opo) throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/outstock.txt");

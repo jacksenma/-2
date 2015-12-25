@@ -35,6 +35,7 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
         initComponents();
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
+        this.setVisible(true);
     }
 
     /**
@@ -344,11 +345,11 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BushallsalmanMainui("dd" , "141250032").setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BushallsalmanMainui("dd" , "141250032").setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
