@@ -18,6 +18,7 @@ import presentation.bushallsalmanui.ChangeCarLoading;
 import presentation.bushallsalmanui.ChangeCashRegister;
 import presentation.bushallsalmanui.ChangeReceive;
 import presentation.bushallsalmanui.ChangeSend;
+import presentation.courierui.OrderInputui;
 import presentation.financialmanui.CheckPaymentListui;
 import presentation.stockmanagermanui.ChangeOutFromStock;
 import presentation.stockmanagermanui.ChangePutInStore;
@@ -92,7 +93,7 @@ public void showbytype(String s[],String type){                 //显示待审�
 		String split[] = o.split("     ");
 		System.out.println(split[0]);
 		switch(split[0]){
-		case"快递单":break;
+		case"快递单":new OrderInputui(split[1]).setVisible(true);break;
 		case"营业厅到达单":new ChangeReceive(split[1]).setVisible(true); break;
 		case"装车单":new ChangeCarLoading(split[1]).setVisible(true);break;
 		case"收款单":new ChangeCashRegister(split[1]).setVisible(true);break;
