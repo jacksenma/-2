@@ -109,7 +109,7 @@ public class Staffadd extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
 					saveMouseClicked(evt);
-				} catch (RemoteException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -247,7 +247,7 @@ public class Staffadd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_workunitActionPerformed
 
-    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_saveMouseClicked
+    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
     	String role="";
     	if(courier.isSelected())
@@ -268,6 +268,9 @@ public class Staffadd extends javax.swing.JFrame {
     		role="总经理";
     	sims.addStaff(new Staffvo(name.getText(),ID.getText(),worktime.getText(),workunit.getText(),role));
     	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
+    	this.dispose();
+    	
+			new Staffadd().setVisible(true);
     }//GEN-LAST:event_saveMouseClicked
 
     /**

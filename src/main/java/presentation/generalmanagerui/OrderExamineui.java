@@ -279,7 +279,6 @@ public void showbytype(String s[],String type){                 //显示待审�
             }
         });
 
-        jLabel1.setText("ctrl+左击 多选");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

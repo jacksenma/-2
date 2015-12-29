@@ -159,7 +159,7 @@ public class Institutionadd extends javax.swing.JFrame {
     	}
     	JOptionPane.showMessageDialog(null, "写入成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     	this.dispose();
-    	new Institutionadd().setVisible(true);
+//    	new Institutionadd().setVisible(true);
     }//GEN-LAST:event_saveMouseClicked
 
     private boolean isvalid(int type, String text) {
