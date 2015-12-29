@@ -35,6 +35,7 @@ public class PriceQueryui extends javax.swing.JFrame {
     public PriceQueryui() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         try {
 			RMIClient.init();

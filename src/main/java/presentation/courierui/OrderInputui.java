@@ -45,6 +45,7 @@ public class OrderInputui extends javax.swing.JFrame {
     public OrderInputui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         RMIClient.init();
         ois = RMIClient.getOrderInputService();

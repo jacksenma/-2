@@ -141,7 +141,7 @@ public class QueryAccount extends javax.swing.JFrame {
         jq = new javax.swing.JTextField();
         queryJ = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("输入关键字（模糊查找）：");
 
@@ -309,22 +309,12 @@ public class QueryAccount extends javax.swing.JFrame {
     	AccountMesvo qvo=new AccountMesvo(nameOfAccount);
         AccountUservo avo=as.findUsers(qvo);
     	if(avo == null) {
-//            error.setText("不存在该账户！");
-//            this.error.setVisible(true);
+
     		noFind();
             return;
         }
         try {
-//        	int Re=0;
-//        	for(int i=0;i<jqRecount;i++){
-//        		Re+=Integer.parseInt(jqRe[i]);
-//        	}
-//        	int Pay=0;
-//        	for(int i=0;i<jqPaycount;i++){
-//        		Pay+=Integer.parseInt(jqPay[i]);
-//        	}
-//        	System.out.println(Re+"     "+Pay);
-//        	int m=(Integer.parseInt(avo.getMoney())+Re-Pay);
+
         	int m=as.getZong(Integer.parseInt(avo.getMoney()),jqPay,jqRe,jqRecount,jqPaycount);
         	
         	

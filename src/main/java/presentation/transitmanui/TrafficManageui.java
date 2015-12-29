@@ -34,6 +34,7 @@ public class TrafficManageui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         carryer.setVisible(false);
         carryerName.setVisible(false);
         RMIClient.init();

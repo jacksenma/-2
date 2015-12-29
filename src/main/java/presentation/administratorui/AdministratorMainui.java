@@ -17,12 +17,14 @@ public class AdministratorMainui extends javax.swing.JFrame {
      * Creates new form AdministratorMainui
      */
     public AdministratorMainui(String name, String ID) {
+
     	this.setLocationRelativeTo(null);
         initComponents();
         setResizable(false);
         this.setVisible(true);
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
+//   	    jLabel4.setVisible(false);
         try {
 			RMIClient.init();
 		} catch (Exception e) {
@@ -52,7 +54,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("职位：管理员");
 
@@ -75,7 +77,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
         });
 
         jLabel4.setIcon(new javax.swing.ImageIcon("imag/mie3.gif"));
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("");
 
         jMenu1.setText("File");
 

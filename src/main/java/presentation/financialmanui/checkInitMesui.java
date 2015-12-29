@@ -107,11 +107,7 @@ public class checkInitMesui extends javax.swing.JFrame {
   	    if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 if (!uv[i].id.equals("")){
-//  			 String leibie="";
-//  			 if(uv[i].type==0)
-//  				 leibie="中转中心";
-//  			 else
-//  				 leibie="营业厅";
+
   				 
   			 s[i]=uv[i].name+"         "+uv[i].id+"        "
   			 +uv[i].worktime+"        "+uv[i].workunit+"           "+uv[i].role;}
@@ -135,11 +131,7 @@ public class checkInitMesui extends javax.swing.JFrame {
   	    if(uv!=null){	   
   	   for(int i=0;i<uv.length;i++){
   		 if (!uv[i].cardaihao.equals("")){
-//  			 String leibie="";
-//  			 if(uv[i].type==0)
-//  				 leibie="中转中心";
-//  			 else
-//  				 leibie="营业厅";
+
   				 
   			 s[i]=uv[i].cardaihao+"    "+uv[i].chepaihao+"       "+uv[i].year+"-"+uv[i].month+"-"+uv[i].day;}
 
@@ -223,7 +215,7 @@ public class checkInitMesui extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
         jLabel1.setText("期初信息展示");

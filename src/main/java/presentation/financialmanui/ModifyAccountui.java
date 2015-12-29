@@ -141,6 +141,7 @@ public class ModifyAccountui extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }//GEN-LAST:event_OKMouseClicked
+    
     private void missMes(){
       	 JOptionPane.showMessageDialog(null, "信息输入不完整", "输入有误", JOptionPane.ERROR_MESSAGE);
       }
@@ -173,11 +174,7 @@ public class ModifyAccountui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ModifyAccountui().setVisible(true);
-//            }
-//        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

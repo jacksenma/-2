@@ -195,6 +195,7 @@ public class AddAccount extends javax.swing.JFrame {
              Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
          }
     }//GEN-LAST:event_OKMouseClicked
+   
     private void missMes(){
         JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
@@ -229,17 +230,7 @@ public class AddAccount extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//					new AddAccount().setVisible(true);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//            }
-//        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

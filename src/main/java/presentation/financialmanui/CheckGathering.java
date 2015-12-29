@@ -36,18 +36,18 @@ public class CheckGathering extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
-//        System.out.println("sssss");
+
     }
-//    static final String s[] = new String [100];
+
     static final String ss[] = new String [100];//计算合计收款单
     static final String sp[] = new String [100];//计算合计付款单
     static  int count=0;
     static  int chu=0;
-//    static final RecieveListvo[] v=new String [100];
+
     private void SearchAll(RecieveListvo[] uv){
     	
     	int j=0;
-//  	   final String s[] = new String [100];
+
   	   if(uv!=null){	
   		final String s[] = new String [100];
   	   for(int i=0;i<uv.length;i++){
@@ -70,18 +70,7 @@ public class CheckGathering extends javax.swing.JFrame {
     
     
     
-//    private void SearchAll2(PaymentInputvo[] pv){
-////    	int z=0;
-//    	   final String s1[] = new String [100];
-//    	   if(pv!=null){	   
-//    	   for(int i=0;i<pv.length;i++){
-//    		   s1[i]=pv[i].date.year+"-"+pv[i].date.mouth+"-"+pv[i].date.day+"                 "+pv[i].pay.money+"元"+"                    "
-//    				   +pv[i].pay.account;
-//    		   sp[i]=pv[i].pay.money;
-//    		   chu++;
-//    	   }
-//    	  
-//    	    }}
+
     
     
    
@@ -122,7 +111,7 @@ public class CheckGathering extends javax.swing.JFrame {
 
         jLabel13.setText("jLabel13");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("日期：");
 
@@ -160,7 +149,7 @@ public class CheckGathering extends javax.swing.JFrame {
         });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " ", " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -438,13 +427,7 @@ public class CheckGathering extends javax.swing.JFrame {
     private void hejiMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_hejiMouseClicked
         // TODO add your handling code here:
 
-    	//算合计的时候在UI层直接算还是到logic里面算好再传回来！！！！！！！！！！！！！！！！！！！！！！！
-//    	int sum=0;
-//    	int q=count;
-//    	
-//    	for(int i=0;i<q;i++){
-//    		sum+=Integer.parseInt(ss[i]);
-//    	}
+
     	if(isOk){
     		int sum=cm.getSum(ss,count);
         	receive.setText("合计金额：  "+sum+" 元");
@@ -469,11 +452,7 @@ public class CheckGathering extends javax.swing.JFrame {
     	}
     		
     	
-//    	if(a==false){
-//    		Error();
-//    		return;
-//    	}
-//    	else
+
     		
     		
     		

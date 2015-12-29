@@ -128,7 +128,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         daochu = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("开始日期：");
 
@@ -174,7 +174,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         jLabel9.setText("期间收款单信息");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " ", " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -189,7 +189,7 @@ public class StatisticsListui extends javax.swing.JFrame {
         jLabel13.setText("期间付款单信息");
 
         jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " ", " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

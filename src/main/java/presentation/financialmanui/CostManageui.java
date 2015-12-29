@@ -40,7 +40,7 @@ public class CostManageui extends javax.swing.JFrame {
     static  int chu=0;
     
     private void SearchAll1(RecieveListvo[] uv){
-//    	   final String s[] = new String [100];
+
     	int j1=0;
     	   if(uv!=null){	   
     	   for(int i=0;i<uv.length;i++){
@@ -53,7 +53,7 @@ public class CostManageui extends javax.swing.JFrame {
     	    }}
      
      private void SearchAll2(PaymentInputvo[] pv){
-//    	   final String s1[] = new String [100];
+
     	 int j2=0;
     	   if(pv!=null){	   
     	   for(int i=0;i<pv.length;i++){

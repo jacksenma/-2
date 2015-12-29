@@ -27,6 +27,7 @@ public class TransitmanMainui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
     
     public TransitmanMainui(String name , String ID) {
