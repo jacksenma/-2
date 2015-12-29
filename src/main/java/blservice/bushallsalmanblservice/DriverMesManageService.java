@@ -11,6 +11,11 @@ public interface DriverMesManageService extends Remote {
 
 	
 			
-    //司机信息输入
+    /**司机信息输入
+     * 
+     * @param drivermesmanage
+     * @return
+     * @throws RemoteException
+     */
 	public boolean inputdriver(DriverMesManagevo drivermesmanage)throws RemoteException;
 }

@@ -13,15 +13,31 @@ import vo.queryvo.QueryOrdervo;
 
 public interface ReceiveSendService extends Remote {
 
-	//接收单输入
+	/**接收单输入
+	 * 
+	 * @param receive
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean inputreceive(Receivevo receive)
 			throws RemoteException;
 	
-	//派件单输入
+	/**派件单输入
+	 * 
+	 * @param send
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean inputsend(Sendvo send)
 			throws RemoteException;
 
-	//收件单日期输入检验
+	/**收件单日期输入检验
+	 * 
+	 * @param receive1
+	 * @param qovo
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean checkDate(Receivevo1 receive1, QueryOrdervo qovo)
 	        throws RemoteException;
 

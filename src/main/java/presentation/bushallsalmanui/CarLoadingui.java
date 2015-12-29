@@ -379,6 +379,12 @@ public class CarLoadingui extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
+                try {
+					new CarLoadingui();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
             else{
                 JOptionPane.showMessageDialog(null, "写入失败", "失败！", 
