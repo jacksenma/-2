@@ -18,6 +18,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
     /**
      * Creates new form FinancialMainui
      */
+	static String N;
     public GeneralManagerMainui(String n,String id) {
         initComponents();
         this.setVisible(true);
@@ -25,6 +26,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         account.setText("账号："+id);
         this.setLocationRelativeTo(null);
         setResizable(false);
+        N=n;
     }
 
     /**
@@ -54,7 +56,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("职位：总经理");
 
@@ -314,7 +316,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
 
     private void recordMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_recordMouseClicked
         // TODO add your handling code here:
-    	new recordui().setVisible(true);
+    	new recordui(N).setVisible(true);
     }//GEN-LAST:event_recordMouseClicked
 
     /**

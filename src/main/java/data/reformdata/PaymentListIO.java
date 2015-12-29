@@ -7,6 +7,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import dataservice.financialmandataservice.FinancialmanService;
 import dataservice.generalmanagerdataservice.OrderService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
@@ -15,7 +21,9 @@ import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.ExamineType;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.RecieveListpo;
 import po.financialmanpo.Recordpo;
+import vo.financialmanvo.RecieveListvo;
 
 public class PaymentListIO implements FinancialmanService, OrderService {
 
@@ -458,6 +466,107 @@ public class PaymentListIO implements FinancialmanService, OrderService {
 	public Accountpo[] AllSearchInitAccount() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void Daochu(String year,String month,String day,String idd,String a,String b,String c,int i) throws Exception {
+//		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void DaochuRe(RecieveListpo[] rp, String a, String b) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DaochuPay(CostOrderpo[] sp, String pre, String pro) throws Exception {
+		// TODO Auto-generated method stub
+		HSSFWorkbook wb = new HSSFWorkbook();  
+		HSSFSheet sheet = wb.createSheet("付款单信息表");  
+		HSSFRow row = sheet.createRow((int) 0);  
+		HSSFCellStyle style = wb.createCellStyle();  
+	    style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+	    HSSFCell cell = row.createCell((short) 0);  
+	     cell.setCellValue("付款日期");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 1);  
+	     cell.setCellValue("付款金额(/元)");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 2);  
+	     cell.setCellValue("付款人");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 3);  
+	     cell.setCellValue("付款账号");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 4);  
+	     cell.setCellValue("备注:年租金(/元)");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 5);  
+	     cell.setCellValue("条目:运费(/元)");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 6);  
+	     cell.setCellValue("条目:员工工资(/元)");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 7);  
+	     cell.setCellValue("条目:奖励(/元)");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 8);  
+	     cell.setCellValue("备注:租金月份");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 9);  
+	     cell.setCellValue("备注:付款单编号");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 10);  
+	     cell.setCellValue("备注:标记租金月份");  
+	     cell.setCellStyle(style);
+//	     FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+//			ObjectInputStream ois = new ObjectInputStream(fis);
+//			@SuppressWarnings("unchecked")
+//			List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+//			ois.close();
+	     
+//			System.out.println("????");
+			for (int i = 0; i <sp.length;i++)  
+	        {  
+	            row = sheet.createRow((int) i + 1);  
+	            
+	            // 第四步，创建单元格，并设置值  
+	            row.createCell((short) 0).setCellValue(sp[i].dvo.year+"-"+sp[i].dvo.mouth+"-"+sp[i].dvo.day);  
+	            row.createCell((short) 1).setCellValue(sp[i].pay.money);  
+	            row.createCell((short) 2).setCellValue(sp[i].pay.name);  
+	            row.createCell((short) 3).setCellValue(sp[i].pay.account); 
+	            row.createCell((short) 4).setCellValue(sp[i].tiaomu.yearfee);  
+	            row.createCell((short) 5).setCellValue(sp[i].tiaomu.trafficfee);  
+	            row.createCell((short) 6).setCellValue(sp[i].tiaomu.salary);  
+	            row.createCell((short) 7).setCellValue(sp[i].tiaomu.bonus);
+	            row.createCell((short) 8).setCellValue(sp[i].beizhu.moneyyear);
+	            row.createCell((short) 9).setCellValue(sp[i].beizhu.number);
+	            row.createCell((short) 10).setCellValue(sp[i].beizhu.moneymouth);
+//	            row.createCell((short) 7).setCellValue(sp[i].zhongzhuan);
+	            
+	            
+	        }
+	            try  
+	                    {  
+	                        FileOutputStream fout = new FileOutputStream("C:/大作业代码/"+"统计报表之付款单信息"+"("+pre+"至"+pro+
+	                   ")"+".xls"); 
+	                       wb.write(fout);  
+	                        fout.close();  
+	                    }  
+	                    catch (Exception e)  
+	                    {  
+	                        e.printStackTrace();  
+
+	                    }  
+
+	
+	            System.out.println("导出成功！");
+		
 	}
 	}
 

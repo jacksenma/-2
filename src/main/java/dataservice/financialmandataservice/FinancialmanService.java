@@ -7,7 +7,9 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.RecieveListpo;
 import po.financialmanpo.Recordpo;
+import vo.financialmanvo.RecieveListvo;
 
 public interface FinancialmanService {
 	 public CostOrderpo search(String ID) throws Exception ;
@@ -37,6 +39,10 @@ public interface FinancialmanService {
 	public void writeInit()throws Exception;
 	public boolean addInitAccount(Accountpo accountpo)throws Exception;
 	public Accountpo[] AllSearchInitAccount()throws Exception;
+	public void Daochu(String year,String month,String day,String idd, String shouru, String zhichu, String lirun, int i)throws Exception;
+	public void DaochuRe(RecieveListpo[] rp,String a,String b)throws Exception;
+	public void DaochuPay(CostOrderpo[] rp, String pre, String pro)throws Exception;
+	
 	
 
 }

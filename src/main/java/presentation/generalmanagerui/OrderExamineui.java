@@ -410,8 +410,12 @@ public void showbytype(String s[],String type){                 //显示待审�
     private void approveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_paymentorderMouseClicked
         // TODO add your handling code here:
     	int selected[] = jList1.getSelectedIndices();
-		for(int i=0;i<selected.length;i++)
-			approve((String)jList1.getModel().getElementAt(0));
+    	int length=selected.length;
+		for(int i=0;i<length;i++){
+			approve((String)jList1.getModel().getElementAt(i));
+			length--;
+			i--;
+		}
 		JOptionPane.showMessageDialog(null, "审批成功", "成功", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_paymentorderMouseClicked
 

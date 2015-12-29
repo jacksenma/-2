@@ -78,7 +78,6 @@ public class QueryID extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -94,9 +93,9 @@ public class QueryID extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         All = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("账号ID：");
+        jLabel1.setText("账户ID：");
 
         jButton1.setText("查询");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,7 +128,7 @@ public class QueryID extends javax.swing.JFrame {
         jLabel5.setText("账户权限");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "" };
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

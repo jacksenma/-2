@@ -9,6 +9,8 @@ import data.reformdata.RecieveListIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.CostOrderpo;
+import po.financialmanpo.Paypo;
+import po.financialmanpo.RecieveListpo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 import vo.financialmanvo.StatisticsListvo;
@@ -76,5 +78,47 @@ public class StatisticsListImpl extends UnicastRemoteObject implements Statistic
 		}
 		return null;
 	}
+
+	@Override
+	public void daochuRe(RecieveListvo[] searchReceive,String pre,String pro) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fms = new RecieveListIO();
+		RecieveListpo[] rp=new RecieveListpo[searchReceive.length];
+		try {
+			for(int i=0;i<searchReceive.length;i++){
+				rp[i]=new RecieveListpo(searchReceive[i]);
+			}
+			
+			fms.DaochuRe(rp,pre,pro);
+				
+			//System.out.println("sssss");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void daochuPay(PaymentInputvo[] searchPay, String pre, String pro) throws RemoteException {
+		// TODO Auto-generated method stub
+		FinancialmanService fms = new PaymentListIO();
+		CostOrderpo[] rp=new CostOrderpo[searchPay.length];
+		try {
+			for(int i=0;i<searchPay.length;i++){
+				rp[i]=new CostOrderpo(searchPay[i]);
+			}
+			
+			fms.DaochuPay(rp,pre,pro);
+				
+			//System.out.println("sssss");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 
 }

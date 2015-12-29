@@ -3,6 +3,8 @@ package blservice.financialmanblservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import javax.swing.JTextField;
+
 import vo.financialmanvo.CheckPaymentListvo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
@@ -39,6 +41,10 @@ public interface CostManageService extends Remote {
 	public int getSum(String[] ss, int count)throws RemoteException;
 
 	public int[] getIncome(String[] ss, String[] sp, int count, int chu)throws RemoteException;
+
+	public void daochu(String year,String month,String day,String idd, String shouru, String zhichu1, String lirun, int i)throws RemoteException;
+
+	public boolean checkYyt(String yytID)throws RemoteException;
 
 	
 	

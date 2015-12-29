@@ -112,7 +112,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x65b0;&#x589e;&#x8d26;&#x53f7;"/>
+        <Property name="text" type="java.lang.String" value="&#x65b0;&#x589e;&#x8d26;&#x6237;"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
@@ -120,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x67e5;&#x8be2;&#x8d26;&#x53f7;"/>
+        <Property name="text" type="java.lang.String" value="&#x67e5;&#x8be2;&#x8d26;&#x6237;"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>

@@ -27,6 +27,7 @@ public class CheckGathering extends javax.swing.JFrame {
      * Creates new form CheckGathering
      * @throws Exception 
      */
+	static boolean isOk;
     public CheckGathering() throws Exception {
         initComponents();
         receive.setVisible(false);
@@ -117,6 +118,7 @@ public class CheckGathering extends javax.swing.JFrame {
         heji = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         receive = new javax.swing.JLabel();
+        daochu = new javax.swing.JButton();
 
         jLabel13.setText("jLabel13");
 
@@ -150,7 +152,7 @@ public class CheckGathering extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("退出");
+        jButton2.setText("返回");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -158,7 +160,7 @@ public class CheckGathering extends javax.swing.JFrame {
         });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { " ", " ", " ", " ", " " };
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -190,6 +192,18 @@ public class CheckGathering extends javax.swing.JFrame {
 
         receive.setText("jLabel14");
 
+        daochu.setText("导出Excel");
+        daochu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+					daochuMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,7 +222,9 @@ public class CheckGathering extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(heji)
-                        .addGap(93, 93, 93)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(daochu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +288,7 @@ public class CheckGathering extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(yytID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(OK)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,12 +302,13 @@ public class CheckGathering extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(heji)))
+                            .addComponent(heji)
+                            .addComponent(daochu)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -375,10 +392,18 @@ public class CheckGathering extends javax.swing.JFrame {
     		JOptionPane.showMessageDialog(null, "营业厅编号为6位", "输入有误", JOptionPane.ERROR_MESSAGE);
     		return;
     	}
+    	//检查是否存在此营业厅
+    	boolean a=cm.checkYyt(yytID.getText());
+    	if(a==false){
+    		Wrong2();
+    		return;
+    	}
+    	
     		
     	
     	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
 //    	chu++;
+    	isOk=true;
 //    	System.out.println(count+"上");
   	  
 	    
@@ -391,6 +416,18 @@ public class CheckGathering extends javax.swing.JFrame {
     }
     private void missMes(){
       	 JOptionPane.showMessageDialog(null, "信息输入不完整","输入有误", JOptionPane.ERROR_MESSAGE);
+      }
+    private void Error(){
+     	 JOptionPane.showMessageDialog(null, "导出失败","导出失败", JOptionPane.ERROR_MESSAGE);
+     }
+    private void Right(){
+    	 JOptionPane.showMessageDialog(null, "导出成功","导出成功", JOptionPane.ERROR_MESSAGE);
+    }
+    private void Wrong1(){
+   	 JOptionPane.showMessageDialog(null, "此时无法合计","合计失败", JOptionPane.ERROR_MESSAGE);
+   }
+    private void Wrong2(){
+      	 JOptionPane.showMessageDialog(null, "不存在此营业厅","输入错误", JOptionPane.ERROR_MESSAGE);
       }
    
 
@@ -408,12 +445,39 @@ public class CheckGathering extends javax.swing.JFrame {
 //    	for(int i=0;i<q;i++){
 //    		sum+=Integer.parseInt(ss[i]);
 //    	}
-    	int sum=cm.getSum(ss,count);
+    	if(isOk){
+    		int sum=cm.getSum(ss,count);
+        	receive.setText("合计金额：  "+sum+" 元");
+        	receive.setVisible(true);
+    	}
+    	else{
+    		Wrong1();
+    		return;
+    	}
     	
-
-    	receive.setText("合计金额：  "+sum+" 元");
-    	receive.setVisible(true);
     }//GEN-LAST:event_hejiMouseClicked
+
+    private void daochuMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_daochuMouseClicked
+        // TODO add your handling code here:
+    	if(isOk){
+    		cm.daochu(year.getText(),month.getText(),day.getText(),yytID.getText(),null,null,null,1);
+    		Right();
+    	}
+    	else{
+    		Error();
+    		return;
+    	}
+    		
+    	
+//    	if(a==false){
+//    		Error();
+//    		return;
+//    	}
+//    	else
+    		
+    		
+    		
+    }//GEN-LAST:event_daochuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -457,6 +521,7 @@ public class CheckGathering extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OK;
+    private javax.swing.JButton daochu;
     private javax.swing.JTextField day;
     private javax.swing.JButton heji;
     private javax.swing.JButton jButton2;

@@ -17,7 +17,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
     public FinancialmanMainui() {
         initComponents();
     }
-    
+    static String N;
     public FinancialmanMainui(String name , String ID) {
         initComponents();
         this.setVisible(true);
@@ -25,6 +25,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         setResizable(false);
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
+        N=name;
     }
 
     /**
@@ -234,7 +235,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
 
     private void recordMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_recordMouseClicked
         // TODO add your handling code here:
-    	new recordui().setVisible(true);
+    	new recordui(N).setVisible(true);
     }//GEN-LAST:event_recordMouseClicked
 
     /**

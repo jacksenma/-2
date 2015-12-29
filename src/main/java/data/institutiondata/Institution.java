@@ -31,7 +31,7 @@ public class Institution implements Institutionservice{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			System.out.println("success write Institution");
+			System.out.println("success write Institution...");
 			return true;
 		}
 
@@ -162,7 +162,7 @@ public class Institution implements Institutionservice{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			System.out.println("success write Institution");
+			System.out.println("success write Institution Init");
 			return true;
 	}
 

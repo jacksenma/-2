@@ -166,7 +166,7 @@ public class Institutionadd extends javax.swing.JFrame {
 		// TODO Auto-generated method stub
     	boolean b=true;
     	for(int i=0;i<text.length();i++){
-    		if(!(text.charAt(i)<'9'&&text.charAt(i)>'0'))
+    		if(!(text.charAt(i)<='9'&&text.charAt(i)>='0'))
              b=false;
     	}
     	if(!b){

@@ -13,11 +13,14 @@ public class AccountManageui extends javax.swing.JFrame {
 
     /**
      * Creates new form AccountManageui
+     * @param n 
      */
+	
     public AccountManageui() {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -183,11 +186,11 @@ public class AccountManageui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AccountManageui().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AccountManageui().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,6 +17,7 @@ public class LowFinancialmanMainui extends javax.swing.JFrame {
     public LowFinancialmanMainui() {
         initComponents();
     }
+    static String N;
     
     public LowFinancialmanMainui(String name , String ID) {
         initComponents();
@@ -26,6 +27,7 @@ public class LowFinancialmanMainui extends javax.swing.JFrame {
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
         jButton3.setVisible(false);
+        N=name;
     }
 
     /**
@@ -225,7 +227,7 @@ public class LowFinancialmanMainui extends javax.swing.JFrame {
 
     private void recordMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_recordMouseClicked
         // TODO add your handling code here:
-    	new recordui().setVisible(true);
+    	new recordui(N).setVisible(true);
     }//GEN-LAST:event_recordMouseClicked
 
     /**

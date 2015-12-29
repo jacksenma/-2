@@ -36,11 +36,11 @@ public class CostManageService_Stub implements CostManageService {
 		return null;
 	}
 
-	public boolean daochu() {
-		System.out.println("是否导出");
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	public boolean daochu() {
+//		System.out.println("是否导出");
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 	public CostManagevo profit() {
 		System.out.println("计算总收益");
@@ -115,6 +115,19 @@ public class CostManageService_Stub implements CostManageService {
 	public int[] getIncome(String[] ss, String[] sp,int a,int b) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void daochu(String year,String month,String day,String idd,String a,String b,String c,int i) throws RemoteException {
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkYyt(String a) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}}
 
 
