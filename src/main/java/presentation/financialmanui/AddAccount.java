@@ -6,6 +6,9 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,8 +16,10 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.AccountManageService;
+import blservice.financialmanblservice.CostManageService;
 import presentation.courierui.PriceAndTimeui;
 import vo.financialmanvo.AccountManagevo;
+import vo.financialmanvo.Recordvo;
 
 /**
  *
@@ -22,10 +27,13 @@ import vo.financialmanvo.AccountManagevo;
  */
 public class AddAccount extends javax.swing.JFrame {
 	 static AccountManageService as;
+	 static CostManageService rs;
     /**
      * Creates new form AddAccount
+     * @param name 
      * @throws Exception 
      */
+	
     public AddAccount() throws Exception {
     	 initComponents();
          this.setLocationRelativeTo(null);
@@ -34,6 +42,8 @@ public class AddAccount extends javax.swing.JFrame {
          error.setVisible(false);
          RMIClient.init();
          as= RMIClient.getAccountManageService();
+         rs = RMIClient.getCostManageService();
+        
         
     }
 
@@ -159,12 +169,27 @@ public class AddAccount extends javax.swing.JFrame {
                  System.out.println("成功！");
                  JOptionPane.showMessageDialog(null, "增加账户成功", "成功", 
                  		JOptionPane.INFORMATION_MESSAGE);
-                 this.dispose();
+                Date date=new Date();
+             	DateFormat format=new SimpleDateFormat("yyyy");
+             	String time1=format.format(date);
+
+             	Date date2=new Date();
+             	DateFormat format2=new SimpleDateFormat("MM");
+             	String time2=format2.format(date2);
+
+             	Date date3=new Date();
+             	DateFormat format3=new SimpleDateFormat("dd");
+             	String time3=format3.format(date3);
+             	Recordvo rvo=new Recordvo(time1, time2, time3,"增加了名为"+"("+mes1+")"+"的银行账户");
+             	rs.record(rvo);
+             	this.dispose();
              }
              else{
                  JOptionPane.showMessageDialog(null, "已存在相同账户！","写入失败", 
                  		JOptionPane.ERROR_MESSAGE);
              }
+             
+             
              // TODO add your handling code here:
          } catch (RemoteException ex) {
              Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,16 +230,16 @@ public class AddAccount extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-					new AddAccount().setVisible(true);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//					new AddAccount().setVisible(true);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

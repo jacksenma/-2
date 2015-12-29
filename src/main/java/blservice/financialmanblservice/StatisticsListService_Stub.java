@@ -6,7 +6,7 @@ import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
 import vo.financialmanvo.StatisticsListvo;
 
-public class StatisticsListService_Stub implements StatisticsListService {
+public abstract class StatisticsListService_Stub implements StatisticsListService {
 
 	public StatisticsListvo date(String date1, String Date2) {
 		System.out.println("数入起止日期");
@@ -33,5 +33,13 @@ public class StatisticsListService_Stub implements StatisticsListService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void daochuRe(RecieveListvo[] searchReceive, String pre, String pro) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

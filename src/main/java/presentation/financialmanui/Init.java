@@ -6,15 +6,20 @@
 package presentation.financialmanui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.AccountManageService;
+import blservice.financialmanblservice.CostManageService;
 import presentation.bushallsalmanui.CarMesManageui;
 import presentation.generalmanagerui.Institutionadd;
 import presentation.generalmanagerui.Staffadd;
 import presentation.stockmanagermanui.WarehouseWarningui;
+import vo.financialmanvo.Recordvo;
 
 /**
  *
@@ -22,11 +27,13 @@ import presentation.stockmanagermanui.WarehouseWarningui;
  */
 public class Init extends javax.swing.JFrame {
 	static AccountManageService as;
+	static CostManageService rs;
 
     /**
      * Creates new form Init
      * @throws Exception 
      */
+	
     public Init() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,6 +41,7 @@ public class Init extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         as= RMIClient.getAccountManageService();
+        rs = RMIClient.getCostManageService();
     }
 
     /**
@@ -92,12 +100,9 @@ public class Init extends javax.swing.JFrame {
         jButton6.setText("返回");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
+               
 					jButton6MouseClicked(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
             }
         });
 
@@ -143,38 +148,67 @@ public class Init extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jButton6MouseClicked
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
          
          //以下为点了返回之后，把期初信息单独存储起来
-         //机构
-    	if(!as.writeInitJigou()){
-    		missJigou();
-    		return;//未写完机构，只到bl层
-    	}
+         
+    	//机构
+    	try {
+			if(as.writeInitJigou()==false){
+				System.out.println("jigou");
+				missJigou();
+				return;//未写完机构，只到bl层
+			}
 //         人员
-    	if(!as.writeInitRenyuan()){
-    		missRenyuan();
-    		return;//未写完机构，只到bl层
-    	}
+			else if(as.writeInitRenyuan()==false){
+				System.out.println("renyuan");
+				missRenyuan();
+				return;//未写完机构，只到bl层
+			}
+			
 //         库存
-    	if(!as.writeInitKucun()){
-    		missKucun();
-    		return;//未写完机构，只到bl层
-    	}
+			else if(as.writeInitKucun()==false){
+				missKucun();
+				System.out.println("kucun");
+				return;//未写完机构，只到bl层
+			}
 //         银行账户
-        if(!as.writeInitAccount()){
-        	missAccount();
-        	return;
-        	
-        }
-        	
+			else if(as.writeInitAccount()==false){
+				missAccount();
+				System.out.println("zhanghu");
+				return;
+				
+			}
+				
 //         车辆
-        if(!as.writeInitCheliang()){
-        	missCheliang();
-        	return;
-        }
-    	
+			else if(as.writeInitCheliang()==false){
+				missCheliang();
+				System.out.println("jcheliang");
+				return;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	Date date=new Date();
+     	DateFormat format=new SimpleDateFormat("yyyy");
+     	String time1=format.format(date);
+
+     	Date date2=new Date();
+     	DateFormat format2=new SimpleDateFormat("MM");
+     	String time2=format2.format(date2);
+
+     	Date date3=new Date();
+     	DateFormat format3=new SimpleDateFormat("dd");
+     	String time3=format3.format(date3);
+     	Recordvo rvo=new Recordvo(time1, time2, time3,"期初建账");
+     	try {
+			rs.record(rvo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	
     	this.dispose();

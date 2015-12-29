@@ -122,6 +122,12 @@ public class CostManageService_Stub implements CostManageService {
 		
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean checkYyt(String a) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}}
 
 

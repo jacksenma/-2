@@ -16,8 +16,10 @@ import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
+import po.financialmanpo.RecieveListpo;
 import po.financialmanpo.Recordpo;
 import vo.financialmanvo.IncomeInputvo;
+import vo.financialmanvo.RecieveListvo;
 import vo.financialmanvo.SettlementManagevo;
 
 public class SettlementListIO implements  FinancialmanService {
@@ -218,6 +220,23 @@ public class SettlementListIO implements  FinancialmanService {
 	@Override
 	public void Daochu(String year,String month,String day,String idd,String a,String b,String c,int i) throws Exception {
 //		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+	@Override
+	public void DaochuRe(RecieveListpo[] rp, String a, String b) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void DaochuPay(CostOrderpo[] rp, String pre, String pro) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

@@ -52,7 +52,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("职位：管理员");
 
@@ -60,14 +60,14 @@ public class AdministratorMainui extends javax.swing.JFrame {
 
         jLabel3.setText("账号：");
 
-        jButton1.setText("新增账号");
+        jButton1.setText("新增账户");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
 
-        jButton2.setText("查询账号");
+        jButton2.setText("查询账户");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -75,7 +75,7 @@ public class AdministratorMainui extends javax.swing.JFrame {
         });
 
         jLabel4.setIcon(new javax.swing.ImageIcon("imag/mie3.gif"));
-        jLabel4.setText("");
+        jLabel4.setText("jLabel4");
 
         jMenu1.setText("File");
 

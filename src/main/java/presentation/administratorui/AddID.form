@@ -94,29 +94,33 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="Zhiwu" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="kdy" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="ybcwy" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="kdy" min="-2" max="-2" attributes="0"/>
+                              <Component id="ybcwy" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="zzzxywy" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="zjl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="gjcwy" min="-2" max="-2" attributes="0"/>
+                              <Component id="yytywy" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="gly" min="-2" max="-2" attributes="0"/>
-                              <Component id="zzzxkcgly" min="-2" max="-2" attributes="0"/>
+                              <Component id="zzzxywy" min="-2" max="-2" attributes="0"/>
+                              <Component id="zjl" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="zzzxkcgly" min="-2" max="-2" attributes="0"/>
+                              <Component id="gly" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="id" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -132,24 +136,16 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jTextField3" min="-2" pref="138" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Zhiwu" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="gjcwy" min="-2" max="-2" attributes="0"/>
-                                  <Component id="yytywy" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                       <Component id="id" min="-2" max="-2" attributes="0"/>
@@ -176,8 +172,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ybcwy" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="gjcwy" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="gly" alignment="0" max="32767" attributes="0"/>
                       <Component id="zjl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="gly" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -201,7 +197,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Zhiwu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x8d26;&#x53f7;&#x804c;&#x52a1;&#xff1a;"/>
+            <Property name="text" type="java.lang.String" value="&#x8d26;&#x53f7;&#x804c;&#x52a1;(&#x6743;&#x9650;)&#xff1a;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="kdy">

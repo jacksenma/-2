@@ -13,7 +13,7 @@ public class StatisticsListService_driver {
 	}
 	public static void main(String[] args) throws RemoteException {
 		StatisticsListService_driver d=new StatisticsListService_driver();
-		StatisticsListService stub=new StatisticsListService_Stub();
-		d.driver(stub);
+//		StatisticsListService stub=new StatisticsListService_Stub();
+//		d.driver(stub);
 	}
 }

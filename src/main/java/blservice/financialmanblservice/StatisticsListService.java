@@ -17,4 +17,13 @@ public interface StatisticsListService extends Remote {
 	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5,
 			String text6) throws RemoteException;
 
+	
+
+	public void daochuRe(RecieveListvo[] searchReceive, String pre, String pro)throws RemoteException;
+//	public void daochuPay(RecieveListvo[] searchReceive)throws RemoteException;
+
+	public void daochuPay(PaymentInputvo[] searchPay, String pre, String pro)throws RemoteException;
+
+	
+
 }

@@ -276,7 +276,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			FinancialmanService fs=new AccountIO();
 			Accountpo[] ap;
 			ap = fs.AllSearch();
-			if(ap==null)  return false;
+			if(ap.length==0)  return false;
 			else{
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitAccount(ap[i]);
@@ -323,8 +323,11 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			Institution fs=new Institution();
 			Institutionpo[] ap;
 			ap = fs.searchAll();
-			if(ap==null)  return false;
+			System.out.println(ap.length);
+			if(ap.length==0)  
+				return false;
 			else{
+				
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitAccount(ap[i]);
 					if(a==false)
@@ -348,7 +351,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			Staff fs=new Staff();
 			Staffpo[] ap;
 			ap = fs.searchAll();
-			if(ap==null)  return false;
+			if(ap.length==0)  return false;
 			else{
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitRenyuan(ap[i]);
@@ -371,7 +374,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			Storing fs=new Storing();
 			Warningpo[] ap;
 			ap = fs.AllSearch();
-			if(ap==null)  return false;
+			if(ap.length==0)  return false;
 			else{
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitKucun(ap[i]);
@@ -394,7 +397,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			BusinessHall fs=new BusinessHall();
 			CarMespo[] ap;
 			ap = fs.AllSearch();
-			if(ap==null)  return false;
+			if(ap.length==0)  return false;
 			else{
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitCheliang(ap[i]);

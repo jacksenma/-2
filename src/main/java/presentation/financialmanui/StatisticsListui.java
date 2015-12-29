@@ -23,13 +23,17 @@ import vo.financialmanvo.RecieveListvo;
  *
  * @author user
  */
+
 public class StatisticsListui extends javax.swing.JFrame {
 	static StatisticsListService sm;
     /**
      * Creates new form StatisticsListui
      * @throws Exception 
      */
-	Date date=new Date();
+	    static boolean isOk;//记录确定按钮是否被点过  
+	
+	
+	    Date date=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy");
 		String time1=format.format(date);
 		
@@ -200,7 +204,12 @@ public class StatisticsListui extends javax.swing.JFrame {
         daochu.setText("导出Excel");
         daochu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                daochuMouseClicked(evt);
+                try {
+					daochuMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -418,9 +427,11 @@ public class StatisticsListui extends javax.swing.JFrame {
   	  			return;
   			}
   			else if(am==pm){
-  				if(ad<pd)
+  				if(ad<pd){
   					WrongTime1();
-  	  			return;
+  	  	  			return;
+  				}
+  					
   			}
   		}
     	 
@@ -428,12 +439,27 @@ public class StatisticsListui extends javax.swing.JFrame {
     			year2.getText(),month2.getText(),day2.getText()));
     	SearchAll2(sm.SearchPay(year1.getText(),month1.getText(),day1.getText(),
     			year2.getText(),month2.getText(),day2.getText()));
+    	isOk=true;
     	
     	
     }//GEN-LAST:event_OKMouseClicked
 
-    private void daochuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daochuMouseClicked
+    private void daochuMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_daochuMouseClicked
         // TODO add your handling code here:
+    	if(isOk){
+    		String pre=year1.getText()+"-"+month1.getText()+"-"+day1.getText();
+    		String pro=year2.getText()+"-"+month2.getText()+"-"+day2.getText();
+    		
+    		sm.daochuRe(sm.SearchReceive(year1.getText(),month1.getText(),day1.getText(),
+        			year2.getText(),month2.getText(),day2.getText()),pre,pro);
+    		sm.daochuPay(sm.SearchPay(year1.getText(),month1.getText(),day1.getText(),
+        			year2.getText(),month2.getText(),day2.getText()),pre,pro);
+    		Right();
+    	}
+    	else{
+    		Error();
+    		return;
+    	}
     	
     }//GEN-LAST:event_daochuMouseClicked
     private void lackMes(){
@@ -448,6 +474,12 @@ public class StatisticsListui extends javax.swing.JFrame {
     private void error(){
         JOptionPane.showMessageDialog(null, "非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
+    private void Error(){
+    	 JOptionPane.showMessageDialog(null, "导出失败","导出失败", JOptionPane.ERROR_MESSAGE);
+    }
+   private void Right(){
+   	 JOptionPane.showMessageDialog(null, "导出成功","导出成功", JOptionPane.ERROR_MESSAGE);
+   }
 
     /**
      * @param args the command line arguments

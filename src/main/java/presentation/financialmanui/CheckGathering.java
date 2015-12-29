@@ -27,6 +27,7 @@ public class CheckGathering extends javax.swing.JFrame {
      * Creates new form CheckGathering
      * @throws Exception 
      */
+	static boolean isOk;
     public CheckGathering() throws Exception {
         initComponents();
         receive.setVisible(false);
@@ -391,10 +392,18 @@ public class CheckGathering extends javax.swing.JFrame {
     		JOptionPane.showMessageDialog(null, "营业厅编号为6位", "输入有误", JOptionPane.ERROR_MESSAGE);
     		return;
     	}
+    	//检查是否存在此营业厅
+    	boolean a=cm.checkYyt(yytID.getText());
+    	if(a==false){
+    		Wrong2();
+    		return;
+    	}
+    	
     		
     	
     	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
 //    	chu++;
+    	isOk=true;
 //    	System.out.println(count+"上");
   	  
 	    
@@ -414,6 +423,12 @@ public class CheckGathering extends javax.swing.JFrame {
     private void Right(){
     	 JOptionPane.showMessageDialog(null, "导出成功","导出成功", JOptionPane.ERROR_MESSAGE);
     }
+    private void Wrong1(){
+   	 JOptionPane.showMessageDialog(null, "此时无法合计","合计失败", JOptionPane.ERROR_MESSAGE);
+   }
+    private void Wrong2(){
+      	 JOptionPane.showMessageDialog(null, "不存在此营业厅","输入错误", JOptionPane.ERROR_MESSAGE);
+      }
    
 
     private void hejiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hejiActionPerformed
@@ -430,22 +445,36 @@ public class CheckGathering extends javax.swing.JFrame {
 //    	for(int i=0;i<q;i++){
 //    		sum+=Integer.parseInt(ss[i]);
 //    	}
-    	int sum=cm.getSum(ss,count);
+    	if(isOk){
+    		int sum=cm.getSum(ss,count);
+        	receive.setText("合计金额：  "+sum+" 元");
+        	receive.setVisible(true);
+    	}
+    	else{
+    		Wrong1();
+    		return;
+    	}
     	
-
-    	receive.setText("合计金额：  "+sum+" 元");
-    	receive.setVisible(true);
     }//GEN-LAST:event_hejiMouseClicked
 
     private void daochuMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_daochuMouseClicked
         // TODO add your handling code here:
-    	cm.daochu(year.getText(),month.getText(),day.getText(),yytID.getText(),null,null,null,1);
+    	if(isOk){
+    		cm.daochu(year.getText(),month.getText(),day.getText(),yytID.getText(),null,null,null,1);
+    		Right();
+    	}
+    	else{
+    		Error();
+    		return;
+    	}
+    		
+    	
 //    	if(a==false){
 //    		Error();
 //    		return;
 //    	}
 //    	else
-    		Right();
+    		
     		
     		
     }//GEN-LAST:event_daochuMouseClicked

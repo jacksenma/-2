@@ -23,6 +23,7 @@ import po.financialmanpo.IncomeInputpo;
 import po.financialmanpo.InitMespo;
 import po.financialmanpo.RecieveListpo;
 import po.financialmanpo.Recordpo;
+import vo.financialmanvo.RecieveListvo;
 import vo.financialmanvo.SettlementManagevo;
 
 public class RecieveListIO implements  FinancialmanService {
@@ -603,9 +604,88 @@ public class RecieveListIO implements  FinancialmanService {
 	}
 
 
-//	public boolean getOrder2(IncomeInputvo iivo) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-}
+	@Override
+	public void DaochuRe(RecieveListpo[] sp,String pre,String pro) throws Exception {
+		// TODO Auto-generated method stub
+		HSSFWorkbook wb = new HSSFWorkbook();  
+		HSSFSheet sheet = wb.createSheet("收款单信息表");  
+		HSSFRow row = sheet.createRow((int) 0);  
+		HSSFCellStyle style = wb.createCellStyle();  
+	    style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+	    HSSFCell cell = row.createCell((short) 0);  
+	     cell.setCellValue("收款日期");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 1);  
+	     cell.setCellValue("营业厅编号");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 2);  
+	     cell.setCellValue("收款金额(/元)");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 3);  
+	     cell.setCellValue("订单条形码号");  
+	     cell.setCellStyle(style);  
+	     cell = row.createCell((short) 4);  
+	     cell.setCellValue("收款快递员");  
+	     cell.setCellStyle(style);
+	     cell = row.createCell((short) 5);  
+	     cell.setCellValue("收款账户");  
+	     cell.setCellStyle(style);
+//	     cell = row.createCell((short) 6);  
+//	     cell.setCellValue("位号");  
+//	     cell.setCellStyle(style);
+//	     cell = row.createCell((short) 7);  
+//	     cell.setCellValue("中转中心");  
+//	     cell.setCellStyle(style);
+//	     FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+//			ObjectInputStream ois = new ObjectInputStream(fis);
+//			@SuppressWarnings("unchecked")
+//			List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+//			ois.close();
+	     
+//			System.out.println("????");
+			for (int i = 0; i <sp.length;i++)  
+	        {  
+	            row = sheet.createRow((int) i + 1);  
+	            
+	            // 第四步，创建单元格，并设置值  
+	            row.createCell((short) 0).setCellValue(sp[i].year1+"-"+sp[i].month1+"-"+sp[i].day1);  
+	            row.createCell((short) 1).setCellValue(sp[i].id1);  
+	            row.createCell((short) 2).setCellValue(sp[i].money1);  
+	            row.createCell((short) 3).setCellValue(sp[i].tiaoxingma1);  
+	            row.createCell((short) 4).setCellValue(sp[i].kdy1);
+	            row.createCell((short) 5).setCellValue(sp[i].Zhanghu1);
+//	            row.createCell((short) 7).setCellValue(sp[i].zhongzhuan);
+	            
+	            
+	        }
+	            try  
+	                    {  
+	                        FileOutputStream fout = new FileOutputStream("C:/大作业代码/"+"统计报表之收款单信息"+"("+pre+"至"+pro+
+	                   ")"+".xls"); 
+	                       wb.write(fout);  
+	                        fout.close();  
+	                    }  
+	                    catch (Exception e)  
+	                    {  
+	                        e.printStackTrace();  
+
+	                    }  
+
+	
+	            System.out.println("导出成功！");
+			
+			}
+
+
+	@Override
+	public void DaochuPay(CostOrderpo[] rp, String pre, String pro) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	}
+	
+
+
+
+
 
