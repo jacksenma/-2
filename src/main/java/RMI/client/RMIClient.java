@@ -32,7 +32,7 @@ import blservice.transitsalmanblservice.TransitReceiveService;
 
 public class RMIClient {
 	
-	private static final String IP = "localhost"; //Can be read from config file
+	private static String IP = "114.212.42.89"; //Can be read from config file
 
     private static boolean inited = false;
     
@@ -93,6 +93,10 @@ public class RMIClient {
         } catch (Exception e) {
             throw new Exception(e);
         }
+    }
+    
+    public static void setIP(String s) {
+    	IP = s;
     }
     
     private static void initObjects() throws MalformedURLException, RemoteException, NotBoundException {
