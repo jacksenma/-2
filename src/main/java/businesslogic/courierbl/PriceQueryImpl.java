@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import RMI.host.HostLog;
 import blservice.courierblservice.PriceQueryService;
 import businesslogic.generalmanagerbl.ConstantFormulateImpl;
 import data.orderdata.OrderIO;
@@ -55,6 +56,8 @@ public class PriceQueryImpl extends UnicastRemoteObject implements PriceQuerySer
 //		ptpo = cs.query(ptpo);
 //		p.price = ptpo.price;
         p.date = new Datevo();
+        HostLog.addMes("查询订单：\n 出发地：" + p.begin + " 目的地：" + p.aim
+        		+ "\n 价格：" + p.price + " 时间：" + p.date);
 		return p;
 	}
 

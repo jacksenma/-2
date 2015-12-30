@@ -32,7 +32,7 @@ import blservice.transitsalmanblservice.TransitReceiveService;
 
 public class RMIClient {
 	
-	private static String IP = "114.212.42.89"; //Can be read from config file
+	private static String IP = "localhost"; //Can be read from config file
 
     private static boolean inited = false;
     

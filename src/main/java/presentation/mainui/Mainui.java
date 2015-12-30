@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import RMI.client.RMIClient;
 import blservice.administratorblservice.UserAuthorityManagerService;
@@ -102,11 +105,11 @@ public class Mainui extends javax.swing.JFrame {
         PasswordInfo.setText("密码：");
 
         Signin.setText("登录");
-        Signin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SigninMouseClicked(evt);
-            }
-        });
+        Signin.addActionListener(new ActionListener() {
+        	 public void actionPerformed(ActionEvent e) {
+        	 addBtnLoginActionListener();
+        	 }
+        	 });
 
         Exit.setText("退出");
         Exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,7 +189,7 @@ public class Mainui extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_QueryInfoMouseClicked
 
-    private void SigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SigninMouseClicked
+    private void addBtnLoginActionListener() {//GEN-FIRST:event_SigninMouseClicked
         // TODO add your handling code here:
     	String ID = Account.getText();
     	try {
@@ -196,6 +199,7 @@ public class Mainui extends javax.swing.JFrame {
 				return;
 			}
 			String passw = Password.getText();
+			
 			if(!passw.equals(quvo.getPassword())){
 				errorPassw();
 				return;
@@ -242,7 +246,19 @@ public class Mainui extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "不存在此账户！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     
-    
+	public void show() {
+		 Toolkit tk = Toolkit.getDefaultToolkit();
+		 Dimension screen = tk.getScreenSize();
+		 Dimension d = getSize();
+		 this.setLocation((screen.width - d.width) / 2,
+		 (screen.height - d.height) / 2);
+
+		 // 输入密码后回车相当于点击了登录按钮
+		 getRootPane().setDefaultButton(Signin);
+		 Password.requestFocus();
+
+		 super.show();
+		 }   
      /* @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -273,6 +289,7 @@ public class Mainui extends javax.swing.JFrame {
         Mainui m = new Mainui();
         m.setVisible(true);
         m.setLocationRelativeTo(null);
+        
         
     }
 

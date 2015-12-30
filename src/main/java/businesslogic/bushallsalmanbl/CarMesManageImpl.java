@@ -3,6 +3,7 @@ package businesslogic.bushallsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.bushallsalmanblservice.CarMesManageService;
 import data.institutiondata.BusinessHall;
 import dataservice.bushallsalmandataservice.BushallsalmanService;
@@ -21,8 +22,10 @@ public class CarMesManageImpl extends UnicastRemoteObject implements CarMesManag
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
 		try {
-			if(bss.writeCarMes(new CarMespo(cm)))
+			if(bss.writeCarMes(new CarMespo(cm))){
+				HostLog.addMes("车辆信息管理;"+"\n");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

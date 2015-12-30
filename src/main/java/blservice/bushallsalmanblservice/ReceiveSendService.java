@@ -41,23 +41,49 @@ public interface ReceiveSendService extends Remote {
 	public boolean checkDate(Receivevo1 receive1, QueryOrdervo qovo)
 	        throws RemoteException;
 
-	//派件单日期输入检验
+	/**派件单日期输入检验
+	 * 
+	 * @param send
+	 * @param qovo
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean checkDate(Sendvo send, QueryOrdervo qovo)
 	        throws RemoteException;
 
-	//显示收件单信息
+	/**显示收件单信息
+	 * 
+	 * @param iD
+	 * @return
+	 * @throws RemoteException
+	 */
 	public Receivevo showReceive(String iD)
 	        throws RemoteException;
 
-	//修改收件单信息
+	/**修改收件单信息
+	 * 
+	 * @param receive
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean modifyReceive(Receivevo receive)
 	        throws RemoteException;
 
-	//显示派件单信息
+	/**显示派件单信息
+	 * 
+	 * @param iD
+	 * @return
+	 * @throws RemoteException
+	 */
 	public Sendvo showSend(String iD)
 	        throws RemoteException;
 
-	//修改派件单信息
+	/**修改派件单信息
+	 * 
+	 * @param sendvo
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean modifySend(Sendvo sendvo)
 	        throws RemoteException;
 }

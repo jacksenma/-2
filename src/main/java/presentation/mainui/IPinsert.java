@@ -5,6 +5,10 @@
  */
 package presentation.mainui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import RMI.client.RMIClient;
 
 /**
@@ -45,6 +49,9 @@ public class IPinsert extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        
+    
 
         jButton2.setText("退出");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

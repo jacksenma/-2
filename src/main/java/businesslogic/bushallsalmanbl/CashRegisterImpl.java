@@ -3,6 +3,7 @@ package businesslogic.bushallsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.bushallsalmanblservice.CashRegisterService;
 import blservice.courierblservice.ReceiveMesService;
 import businesslogic.courierbl.ReceiveMesImpl;
@@ -27,8 +28,10 @@ public class CashRegisterImpl extends UnicastRemoteObject implements CashRegiste
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
 		try {
-			if(bss.writecash(new CashReceiveOrderpo(cr)))
+			if(bss.writecash(new CashReceiveOrderpo(cr))){
+				HostLog.addMes("收款单输入;"+"\n");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

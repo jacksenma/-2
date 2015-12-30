@@ -3,6 +3,7 @@ package businesslogic.bushallsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.bushallsalmanblservice.DriverMesManageService;
 import data.institutiondata.BusinessHall;
 import dataservice.bushallsalmandataservice.BushallsalmanService;
@@ -22,8 +23,10 @@ public class DriverMesManageImpl extends UnicastRemoteObject implements DriverMe
 		// TODO Auto-generated method stub
 		BushallsalmanService bss = new BusinessHall();
 		try {
-			if(bss.writeDriverMes(new DriverMespo(dm)))
+			if(bss.writeDriverMes(new DriverMespo(dm))){
+				HostLog.addMes("司机信息管理;"+"\n");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

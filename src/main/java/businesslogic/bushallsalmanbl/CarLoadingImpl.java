@@ -3,6 +3,7 @@ package businesslogic.bushallsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.bushallsalmanblservice.CarLoadingService;
 import blservice.courierblservice.ReceiveMesService;
 import businesslogic.courierbl.OrderInputImpl;
@@ -33,6 +34,7 @@ public class CarLoadingImpl extends UnicastRemoteObject implements CarLoadingSer
 		try {
 			if(bss.writeCarloading(new CarLoadingpo(cl))){
 				ois.writeHistory(cl.tuoYunDan, "已在"+cl.yingYeTing+"装车");
+				HostLog.addMes("装车单输入："+"\n"+"汽运编号:"+cl.car+"营业厅编号："+cl.yingYeTing+"\n");
 				return true;
 			}
 		} catch (Exception e) {

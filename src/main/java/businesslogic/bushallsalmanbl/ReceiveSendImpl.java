@@ -3,6 +3,7 @@ package businesslogic.bushallsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.bushallsalmanblservice.ReceiveSendService;
 import blservice.courierblservice.ReceiveMesService;
 import businesslogic.courierbl.OrderInputImpl;
@@ -36,6 +37,7 @@ public class ReceiveSendImpl extends UnicastRemoteObject implements ReceiveSendS
 		try {
 			if(bss.writereceive(new ReceiveOrderpo(re))){
 				ois.writeHistory(re.receive1.ID, "从中转中心"+re.receive1.zhongzhuan+"发出的已被接收");
+				HostLog.addMes("接收单输入"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -54,6 +56,7 @@ public class ReceiveSendImpl extends UnicastRemoteObject implements ReceiveSendS
 		try {
 			if(bss.writesend(new SendOrderpo(send))){
 				ois.writeHistory(send.tiaoxingma, "已派件");
+				HostLog.addMes("派件单输入"+"\n");
 				return true;
 			}
 		} catch (Exception e) {

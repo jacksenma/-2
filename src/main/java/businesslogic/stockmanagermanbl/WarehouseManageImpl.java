@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import RMI.host.HostLog;
 import blservice.courierblservice.OrderInputService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import businesslogic.courierbl.OrderInputImpl;
@@ -39,8 +40,10 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
 		try{
-		if(sms.initialize())
+		if(sms.initialize()){
+			HostLog.addMes("库存初始化;"+"\n");
 			return true;
+		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -53,8 +56,10 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
 		try {
-			if(sms.set(new Warningpo(warning)))
+			if(sms.set(new Warningpo(warning))){
+				HostLog.addMes("设置库存警戒比例;"+"\n");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,6 +75,7 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		try {
 			if(sms.in(new InStoringpo(kd,wz))){
 				ois.writeHistory(kd.bianhao, "已在中转中心"+wz.zhongzhuan+"入库");
+				HostLog.addMes("入库信息管理;"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -86,6 +92,7 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		try {
 			if(sms.out(new OutStoringpo(out1,zy))){
 				ois.writeHistory(out1.bianhao, "已在中转中心"+out1.zhongzhuan+"出库");
+				HostLog.addMes("出库信息管理;"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -108,6 +115,7 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 					StoreCheckvo s = sp[i].getHuo();
 					sv[i]= s;
 				}
+				HostLog.addMes("库存盘点;"+"\n");
 				return sv;
 			}
 		} catch (Exception e) {

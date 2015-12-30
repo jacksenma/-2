@@ -12,7 +12,7 @@ import blservice.stockmanagermanblservice.WarehouseManageService;
 
 /**
  *
- * @author dlydd
+ * @author 段定
  */
 public class StoreExamine extends javax.swing.JFrame {
 
