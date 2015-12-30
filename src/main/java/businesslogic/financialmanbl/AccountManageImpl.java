@@ -77,8 +77,9 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 //		return false;
 		FinancialmanService fs=new AccountIO();
 		 try {
-				System.out.println("sdweretr");
+//				System.out.println("sdweretr");
          	if(fs.addAccount(new Accountpo(amvo)))
+         		
 					return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
