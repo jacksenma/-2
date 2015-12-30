@@ -34,6 +34,7 @@ public class PriceAndTimeui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         jLabel1.setText("出发地：" + p.begin);
         jLabel2.setText("目的地：" + p.aim);
         jLabel3.setText("价格：" + p.price);

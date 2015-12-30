@@ -32,6 +32,7 @@ public class ReceiveMesui extends javax.swing.JFrame {
     public ReceiveMesui() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         this.setVisible(true);
         try {
 			RMIClient.init();

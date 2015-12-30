@@ -38,6 +38,7 @@ public class TransitReceiveui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         
         trs = RMIClient.getTransitReceiveService();
         ois = RMIClient.getOrderInputService();

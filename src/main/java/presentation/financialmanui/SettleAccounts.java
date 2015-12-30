@@ -68,7 +68,7 @@ public class SettleAccounts extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         save = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("结算清单"));
 

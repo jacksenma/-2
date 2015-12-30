@@ -32,6 +32,7 @@ public class SubReceiveMesui extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         rmv = r;
         qovo = q;
     }

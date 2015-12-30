@@ -38,7 +38,7 @@ public class AccountManageui extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         checkMes = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("增加账户");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -514,9 +514,9 @@ public class PaymentList extends javax.swing.JFrame {
          try {
         	 PaymentInputvo pivo=new PaymentInputvo(paydv, p, t, b);
         	 System.out.println(pivo.beizhu.moneymouth);
-//        	 System.out.println("ssssssss");
+
              boolean ax = cm.getOrder(pivo);
-//             System.out.println("sdsd");
+
              if(ax){
                  System.out.println("成功！");
                  JOptionPane.showMessageDialog(null, "写入成功", "成功", 

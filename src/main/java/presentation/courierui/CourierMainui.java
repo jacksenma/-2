@@ -24,6 +24,7 @@ public class CourierMainui extends javax.swing.JFrame {
         jLabel3.setText("账号：" + ID);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

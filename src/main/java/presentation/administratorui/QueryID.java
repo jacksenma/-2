@@ -68,7 +68,11 @@ public class QueryID extends javax.swing.JFrame {
         });
  	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  	    jScrollPane2.setViewportView(jList1);
- 	    }}
+ 	    
+ 	    
+ 	    }
+ 	   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,7 +97,7 @@ public class QueryID extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         All = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("账户ID：");
 
@@ -128,7 +132,7 @@ public class QueryID extends javax.swing.JFrame {
         jLabel5.setText("账户权限");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " ", " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

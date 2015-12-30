@@ -35,6 +35,7 @@ public class InputID extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setResizable(false);
         qs = RMIClient.getQueryService();
         m = mui;
         if(m.allID != null){
@@ -62,7 +63,7 @@ public class InputID extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("输入条形码：");
 
