@@ -3,6 +3,7 @@ package businesslogic.financialmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.financialmanblservice.StatisticsListService;
 import data.reformdata.PaymentListIO;
 import data.reformdata.RecieveListIO;
@@ -41,6 +42,7 @@ public class StatisticsListImpl extends UnicastRemoteObject implements Statistic
 			rp = fs.SearchReceive(text, text2, text3, text4,text5, text6);
 			if(rp==null)  return null;
 			else{
+				HostLog.addMes("显示期间收款单信息"+"\n");
 				RecieveListvo[] rv = new RecieveListvo[rp.length];
 				for(int i=0;i<rp.length;i++){
 					RecieveListvo s = rp[i].getRecieveList();
@@ -65,6 +67,7 @@ public class StatisticsListImpl extends UnicastRemoteObject implements Statistic
 			rp = fs.SearchPay(text, text2, text3, text4,text5, text6);
 			if(rp==null)  return null;
 			else{
+				HostLog.addMes("显示期间付款单"+"\n");
 				PaymentInputvo[] rv = new PaymentInputvo[rp.length];
 				for(int i=0;i<rp.length;i++){
 					PaymentInputvo s = rp[i].getPaymentList();
@@ -88,7 +91,7 @@ public class StatisticsListImpl extends UnicastRemoteObject implements Statistic
 			for(int i=0;i<searchReceive.length;i++){
 				rp[i]=new RecieveListpo(searchReceive[i]);
 			}
-			
+			HostLog.addMes("导出统计报表"+"\n");
 			fms.DaochuRe(rp,pre,pro);
 				
 			//System.out.println("sssss");
