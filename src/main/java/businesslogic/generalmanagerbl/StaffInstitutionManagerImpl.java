@@ -13,6 +13,7 @@ import data.institutiondata.Institution;
 import data.staffdata.Staff;
 import dataservice.generalmanagerdataservice.Institutionservice;
 import dataservice.generalmanagerdataservice.Staffservice;
+import RMI.host.HostLog;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 
 public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements StaffInstitutionManagerService {
@@ -45,6 +46,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Staffservice ss = new Staff();
 		ss.writeStaff(new Staffpo(sv));
+		HostLog.addMes("新增员工");
 	}
 
 
@@ -52,6 +54,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Staffservice ss = new Staff();
 		ss.deleteStaff(new Staffpo(sv));
+		HostLog.addMes("删除员工");
 	}
 
 
@@ -59,6 +62,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Staffservice ss = new Staff();
 		ss.modifyStaff(new Staffpo(oldsv),new Staffpo(sv));
+		HostLog.addMes("修改员工信息");
 	}
 
 
@@ -67,6 +71,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Institutionservice is = new Institution();
 		is.writeInstitution(new Institutionpo(iv));
+		HostLog.addMes("新增机构");
 	}
 
 
@@ -74,6 +79,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Institutionservice is = new Institution();
 		is.deleteInstitution(new Institutionpo(iv));
+		HostLog.addMes("删除机构");
 	}
 
 
@@ -81,6 +87,7 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 		// TODO Auto-generated method stub
 		Institutionservice is = new Institution();
 		is.modifyInstitution(new Institutionpo(oldiv),new Institutionpo(iv));
+		HostLog.addMes("修改机构信息");
 	}
 
 
