@@ -76,7 +76,7 @@ public class QueryResultui extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("寄件人信息"));
 
@@ -107,7 +107,7 @@ public class QueryResultui extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(104, 104, 104)
                         .addComponent(jLabel3)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

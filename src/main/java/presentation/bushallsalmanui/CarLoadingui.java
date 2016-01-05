@@ -8,6 +8,9 @@ package presentation.bushallsalmanui;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,6 +36,18 @@ public class CarLoadingui extends javax.swing.JFrame {
 
 	static CarLoadingService cls;
 	static QueryService q;
+	
+	Date date=new Date();
+	DateFormat format=new SimpleDateFormat("yyyy");
+	String time1=format.format(date);
+	
+	Date date2=new Date();
+	DateFormat format2=new SimpleDateFormat("MM");
+	String time2=format2.format(date2);
+	
+	Date date3=new Date();
+	DateFormat format3=new SimpleDateFormat("dd");
+	String time3=format3.format(date3);
     /**
      * Creates new form CarLoadingui
      * @throws Exception 
@@ -44,6 +59,9 @@ public class CarLoadingui extends javax.swing.JFrame {
         RMIClient.init();
         cls=RMIClient.getCarLoadingService();
         q=RMIClient.getQueryService();
+        year.setText(time1);
+        month.setText(time2);
+        day.setText(time3);
     }
 
     /**
