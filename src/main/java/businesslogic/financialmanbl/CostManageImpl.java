@@ -3,6 +3,7 @@ package businesslogic.financialmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.financialmanblservice.CostManageService;
 import data.institutiondata.Institution;
 import data.reformdata.PaymentListIO;
@@ -36,13 +37,13 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 	
 	public boolean getOrder(PaymentInputvo o) {
 		// TODO Auto-generated method stub
-		System.out.println(o.beizhu.moneymouth+"sfeferegrttry");
-		System.out.println("ssss");
+		
 
             FinancialmanService cs = new PaymentListIO();
             try {
-				System.out.println("sdweretr");
+				
             	if(cs.writeOrder(new CostOrderpo(o)))
+            		HostLog.addMes("写入付款单"+"\n");
 					return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -72,6 +73,10 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		FinancialmanService fms = new RecieveListIO();
 		try {
 			fms.Daochu( year, month, day, idd,shouru,zhichu,lirun,i);
+			if(i==1)
+				HostLog.addMes("导出收款单"+"\n");
+			else if(i==2)
+				HostLog.addMes("导出成本收益表"+"\n");
 				
 			//System.out.println("sssss");
 		} catch (Exception e) {
@@ -104,6 +109,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 					RecieveListvo s = rp[i].getRecieveList();
 					rv[i]= s;
 				}
+				HostLog.addMes("查找收款单信息"+"\n");
 				return rv;
 			}	
 		} catch (Exception e) {
@@ -123,7 +129,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		 try {
 				
        	if(fs.deletePaymentList(number)){
-       		System.out.println("delete.............");
+       		
        		
        	}
 					
@@ -143,6 +149,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 			try {
 				co = fs.searchp(number);
 				if(co == null) return null;
+//				HostLog.addMes("查找付款单"+"\n");
 		        return new CheckPaymentListvo(co);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -157,8 +164,9 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		// TODO Auto-generated method stub
 		 FinancialmanService cs = new RecordIO();
          try {
-				System.out.println("sdweretr");
+				
          	if(cs.writeRecord(new Recordpo(rvo)))
+         		HostLog.addMes("写入操作记录"+"\n");
 					return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -177,6 +185,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 			up = as.AllSearchRec();
 			if(up==null)  return null;
 			else{
+				HostLog.addMes("查询历史操作记录"+"\n");
 				Recordvo[] uv = new Recordvo[up.length];
 				for(int i=0;i<up.length;i++){
 					Recordvo s = up[i].geUser();
@@ -210,7 +219,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
     	 int shou=0;
     	 for(int i=0;i<count;i++)
     		 shou+=Integer.parseInt(ss[i]);
-    	 System.out.println(shou);
+    	 
     	 
     	 
     	 //计算支出
@@ -228,6 +237,7 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
     	 result[0]=shou;
     	 result[1]=zhichu;
     	 result[2]=shouyi;
+    	 HostLog.addMes("计算成本收益"+"\n");
 		return result;
 	}
 

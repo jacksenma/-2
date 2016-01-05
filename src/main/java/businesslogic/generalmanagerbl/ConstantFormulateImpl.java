@@ -11,6 +11,7 @@ import java.util.List;
 import data.constancydata.Constancy;
 import dataservice.generalmanagerdataservice.GeneralManagerService;
 import po.generalmanagepo.Constancypo;
+import RMI.host.HostLog;
 import blservice.generalmanagerblservice.ConstantFormulateService;
 
 public class ConstantFormulateImpl extends UnicastRemoteObject implements ConstantFormulateService {
@@ -36,8 +37,10 @@ public class ConstantFormulateImpl extends UnicastRemoteObject implements Consta
 		System.out.println("write in");
 		GeneralManagerService gs = new Constancy();
 		try {
-			if(gs.writecontancy(new Constancypo(cv)))
+			if(gs.writecontancy(new Constancypo(cv))){
+				HostLog.addMes("修改常量");
 				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

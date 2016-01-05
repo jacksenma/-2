@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import RMI.host.HostLog;
 import blservice.financialmanblservice.AccountManageService;
 import data.accountdata.AccountIO;
 import data.institutiondata.BusinessHall;
@@ -13,8 +14,6 @@ import data.reformdata.RecieveListIO;
 import data.staffdata.Staff;
 import data.warehousedata.Storing;
 import dataservice.financialmandataservice.FinancialmanService;
-import po.administratorpo.UserMespo;
-import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.CarMespo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
@@ -23,7 +22,6 @@ import po.financialmanpo.InitMespo;
 import po.generalmanagepo.Institutionpo;
 import po.otherdatapo.Staffpo;
 import po.stockmanagermanpo.Warningpo;
-import vo.administratorvo.UserAuthorityManagervo;
 import vo.bushallsalmanvo.CarMesManagevo;
 import vo.financialmanvo.AccountManagevo;
 import vo.financialmanvo.AccountMesvo;
@@ -77,8 +75,9 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 //		return false;
 		FinancialmanService fs=new AccountIO();
 		 try {
-				System.out.println("sdweretr");
+//				System.out.println("sdweretr");
          	if(fs.addAccount(new Accountpo(amvo)))
+         		HostLog.addMes("新增银行账户： "+"\n"+"账户名称： "+amvo.accountName+"\n"+"初始金额： "+amvo.money+"\n");
 					return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -114,6 +113,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			try {
 				co = fs.find(qvo.getName());
 				if(co == null) return null;
+				HostLog.addMes("查找银行账户"+"\n");
 		        return new AccountUservo(co);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -135,6 +135,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			up = as.AllSearch();
 			if(up==null)  return null;
 			else{
+				HostLog.addMes("查找所有银行账户"+"\n");
 				AccountManagevo[] uv = new AccountManagevo[up.length];
 				for(int i=0;i<up.length;i++){
 					AccountManagevo s = up[i].geUser();
@@ -157,7 +158,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 		try {
 			rp = fs.SearchRe(text);
 			if(rp==null)  return null;
-			else{
+			else{HostLog.addMes("查找收款单信息"+"\n");
 				RecieveListvo[] rv = new RecieveListvo[rp.length];
 				for(int i=0;i<rp.length;i++){
 					RecieveListvo s = rp[i].getRecieveList();
@@ -181,7 +182,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 		try {
 			rp = fs.SearchPay(text);
 			if(rp==null)  return null;
-			else{
+			else{HostLog.addMes("查找付款单信息"+"\n");
 				PaymentInputvo[] rv = new PaymentInputvo[rp.length];
 				for(int i=0;i<rp.length;i++){
 					PaymentInputvo s = rp[i].getPaymentList();
@@ -205,10 +206,10 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			ap = fs.MoSearch(text);
 			if(ap==null)  return null;
 			else{
-				System.out.println(ap.length);
+				HostLog.addMes("模糊查找"+"关键字为"+text+" 的银行账户"+"\n");
 				AccountManagevo[] av = new AccountManagevo[ap.length];
 				for(int i=0;i<ap.length;i++){
-					System.out.println("zhe");
+					
 					AccountManagevo s = ap[i].geUser();
 					av[i]= s;
 				}
@@ -228,7 +229,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 		 try {
 				
          	if(fs.deleteAcc(name)){
-         		System.out.println("delete.............");
+         		HostLog.addMes("删除账户名称为"+name+" 的银行账户"+"\n");
          		return true;
          	}
 					
@@ -278,11 +279,13 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			ap = fs.AllSearch();
 			if(ap.length==0)  return false;
 			else{
+				
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitAccount(ap[i]);
 					if(a==false)
 						return false;
 				}
+				HostLog.addMes("进行期初银行账户信息设置"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -333,6 +336,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 					if(a==false)
 						return false;
 				}
+				HostLog.addMes("进行期初机构信息设置"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -353,11 +357,13 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			ap = fs.searchAll();
 			if(ap.length==0)  return false;
 			else{
+				
 				for(int i=0;i<ap.length;i++){
 					boolean a=fs.addInitRenyuan(ap[i]);
 					if(a==false)
 						return false;
 				}
+				HostLog.addMes("进行期初人员信息设置"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -381,6 +387,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 					if(a==false)
 						return false;
 				}
+				HostLog.addMes("进行期初库存信息设置"+"\n");
 				return true;
 			}
 		} catch (Exception e) {
@@ -404,6 +411,7 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 					if(a==false)
 						return false;
 				}
+				HostLog.addMes("进行期初车辆信息设置"+"\n");
 				return true;
 			}
 		} catch (Exception e) {

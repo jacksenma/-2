@@ -3,6 +3,7 @@ package businesslogic.financialmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.financialmanblservice.SettlementManageService;
 import data.reformdata.PaymentListIO;
 import data.reformdata.SettlementListIO;
@@ -43,6 +44,7 @@ public class SettlementManageImpl extends UnicastRemoteObject implements Settlem
             try {
 
             	if(cs.writeOrder2(new IncomeInputpo(iivo)))
+            		HostLog.addMes("写入结算清单"+"\n");
 					return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

@@ -12,6 +12,7 @@ import data.orderdata.ReceiveOrderInput;
 import data.reformdata.PaymentListIO;
 import data.warehousedata.Storing;
 import dataservice.generalmanagerdataservice.OrderService;
+import RMI.host.HostLog;
 import blservice.generalmanagerblservice.OrderExamineService;
 
 public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamineService {
@@ -96,6 +97,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approveexpressorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		OrderService os = new OrderIO();
+		HostLog.addMes("审批单据");
 		os.approve(ID);
 	}
 
@@ -103,6 +105,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvecarloadingorde(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BusinessHall bh = new BusinessHall();
+		HostLog.addMes("审批单据");
 		bh.approvecar(ID);
 	}
 
@@ -110,6 +113,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approveyingyetingorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BusinessHall bh = new BusinessHall();
+		HostLog.addMes("审批单据");
 		bh.approveyingyetingorder(ID);
 	}
 
@@ -117,6 +121,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvecarshoukuanorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BusinessHall bh = new BusinessHall();
+		HostLog.addMes("审批单据");
 		bh.approveshoukuanorder(ID);
 	}
 
@@ -124,6 +129,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvezhongzhuanorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		OrderIO os = new OrderIO();
+		HostLog.addMes("审批单据");
 	   os.approvetraffic(ID);
 	}
 
@@ -131,6 +137,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvepaijianorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		BusinessHall bh = new BusinessHall();
+		HostLog.addMes("审批单据");
 		bh.approvesendorder(ID);
 	}
 
@@ -139,6 +146,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		OrderService os= new ReceiveOrderInput();
+		HostLog.addMes("审批单据");
 		os.approve(ID);
 	}
 
@@ -146,6 +154,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approveinstockorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		Storing s = new Storing();
+		HostLog.addMes("审批单据");
 		s.approveinstock(ID);
 	}
 
@@ -153,6 +162,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approveoutstockorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		Storing s = new Storing();
+		HostLog.addMes("审批单据");
 		s.approveoutstock(ID);
 	}
 
@@ -160,6 +170,7 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	public void approvepaymentorder(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 	OrderService os = new PaymentListIO();
+	HostLog.addMes("审批单据");
 		os.approve(ID);
 	}
 

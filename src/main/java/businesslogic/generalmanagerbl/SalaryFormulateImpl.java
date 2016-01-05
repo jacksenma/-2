@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import po.generalmanagepo.Salarypo;
 import data.salarydata.Salary;
 import dataservice.generalmanagerdataservice.SalaryService;
+import RMI.host.HostLog;
 import blservice.generalmanagerblservice.SalaryFormulateService;
 
 public class SalaryFormulateImpl extends UnicastRemoteObject implements SalaryFormulateService {
@@ -41,9 +42,9 @@ public class SalaryFormulateImpl extends UnicastRemoteObject implements SalaryFo
 		SalaryService ss = new Salary();
 		Salarypo salary[] = new Salarypo[7];
 		for(int i=0;i<7;i++)
-		salary[i]=new Salarypo(staffs[i]);
-		
+		salary[i]=new Salarypo(staffs[i]);	
 	     ss.writesalary(salary);
+	     HostLog.addMes("修改薪水策略");
 	}
     
 }

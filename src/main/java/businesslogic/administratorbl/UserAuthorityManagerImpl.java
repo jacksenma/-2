@@ -3,6 +3,7 @@ package businesslogic.administratorbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import RMI.host.HostLog;
 import blservice.administratorblservice.UserAuthorityManagerService;
 import data.safetydata.AddaccountIO;
 import dataservice.administratordataservice.AdministratorService;
@@ -10,7 +11,6 @@ import po.administratorpo.UserMespo;
 import vo.administratorvo.QueryMesvo;
 import vo.administratorvo.QueryUservo;
 import vo.administratorvo.UserAuthorityManagervo;
-import vo.generalmanagervo.Staffvo;
 
 public class UserAuthorityManagerImpl extends UnicastRemoteObject implements UserAuthorityManagerService {
 
@@ -38,17 +38,14 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 	}
 	public boolean getOrder(UserAuthorityManagervo o) {
 		// TODO Auto-generated method stub
-//		System.out.println(o.beizhu.moneymouth+"sfeferegrttry");
-//		System.out.println("ssss");
 
-//            FinancialmanService cs = new PaymentListIO();
-		///////////////////////////////////////////////////////////////////
 		AdministratorService cs=new AddaccountIO();
 		
             try {
 				
             	if(cs.writeOrder(new UserMespo(o))){
-            		System.out.println("getOrder");
+            		HostLog.addMes("增加用户账户： "+"\n"+"账户ID： "+o.ID+"\n"+"账户密码： "+o.Mima+"\n"
+            				+"员工姓名： "+o.Name+"\n"+"账户权限： "+o.Type+"\n");
             		return true;
             	}
 					
@@ -67,7 +64,7 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
             try {
 				
             	if(cs.deleteUser(new UserMespo(o))){
-            		System.out.println("delete.............");
+            		HostLog.addMes("删除ID为  "+o.ID+" 的用户账户"+"\n");
             		return true;
             	}
 					
@@ -89,6 +86,7 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 		try {
 			co = es.search(qvo.getID());
 			if(co == null) return null;
+			HostLog.addMes("查找ID为  "+qvo.getID()+" 的用户账户"+"\n");
 	        return new QueryUservo(co);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -104,7 +102,8 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
         try {
 			
         	if(cs.changeUser(new UserMespo(o),new UserMespo(n))){
-        		System.out.println("change.............");
+        		HostLog.addMes("修改用户账户(修改后信息如下)： "+"\n"+"账户ID： "+o.ID+"\n"+"账户密码： "+o.Mima+"\n"
+        				+"员工姓名： "+o.Name+"\n"+"账户权限： "+n.Type+"\n");
         		return true;
         	}
 				
@@ -124,6 +123,7 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 			up = as.AllSearch();
 			if(up==null)  return null;
 			else{
+				HostLog.addMes("显示全部用户账户信息 "+"\n");
 				UserAuthorityManagervo[] uv = new UserAuthorityManagervo[up.length];
 				for(int i=0;i<up.length;i++){
 					UserAuthorityManagervo s = up[i].geUser();
@@ -141,17 +141,7 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 		
 	
 
-//	public void deleteUser(UserAuthorityManagervo find) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		AdministratorService is=new AddaccountIO();
-//		is.deleteUser(new UserMespo(find));
-//		
-//	}
 
-//	public void deleteUser(QueryUservo find) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 	
 
